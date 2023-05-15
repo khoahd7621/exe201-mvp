@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 436.3 497.45">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f4f4f4;
+        font-family: Corbel-Bold, Corbel;
+        font-size: 201.17px;
+        font-weight: 700;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-width: 16px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1" data-name="Layer 1">
+    <path class="cls-2" d="m10.7,302.58V37.65s-1.96-29.64,32.33-29.64h360.12s25.15-1.68,25.15,31.43v263.13s.76,44.01-28.7,44.01-167.94,2.1-167.94,2.1c0,0-124.87,84.43-124.87,81.42v-83.52H41.23s-30.53-7.18-30.53-44.01Z"/>
+  </g>
+  <g id="Layer_2" data-name="Layer 2">
+    <text class="cls-1" transform="translate(84.82 233.88)"><tspan x="0" y="0">ZH</tspan></text>
+  </g>
+</svg>
