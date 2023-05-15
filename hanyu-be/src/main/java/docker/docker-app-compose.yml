@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  hanyu-app:
+    image: registry.gitlab.com/namth1606/hanyu-app:${HANYU_VERSION}
+    container_name: hanyu-app-service
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+    networks:
+      - hanyu-network
+
+networks:
+  hanyu-network:
+    driver: bridge
+
+volumes:
+  hanyu-app:

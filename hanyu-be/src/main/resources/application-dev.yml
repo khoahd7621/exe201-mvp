@@ -1,10 +1,10 @@
 spring:
-  profiles: local
+  profiles: dev
   datasource:
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
-    url: jdbc:postgresql://localhost:5432/hanyu-app
+    url: jdbc:postgresql://hanyu-postgresql:5432/hanyu-app
     username: sa
     password: 123456
   jpa:
