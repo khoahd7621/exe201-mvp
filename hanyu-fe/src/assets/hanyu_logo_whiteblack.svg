@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 436.3 497.45">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 737.17 745.05">
   <defs>
     <style>
       .cls-1 {
-        fill: #f4f4f4;
+        fill: #fff;
         font-family: Corbel-Bold, Corbel;
-        font-size: 201.17px;
+        font-size: 347.39px;
         font-weight: 700;
       }
 
@@ -20,9 +20,9 @@
     </style>
   </defs>
   <g id="Layer_1" data-name="Layer 1">
-    <path class="cls-2" d="m10.7,302.58V37.65s-1.96-29.64,32.33-29.64h360.12s25.15-1.68,25.15,31.43v263.13s.76,44.01-28.7,44.01-167.94,2.1-167.94,2.1c0,0-124.87,84.43-124.87,81.42v-83.52H41.23s-30.53-7.18-30.53-44.01Z"/>
+    <path class="cls-2" d="m8.04,516.7V59.2S4.66,8.02,63.87,8.02h621.88s43.42-2.91,43.42,54.28v454.39s1.31,75.99-49.56,75.99-290,3.62-290,3.62c0,0-215.63,145.8-215.63,140.61v-144.23H60.76s-52.73-12.41-52.73-75.99Z"/>
   </g>
   <g id="Layer_2" data-name="Layer 2">
-    <text class="cls-1" transform="translate(84.82 233.88)"><tspan x="0" y="0">ZH</tspan></text>
+    <text class="cls-1" transform="translate(136.04 398.05)"><tspan x="0" y="0">ZH</tspan></text>
   </g>
 </svg>
