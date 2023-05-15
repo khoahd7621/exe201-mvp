@@ -1,0 +1,40 @@
+name: hanyu fe ci
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "hanyu-fe/**"
+      - ".github/workflows/hanyu-fe-ci.yaml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "hanyu-fe/**"
+      - ".github/workflows/hanyu-fe-ci.yaml"
+
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+        working-directory: hanyu-fe
+      - run: npm run build
+        working-directory: hanyu-fe
+      - run: npm run lint
+        working-directory: hanyu-fe
+      - name: SonarCloud Scan
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/main' }}
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: hanyu-fe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
