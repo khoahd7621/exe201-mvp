@@ -1,0 +1,7 @@
+spring.banner.location: classpath:/config/banner.txt
+server:
+  servlet.context-path: /hanyu-be
+  port: 8080
+spring:
+  profiles:
+    active: local
