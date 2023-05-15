@@ -1,20 +1,21 @@
-import * as React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
+import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+
+import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
 
 interface Props {
   /**
@@ -25,19 +26,12 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = [
-  "Dictionary",
-  "Translate",
-  "Community",
-  "Test",
-  "Notebook",
-  "Reading",
-];
+const navItems = ["Dictionary", "Translate", "Community", "Test", "Notebook", "Reading"];
 
-export default function Navbar(props: Props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+export default function Navbar({ window }: Props) {
   const navigate = useNavigate();
+
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -49,15 +43,27 @@ export default function Navbar(props: Props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: "center" }}
+    >
+      <Typography
+        variant="h6"
+        sx={{ my: 2 }}
+      >
         Hanyu
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }} onClick={() => routeChange(item)}>
+          <ListItem
+            key={item}
+            disablePadding
+          >
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              onClick={() => routeChange(item)}
+            >
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -66,12 +72,18 @@ export default function Navbar(props: Props) {
     </Box>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+    <Box
+      sx={{
+        display: "flex",
+        height: {
+          xs: "56px",
+          sm: "4rem",
+        },
+      }}
+    >
       <AppBar component="nav">
         <Toolbar
           sx={{
@@ -85,7 +97,7 @@ export default function Navbar(props: Props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { md: "none" } }}
           >
             <MenuIcon />
           </IconButton>
@@ -103,17 +115,14 @@ export default function Navbar(props: Props) {
               component="div"
               sx={{
                 flexGrow: 1,
-                display: { xs: "none", sm: "block" },
+                display: { xs: "none", md: "block" },
                 marginLeft: 1,
-                marginBottom: 1
               }}
             >
               Hanyu
             </Typography>
           </Box>
-          <Box
-            sx={{ display: { xs: "none", sm: "block", height: "4rem", p: 0 } }}
-          >
+          <Box sx={{ display: { xs: "none", md: "block", height: "4rem", p: 0 } }}>
             {navItems.map((item) => (
               <Button
                 key={item}
@@ -142,11 +151,11 @@ export default function Navbar(props: Props) {
           </Box>
           <Box
             sx={{
-              display: { xs: "none", sm: "flex" },
+              display: { xs: "none", md: "flex" },
               justifyContent: "space-between",
             }}
           >
-            <Box sx={{ m: 1, display: "flex", alignItems: "center", cursor: 'pointer' }}>
+            <Box sx={{ m: 1, display: "flex", alignItems: "center", cursor: "pointer" }}>
               <SettingsIcon />
             </Box>
             <Box sx={{ m: 1 }}>
@@ -190,7 +199,7 @@ export default function Navbar(props: Props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
@@ -199,17 +208,6 @@ export default function Navbar(props: Props) {
         >
           {drawer}
         </Drawer>
-      </Box>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-          unde fugit veniam eius, perspiciatis sunt? Corporis qui ducimus
-          quibusdam, aliquam dolore excepturi quae. Distinctio enim at eligendi
-          perferendis in cum quibusdam sed quae, accusantium et aperiam? Quod
-          itaque exercitationem, at ab sequi qui modi delectus quia corrupti
-          alias distinctio nostrum.
-        </Typography>
       </Box>
     </Box>
   );
