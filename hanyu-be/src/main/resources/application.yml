@@ -3,7 +3,19 @@ server:
     context-path: /hanyu-be
   port: 8080
 spring:
-  profiles:
-    active: local
   banner:
     location: classpath:/config/banner.txt
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+    url: jdbc:postgresql://localhost:5432/hanyu-db
+    username: sa
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect

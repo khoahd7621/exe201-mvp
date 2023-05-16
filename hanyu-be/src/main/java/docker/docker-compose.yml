@@ -1,9 +1,9 @@
 version: '3.9'
 
 services:
-  hanyu-postgresql:
-    image: postgres:13.1
-    container_name: hanyu-postgresql
+  hanyu-db:
+    image: postgres:13-alpine
+    container_name: hanyu-db
     restart: unless-stopped
     environment:
       - POSTGRES_USER=sa

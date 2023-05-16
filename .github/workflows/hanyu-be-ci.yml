@@ -1,0 +1,52 @@
+name: hanyu be ci
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "hanyu-be/**"
+      - ".github/workflows/actions/action.yaml"
+      - ".github/workflows/hanyu-be-ci.yaml"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "customer/**"
+      - ".github/workflows/actions/action.yaml"
+      - ".github/workflows/hanyu-be-ci.yaml"
+
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: ./.github/workflows/actions
+      - name: Run maven build command
+        run: mvn clean install -DskipTests -f hanyu-be
+      - name: Analyze with sonar cloud
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/main' }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_BE_TOKEN }}
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f hanyu-be
+      - name: Log in to the container registry
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push docker images
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: docker/build-push-action@v3
+        with:
+          context: ./hanyu-be
+          push: true
+          tags: ghcr.io/khoahd7621/hanyu-be:latest
