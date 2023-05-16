@@ -1,15 +1,7 @@
 import { Container, Grid, Box, Typography, Stack } from "@mui/material";
 import { Icon } from "@iconify/react";
 
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
-}
-
-export default function Navbar({ window }: Props) {
+export default function Navbar() {
   return (
     <>
       <Container sx={{ position: "fixed", minWidth: "100vw", bottom: 0, borderTop: 2, borderColor: '#363636' }}>
