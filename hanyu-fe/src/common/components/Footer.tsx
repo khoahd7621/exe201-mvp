@@ -1,10 +1,19 @@
 import { Container, Grid, Box, Typography, Stack } from "@mui/material";
-import { Icon } from "@iconify/react";
+import GoogleIcon from "@mui/icons-material/Google";
+import AppleIcon from "@mui/icons-material/Apple";
 
 export default function Navbar() {
   return (
     <>
-      <Container sx={{ position: "fixed", minWidth: "100vw", bottom: 0, borderTop: 2, borderColor: '#363636' }}>
+      <Container
+        sx={{
+          position: "fixed",
+          minWidth: "100vw",
+          bottom: 0,
+          borderTop: 2,
+          borderColor: "#363636",
+        }}
+      >
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4} lg={3}>
             <Typography variant="h4" sx={{ margin: "15px", fontSize: 20, fontWeight: 600 }}>
@@ -109,22 +118,21 @@ export default function Navbar() {
             <Typography variant="h4" sx={{ margin: "15px", fontSize: 20, fontWeight: 600 }}>
               Download
             </Typography>
-            <Grid container sx={{ m: 0 }}>
-              <Grid item sx={{ paddingLeft: "15px" }}>
+            <Grid container direction="column" spacing={2} sx={{ paddingLeft: "16px" }}>
+              <Grid item>
                 <Stack
                   direction={{ xs: "column", sm: "row" }}
                   spacing={1}
                   sx={{
                     background: "#000",
-                    width: 120,
+                    width: 160,
                     height: 44,
                     borderRadius: "8px",
-                    justifyContent: "center",
                     cursor: "pointer",
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Icon icon="mdi:google-play" color="white" width="32" height="32" />
+                    <GoogleIcon sx={{ width: "32px", height: "32px", color: "#fff" }} />
                   </Box>
                   <Box>
                     <Typography
@@ -138,21 +146,20 @@ export default function Navbar() {
                   </Box>
                 </Stack>
               </Grid>
-              <Grid item sx={{ paddingLeft: "15px" }}>
+              <Grid item>
                 <Stack
-                  direction={{ xs: "column", sm: "row" }}
+                  direction="row"
                   spacing={1}
                   sx={{
                     background: "#000",
-                    width: 120,
+                    width: 160,
                     height: 44,
                     borderRadius: "8px",
-                    justifyContent: "center",
                     cursor: "pointer",
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Icon icon="ic:baseline-apple" color="white" width="32" height="32" />
+                    <AppleIcon sx={{ width: "32px", height: "32px", color: "#fff" }} />
                   </Box>
                   <Box>
                     <Typography
@@ -161,7 +168,7 @@ export default function Navbar() {
                       Download on
                     </Typography>
                     <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#fff" }}>
-                      Google Play
+                      App Store
                     </Typography>
                   </Box>
                 </Stack>
