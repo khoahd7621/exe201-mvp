@@ -1,21 +1,41 @@
 version: '3.9'
 
 services:
-  hanyu-db:
+  hanyu-postgres:
     image: postgres:13-alpine
-    container_name: hanyu-db
+    container_name: hanyu-postgres
     restart: unless-stopped
     environment:
       - POSTGRES_USER=sa
       - POSTGRES_PASSWORD=123456
       - POSTGRES_HOST_AUTH_METHOD=trust
-      - POSTGRES_DB=hanyu-app
+      - POSTGRES_DB=hanyu-db
     ports:
       - "5432:5432"
     volumes:
       - postgres:/data/postgres
     networks:
       - hanyu-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready", "-d", "db_prod" ]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+  hanyu-api:
+    image: ghcr.io/khoahd7621/hanyu-be:latest
+    container_name: hanyu-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://hanyu-postgres:5432/hanyu-db
+    networks:
+      - hanyu-network
+    depends_on:
+      hanyu-postgres:
+        condition: service_healthy
+
 networks:
   hanyu-network:
     driver: bridge
