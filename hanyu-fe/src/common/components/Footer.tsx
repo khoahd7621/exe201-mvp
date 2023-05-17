@@ -4,6 +4,16 @@ import AppleIcon from "@mui/icons-material/Apple";
 
 export default function Navbar() {
   return (
+    <>
+      <Container
+        sx={{
+          position: "relative",
+          minWidth: "100vw",
+          bottom: 0,
+          borderTop: 2,
+          borderColor: "#363636",
+        }}
+      >
     <div
       style={{
         borderTop: "1px solid #e0e0e0",
