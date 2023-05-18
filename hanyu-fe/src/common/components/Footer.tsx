@@ -2,7 +2,7 @@ import { Container, Grid, Box, Typography, Stack } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
 
-export default function Navbar() {
+export default function Footer() {
   return (
     <>
       <Container
