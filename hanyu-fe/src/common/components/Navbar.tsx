@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import {
+  AppBar,
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -30,6 +32,7 @@ const navItems = ["Dictionary", "Translate", "Community", "Test", "Notebook", "R
 
 export default function Navbar({ window }: Props) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -125,7 +128,12 @@ export default function Navbar({ window }: Props) {
                     borderBottomColor: "#fff",
                     borderRadius: 0,
                   },
+                  "&.active": {
+                    borderBottom: 3,
+                    borderBottomColor: "#fff",
+                  },
                 }}
+                className={location.pathname === `/${item.toLowerCase()}` ? "active" : ""}
                 onClick={() => routeChange(item)}
               >
                 {item}

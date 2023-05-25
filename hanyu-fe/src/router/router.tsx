@@ -9,6 +9,7 @@ import {
   TestPage,
   TranslatePage,
 } from "../pages";
+import AppRoutes from "./AppRoutes";
 
 const routes: RouteObject[] = [
   {
@@ -19,64 +20,28 @@ const routes: RouteObject[] = [
         index: true,
         element: <DictionaryPage />,
       },
-    ],
-  },
-  {
-    path: "/dictionary",
-    element: <MainLayout />,
-    children: [
       {
-        index: true,
+        path: AppRoutes.dictionary,
         element: <DictionaryPage />,
       },
-    ],
-  },
-  {
-    path: "/translate",
-    element: <MainLayout />,
-    children: [
       {
-        index: true,
+        path: AppRoutes.translate,
         element: <TranslatePage />,
       },
-    ],
-  },
-  {
-    path: "/community",
-    element: <MainLayout />,
-    children: [
       {
-        index: true,
+        path: AppRoutes.community,
         element: <CommunityPage />,
       },
-    ],
-  },
-  {
-    path: "/test",
-    element: <MainLayout />,
-    children: [
       {
-        index: true,
+        path: AppRoutes.test,
         element: <TestPage />,
       },
-    ],
-  },
-  {
-    path: "/notebook",
-    element: <MainLayout />,
-    children: [
       {
-        index: true,
+        path: AppRoutes.notebook,
         element: <NoteBookPage />,
       },
-    ],
-  },
-  {
-    path: "/reading",
-    element: <MainLayout />,
-    children: [
       {
-        index: true,
+        path: AppRoutes.reading,
         element: <ReadingPage />,
       },
     ],

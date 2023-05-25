@@ -46,15 +46,15 @@ export default function TestPage() {
   return (
     <Container fixed>
       <Box>
-        <Grid container spacing={2} paddingTop={4}>
-          <Grid item xs={8} md={8}>
+        <Grid container spacing={2} paddingTop={4} paddingBottom={6}>
+          <Grid item xs={12} md={8}>
             <Grid spacing={2} container>
               {listTests.map((item) => (
                 <TestCard key={item.id} test={item} />
               ))}
             </Grid>
           </Grid>
-          <Grid item xs={4} md={4}>
+          <Grid item xs={12} md={4}>
             <Card variant="outlined" sx={{ borderRadius: "1rem" }}>
               <CardContent>
                 <Typography variant="h5" component="div">

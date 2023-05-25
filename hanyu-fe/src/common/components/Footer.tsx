@@ -4,16 +4,12 @@ import AppleIcon from "@mui/icons-material/Apple";
 
 export default function Navbar() {
   return (
-    <>
-      <Container
-        sx={{
-          position: "fixed",
-          minWidth: "100vw",
-          bottom: 0,
-          borderTop: 2,
-          borderColor: "#363636",
-        }}
-      >
+    <div
+      style={{
+        borderTop: "1px solid #e0e0e0",
+      }}
+    >
+      <Container fixed>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4} lg={3}>
             <Typography variant="h4" sx={{ margin: "15px", fontSize: 20, fontWeight: 600 }}>
@@ -129,6 +125,7 @@ export default function Navbar() {
                     height: 44,
                     borderRadius: "8px",
                     cursor: "pointer",
+                    padding: "0 8px",
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -156,6 +153,7 @@ export default function Navbar() {
                     height: 44,
                     borderRadius: "8px",
                     cursor: "pointer",
+                    padding: "0 8px",
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -177,6 +175,6 @@ export default function Navbar() {
           </Grid>
         </Grid>
       </Container>
-    </>
+    </div>
   );
 }
