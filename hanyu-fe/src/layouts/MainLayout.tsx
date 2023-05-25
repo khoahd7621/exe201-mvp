@@ -7,7 +7,9 @@ export default function MainLayout() {
     <>
       <Navbar />
 
-      <Outlet />
+      <div style={{ backgroundColor: "#f7f7f7" }}>
+        <Outlet />
+      </div>
 
       <Footer />
     </>

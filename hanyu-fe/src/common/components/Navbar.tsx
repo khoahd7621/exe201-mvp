@@ -43,27 +43,15 @@ export default function Navbar({ window }: Props) {
   };
 
   const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{ textAlign: "center" }}
-    >
-      <Typography
-        variant="h6"
-        sx={{ my: 2 }}
-      >
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
         Hanyu
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem
-            key={item}
-            disablePadding
-          >
-            <ListItemButton
-              sx={{ textAlign: "center" }}
-              onClick={() => routeChange(item)}
-            >
+          <ListItem key={item} disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }} onClick={() => routeChange(item)}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -103,12 +91,7 @@ export default function Navbar({ window }: Props) {
           </IconButton>
           <Box sx={{ display: "flex" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <img
-                src="/hanyu_logo_whiteblack.svg"
-                alt="Hanyu Logo"
-                width="32"
-                height="32"
-              />
+              <img src="/hanyu_logo_whiteblack.svg" alt="Hanyu Logo" width="32" height="32" />
             </Box>
             <Typography
               variant="h6"
