@@ -1,9 +1,11 @@
 import DictionaryPage from "./DictionaryPage";
 import TranslatePage from "./TranslatePage";
 import CommunityPage from "./CommunityPage";
-import TestPage from "./TestPage";
 import NoteBookPage from "./NoteBookPage";
 import ReadingPage from "./ReadingPage";
+
+import TestPage from "./test/TestPage";
+import HSKPage from "./test/HSKPage";
 
 export {
   DictionaryPage,
@@ -12,4 +14,5 @@ export {
   TestPage,
   NoteBookPage,
   ReadingPage,
+  HSKPage,
 };

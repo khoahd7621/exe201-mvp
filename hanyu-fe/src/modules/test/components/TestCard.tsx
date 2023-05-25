@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 import GradingIcon from "@mui/icons-material/Grading";
 import HistoryIcon from "@mui/icons-material/History";
 import { Card, CardContent, CardMedia, Grid, Stack, Typography } from "@mui/material";
 
+import AppRoutes from "~/router/AppRoutes";
 import { Test } from "../models";
 
 type TestCardProps = {
@@ -9,6 +12,8 @@ type TestCardProps = {
 };
 
 export default function TestCard({ test }: TestCardProps) {
+  const navigate = useNavigate();
+
   return (
     <Grid
       item
@@ -16,6 +21,7 @@ export default function TestCard({ test }: TestCardProps) {
       sx={{
         cursor: "pointer",
       }}
+      onClick={() => navigate(`${AppRoutes.test}/${test.slug}`)}
     >
       <Card
         variant="outlined"

@@ -4,6 +4,7 @@ import { MainLayout } from "../layouts";
 import {
   CommunityPage,
   DictionaryPage,
+  HSKPage,
   NoteBookPage,
   ReadingPage,
   TestPage,
@@ -35,6 +36,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.test,
         element: <TestPage />,
+      },
+      {
+        path: `${AppRoutes.test}/:testType`,
+        element: <HSKPage />,
       },
       {
         path: AppRoutes.notebook,
