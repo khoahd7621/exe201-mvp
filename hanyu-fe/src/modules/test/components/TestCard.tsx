@@ -41,13 +41,13 @@ export default function TestCard({ test }: TestCardProps) {
             <Stack spacing={0.5} direction="row" alignItems="center" justifyContent="center">
               <GradingIcon fontSize="small" sx={{ color: "#959595" }} />
               <Typography variant="body2" component="div">
-                20 đề
+                {test.totalTest} đề
               </Typography>
             </Stack>
             <Stack spacing={0.5} direction="row" alignItems="center" justifyContent="center">
               <HistoryIcon fontSize="small" sx={{ color: "#959595" }} />
               <Typography variant="body2" component="div">
-                40'
+                {test.structure.reduce((acc, cur) => acc + cur.totalTime, 0)}'
               </Typography>
             </Stack>
           </Stack>
