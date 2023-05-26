@@ -25,12 +25,17 @@ export default function TestPage() {
       <Box>
         <Grid container spacing={2} paddingTop={4} paddingBottom={6}>
           <Grid item xs={12} md={3}>
-            <ExamStructure examName={currentExam.name} structure={currentExam.structure} />
+            <ExamStructure examName={currentExam.name} structures={currentExam.structures} />
           </Grid>
           <Grid item xs={12} md={9}>
             <Grid spacing={2} container>
               {listTests.map((test, index) => (
-                <TestCard key={test.id} test={test} isLocked={index !== 0} />
+                <TestCard
+                  key={test.id}
+                  examSlug={currentExam.slug}
+                  test={test}
+                  isLocked={examType !== "hsk-1" ? true : index !== 0}
+                />
               ))}
             </Grid>
           </Grid>

@@ -47,7 +47,7 @@ export default function ExamCard({ exam }: ExamCardProps) {
             <Stack spacing={0.5} direction="row" alignItems="center" justifyContent="center">
               <HistoryIcon fontSize="small" sx={{ color: "#959595" }} />
               <Typography variant="body2" component="div">
-                {exam.structure.reduce((acc, cur) => acc + cur.totalTime, 0)}'
+                {exam.structures.reduce((acc, cur) => acc + cur.totalTime, 0)}'
               </Typography>
             </Stack>
           </Stack>

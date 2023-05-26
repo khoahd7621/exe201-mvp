@@ -5,6 +5,6 @@ export type Exam = {
   name: string;
   slug: string;
   imageUrl: string;
-  structure: ExamStructure;
+  structures: ExamStructure[];
   totalTest: number;
 };

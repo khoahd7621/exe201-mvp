@@ -8,10 +8,10 @@ import { ExamStructure as StructureModel } from "../models/ExamStructure";
 
 export interface ExamStructureProps {
   examName: string;
-  structure: StructureModel;
+  structures: StructureModel[];
 }
 
-const ExamStructure = ({ examName, structure }: ExamStructureProps) => (
+const ExamStructure = ({ examName, structures }: ExamStructureProps) => (
   <>
     <Link
       component={RouterLink}
@@ -35,7 +35,7 @@ const ExamStructure = ({ examName, structure }: ExamStructureProps) => (
         Bắt Đầu
       </Typography>
       <Box padding="0 2.4rem">
-        {structure.map((item) => (
+        {structures.map((item) => (
           <Typography
             key={item.name}
             component="div"

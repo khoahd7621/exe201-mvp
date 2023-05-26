@@ -2,18 +2,23 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Button, Card, Grid, Stack, Typography } from "@mui/material";
 
 import { Test } from "../models";
+import { useNavigate } from "react-router-dom";
+import AppRoutes from "~/router/AppRoutes";
 
 type TestCardProps = {
   test: Test;
   isLocked: boolean;
+  examSlug: string;
 };
 
-const TestCard = ({ test, isLocked }: TestCardProps) => {
+const TestCard = ({ test, isLocked, examSlug }: TestCardProps) => {
+  const navigate = useNavigate();
+
   const handleClickButton = () => {
     if (isLocked) {
       console.log("Mở khóa");
     } else {
-      console.log("Vào thi ngay");
+      navigate(`${AppRoutes.test}/${examSlug}/${test.slug}`);
     }
   };
 

@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 
-import { MainLayout } from "../layouts";
+import { MainLayout, QuizLayout } from "../layouts";
 import {
   CommunityPage,
   DictionaryPage,
   ExamPage,
   NoteBookPage,
+  QuizPage,
   ReadingPage,
   TestPage,
   TranslatePage,
@@ -34,20 +35,36 @@ const routes: RouteObject[] = [
         element: <CommunityPage />,
       },
       {
-        path: AppRoutes.test,
-        element: <ExamPage />,
-      },
-      {
-        path: `${AppRoutes.test}/:examType`,
-        element: <TestPage />,
-      },
-      {
         path: AppRoutes.notebook,
         element: <NoteBookPage />,
       },
       {
         path: AppRoutes.reading,
         element: <ReadingPage />,
+      },
+    ],
+  },
+  {
+    path: AppRoutes.test,
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <ExamPage />,
+      },
+      {
+        path: `:examType`,
+        element: <TestPage />,
+      },
+    ],
+  },
+  {
+    path: `${AppRoutes.test}/:examType/:quizSlug`,
+    element: <QuizLayout />,
+    children: [
+      {
+        index: true,
+        element: <QuizPage />,
       },
     ],
   },

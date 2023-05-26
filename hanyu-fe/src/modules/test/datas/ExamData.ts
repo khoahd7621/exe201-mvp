@@ -6,6 +6,24 @@ import img3 from "~/assets/images/modules/test/banner/HSK_03.png";
 import img4 from "~/assets/images/modules/test/banner/HSK_04.png";
 import img5 from "~/assets/images/modules/test/banner/HSK_05.png";
 import img6 from "~/assets/images/modules/test/banner/HSK_06.png";
+import {
+  ExamStructures1,
+  ExamStructures10,
+  ExamStructures11,
+  ExamStructures12,
+  ExamStructures13,
+  ExamStructures14,
+  ExamStructures15,
+  ExamStructures16,
+  ExamStructures2,
+  ExamStructures3,
+  ExamStructures4,
+  ExamStructures5,
+  ExamStructures6,
+  ExamStructures7,
+  ExamStructures8,
+  ExamStructures9,
+} from "./ExamStructureData";
 
 export const ListExams: Exam[] = [
   {
@@ -14,56 +32,7 @@ export const ListExams: Exam[] = [
     name: "HSK 1",
     imageUrl: img1,
     totalTest: 1,
-    structure: [
-      {
-        name: "Reading",
-        hanyu: "听力",
-        totalTime: 18,
-        totalPart: 4,
-        parts: [
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Listening",
-        hanyu: "阅读",
-        totalTime: 17,
-        totalPart: 4,
-        parts: [
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-        ],
-      },
-    ],
+    structures: [ExamStructures1, ExamStructures2],
   },
   {
     id: 2,
@@ -71,60 +40,7 @@ export const ListExams: Exam[] = [
     slug: "hsk-2",
     imageUrl: img2,
     totalTest: 1,
-    structure: [
-      {
-        name: "Reading",
-        hanyu: "听力",
-        totalTime: 28,
-        totalPart: 5,
-        parts: [
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Listening",
-        hanyu: "阅读",
-        totalTime: 22,
-        totalPart: 4,
-        parts: [
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-        ],
-      },
-    ],
+    structures: [ExamStructures3, ExamStructures4],
   },
   {
     id: 3,
@@ -132,80 +48,7 @@ export const ListExams: Exam[] = [
     slug: "hsk-3",
     imageUrl: img3,
     totalTest: 1,
-    structure: [
-      {
-        name: "Reading",
-        hanyu: "听力",
-        totalTime: 40,
-        totalPart: 5,
-        parts: [
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Listening",
-        hanyu: "阅读",
-        totalTime: 30,
-        totalPart: 5,
-        parts: [
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Writing",
-        hanyu: "书写",
-        totalTime: 15,
-        totalPart: 2,
-        parts: [
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-        ],
-      },
-    ],
+    structures: [ExamStructures5, ExamStructures6, ExamStructures15],
   },
   {
     id: 4,
@@ -213,76 +56,7 @@ export const ListExams: Exam[] = [
     slug: "hsk-4",
     imageUrl: img4,
     totalTest: 1,
-    structure: [
-      {
-        name: "Reading",
-        hanyu: "听力",
-        totalTime: 35,
-        totalPart: 4,
-        parts: [
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 15,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Listening",
-        hanyu: "阅读",
-        totalTime: 40,
-        totalPart: 5,
-        parts: [
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 14,
-            question: [],
-          },
-          {
-            totalQuestion: 6,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Writing",
-        hanyu: "书写",
-        totalTime: 25,
-        totalPart: 2,
-        parts: [
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-        ],
-      },
-    ],
+    structures: [ExamStructures7, ExamStructures8, ExamStructures16],
   },
   {
     id: 5,
@@ -290,100 +64,7 @@ export const ListExams: Exam[] = [
     slug: "hsk-5",
     imageUrl: img5,
     totalTest: 1,
-    structure: [
-      {
-        name: "Reading",
-        hanyu: "听力",
-        totalTime: 35,
-        totalPart: 8,
-        parts: [
-          {
-            totalQuestion: 20,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 2,
-            question: [],
-          },
-          {
-            totalQuestion: 3,
-            question: [],
-          },
-          {
-            totalQuestion: 3,
-            question: [],
-          },
-          {
-            totalQuestion: 3,
-            question: [],
-          },
-          {
-            totalQuestion: 2,
-            question: [],
-          },
-          {
-            totalQuestion: 2,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Listening",
-        hanyu: "阅读",
-        totalTime: 45,
-        totalPart: 6,
-        parts: [
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 20,
-            question: [],
-          },
-          {
-            totalQuestion: 3,
-            question: [],
-          },
-          {
-            totalQuestion: 4,
-            question: [],
-          },
-          {
-            totalQuestion: 4,
-            question: [],
-          },
-          {
-            totalQuestion: 4,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Writing",
-        hanyu: "书写",
-        totalTime: 40,
-        totalPart: 3,
-        parts: [
-          {
-            totalQuestion: 8,
-            question: [],
-          },
-          {
-            totalQuestion: 1,
-            question: [],
-          },
-          {
-            totalQuestion: 1,
-            question: [],
-          },
-        ],
-      },
-    ],
+    structures: [ExamStructures9, ExamStructures10, ExamStructures11],
   },
   {
     id: 6,
@@ -391,95 +72,6 @@ export const ListExams: Exam[] = [
     slug: "hsk-6",
     imageUrl: img6,
     totalTest: 1,
-    structure: [
-      {
-        name: "Reading",
-        hanyu: "听力",
-        totalTime: 40,
-        totalPart: 10,
-        parts: [
-          {
-            totalQuestion: 15,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 3,
-            question: [],
-          },
-          {
-            totalQuestion: 3,
-            question: [],
-          },
-          {
-            totalQuestion: 3,
-            question: [],
-          },
-          {
-            totalQuestion: 4,
-            question: [],
-          },
-          {
-            totalQuestion: 4,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 5,
-            question: [],
-          },
-          {
-            totalQuestion: 20,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Listening",
-        hanyu: "阅读",
-        totalTime: 50,
-        totalPart: 4,
-        parts: [
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 10,
-            question: [],
-          },
-          {
-            totalQuestion: 20,
-            question: [],
-          },
-        ],
-      },
-      {
-        name: "Writing",
-        hanyu: "书写",
-        totalTime: 45,
-        totalPart: 1,
-        parts: [
-          {
-            totalQuestion: 1,
-            question: [],
-          },
-        ],
-      },
-    ],
+    structures: [ExamStructures12, ExamStructures13, ExamStructures14],
   },
 ];
