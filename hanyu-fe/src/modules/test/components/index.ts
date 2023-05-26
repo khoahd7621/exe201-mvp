@@ -1,4 +1,5 @@
+import ExamCard from "./ExamCard";
+import ExamStructure from "./ExamStructure";
 import TestCard from "./TestCard";
-import TestStructure from "./TestStructure";
 
-export { TestCard, TestStructure };
+export { ExamCard, ExamStructure, TestCard };

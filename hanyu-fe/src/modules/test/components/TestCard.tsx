@@ -1,58 +1,46 @@
-import { useNavigate } from "react-router-dom";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Button, Card, Grid, Stack, Typography } from "@mui/material";
 
-import GradingIcon from "@mui/icons-material/Grading";
-import HistoryIcon from "@mui/icons-material/History";
-import { Card, CardContent, CardMedia, Grid, Stack, Typography } from "@mui/material";
-
-import AppRoutes from "~/router/AppRoutes";
 import { Test } from "../models";
 
 type TestCardProps = {
   test: Test;
+  isLocked: boolean;
 };
 
-export default function TestCard({ test }: TestCardProps) {
-  const navigate = useNavigate();
+const TestCard = ({ test, isLocked }: TestCardProps) => {
+  const handleClickButton = () => {
+    if (isLocked) {
+      console.log("Mở khóa");
+    } else {
+      console.log("Vào thi ngay");
+    }
+  };
 
   return (
-    <Grid
-      item
-      md={4}
-      sx={{
-        cursor: "pointer",
-      }}
-      onClick={() => navigate(`${AppRoutes.test}/${test.slug}`)}
-    >
-      <Card
-        variant="outlined"
-        sx={{
-          borderRadius: "1rem",
-          "&:hover": {
-            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
-          },
-        }}
-      >
-        <CardMedia component="img" image={test.imageUrl} alt={test.name} />
-        <CardContent>
-          <Typography variant="h6" component="div" textAlign="center">
-            Đề {test.name}
-          </Typography>
-          <Stack direction="row" justifyContent="space-between" marginTop={2}>
-            <Stack spacing={0.5} direction="row" alignItems="center" justifyContent="center">
-              <GradingIcon fontSize="small" sx={{ color: "#959595" }} />
-              <Typography variant="body2" component="div">
-                {test.totalTest} đề
-              </Typography>
-            </Stack>
-            <Stack spacing={0.5} direction="row" alignItems="center" justifyContent="center">
-              <HistoryIcon fontSize="small" sx={{ color: "#959595" }} />
-              <Typography variant="body2" component="div">
-                {test.structure.reduce((acc, cur) => acc + cur.totalTime, 0)}'
-              </Typography>
-            </Stack>
-          </Stack>
-        </CardContent>
+    <Grid item xs={12} sm={6} md={6} lg={3}>
+      <Card variant="outlined" sx={{ borderRadius: "1rem", padding: "1.5rem" }}>
+        <Typography variant="body1" textAlign="center" component="div" marginBottom="1rem">
+          Đề số {test.no}
+        </Typography>
+        <Stack direction="row" justifyContent="center">
+          <Button
+            startIcon={isLocked ? <LockOutlinedIcon /> : undefined}
+            sx={{
+              borderRadius: "2rem",
+              border: "1px dashed",
+              padding: "0.5rem 1.5rem",
+              borderColor: isLocked ? "#f57c00" : "#1976d2",
+            }}
+            color={isLocked ? "warning" : "primary"}
+            onClick={handleClickButton}
+          >
+            {isLocked ? "Mở khóa" : "Vào thi ngay"}
+          </Button>
+        </Stack>
       </Card>
     </Grid>
   );
-}
+};
+
+export default TestCard;

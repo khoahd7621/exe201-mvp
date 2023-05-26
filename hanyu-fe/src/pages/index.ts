@@ -4,15 +4,15 @@ import CommunityPage from "./CommunityPage";
 import NoteBookPage from "./NoteBookPage";
 import ReadingPage from "./ReadingPage";
 
+import ExamPage from "./test/ExamPage";
 import TestPage from "./test/TestPage";
-import HSKPage from "./test/HSKPage";
 
 export {
   DictionaryPage,
   TranslatePage,
   CommunityPage,
-  TestPage,
+  ExamPage,
   NoteBookPage,
   ReadingPage,
-  HSKPage,
+  TestPage,
 };

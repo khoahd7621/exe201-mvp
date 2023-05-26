@@ -1,14 +1,14 @@
-export type TestStructure = TestDetail[];
+export type ExamStructure = ExamDetail[];
 
-export type TestDetail = {
+export type ExamDetail = {
   name: string;
   hanyu: string;
   totalTime: number;
   totalPart: number;
-  parts: TestPart[];
+  parts: ExamPart[];
 };
 
-export type TestPart = {
+export type ExamPart = {
   totalQuestion: number;
   question: string[];
 };

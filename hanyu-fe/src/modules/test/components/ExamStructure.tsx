@@ -4,14 +4,14 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { Avatar, Box, Link, Stack, Typography } from "@mui/material";
 
 import AppRoutes from "~/router/AppRoutes";
-import { TestStructure as StructureModel } from "../models/TestStructure";
+import { ExamStructure as StructureModel } from "../models/ExamStructure";
 
-export interface TestStructureProps {
-  testName: string;
+export interface ExamStructureProps {
+  examName: string;
   structure: StructureModel;
 }
 
-const TestStructure = ({ testName, structure }: TestStructureProps) => (
+const ExamStructure = ({ examName, structure }: ExamStructureProps) => (
   <>
     <Link
       component={RouterLink}
@@ -27,7 +27,7 @@ const TestStructure = ({ testName, structure }: TestStructureProps) => (
     </Link>
 
     <Typography variant="h5" component="div" margin="1rem 0" textAlign="center">
-      {testName}
+      {examName}
     </Typography>
 
     <Box>
@@ -101,4 +101,4 @@ const TestStructure = ({ testName, structure }: TestStructureProps) => (
   </>
 );
 
-export default TestStructure;
+export default ExamStructure;
