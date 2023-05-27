@@ -1,3 +1,11 @@
+import { Container, Typography } from "@mui/material";
+
 export default function ReadingPage() {
-  return <div>Reading Page ne</div>;
+  return (
+    <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+      <Typography variant="h4" sx={{ textAlign: "center" }}>
+        This feature is comming soon.
+      </Typography>
+    </Container>
+  );
 }
