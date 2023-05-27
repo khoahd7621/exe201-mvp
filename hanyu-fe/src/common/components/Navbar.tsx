@@ -92,9 +92,14 @@ export default function Navbar({ window }: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex" ,alignItems: 'center'}}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <img src="/hanyu_logo_whiteblack.svg" alt="Hanyu Logo" width="32" height="32" />
+              <img
+                src="/pandahanyu_logo _for_web.svg"
+                alt="Hanyu Logo"
+                width="48"
+                height="48"
+              />
             </Box>
             <Typography
               variant="h6"
