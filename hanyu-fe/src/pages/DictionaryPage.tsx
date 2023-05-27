@@ -1,5 +1,5 @@
-import { Button, Grid, Stack, Paper, Box, TextField, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { Box, Button, Container, Grid, Paper, Stack, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Carousel from "react-material-ui-carousel";
 
@@ -53,12 +53,11 @@ export default function DictionaryPage() {
       img: "https://i.ytimg.com/vi/Ji7FnAWO96o/maxresdefault.jpg",
     },
   ];
+
   return (
-    <>
-      <Stack
-        direction="row"
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center", mt: 5, mb: 5 }}
-      >
+    <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+      {/* Search blocks */}
+      <Stack direction="row" alignItems="center" justifyContent="center" marginBottom={5}>
         <SearchBox id="search" type="search" placeholder="Search here" variant="outlined" />
         <Button
           sx={{
@@ -79,8 +78,8 @@ export default function DictionaryPage() {
         </Button>
       </Stack>
 
-      <Grid container alignItems="flex-start" justifyContent="center" maxWidth="110rem" margin="auto" spacing={2}>
-        <Grid item xs={2}>
+      <Grid container spacing={2}>
+        <Grid item xs={2} md={3}>
           <Stack display={"flex"} direction={"column"}>
             <Box>
               <Typography variant="h6" sx={{ fontSize: 13, fontWeight: 600, mb: 2 }}>
@@ -298,35 +297,32 @@ export default function DictionaryPage() {
             </Box>
           </Stack>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} md={6}>
           <Paper>
-            {" "}
             <Carousel>
               {items.map((item, i) => (
                 <Box key={i} sx={{ m: 1, display: "flex", alignItems: "center" }}>
-                  {" "}
-                  <img src={item.img} alt="Hanyu Banner" width="740" height="360" />
+                  <img src={item.img} alt="Hanyu Banner" width="100%" height="360" />
                 </Box>
               ))}
             </Carousel>
           </Paper>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={3} md={3}>
           <Paper>
             <Typography variant="body2" sx={{ fontWeight: 600, pt: 1, pl: 1 }}>
               Rankings
             </Typography>
-            <Stack display={"flex"} direction={"row"}>
+            <Stack display={"flex"} justifyContent="space-between" direction={"row"}>
               <Button
                 sx={{
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  width: "80px",
                   height: "30px",
                   m: 2,
                   "&:hover": {
-                    cursor: 'pointer',
+                    cursor: "pointer",
                     border: 1,
                     borderColor: "#ccd0d5",
                     borderRadius: 1,
@@ -338,22 +334,20 @@ export default function DictionaryPage() {
                     borderRadius: 1,
                   },
                 }}
-                
               >
                 <Typography variant="body2" sx={{ color: "#6c757d", fontSize: "12px" }}>
                   Day
                 </Typography>
               </Button>
-              <Button            
+              <Button
                 sx={{
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  width: "80px",
                   height: "30px",
                   m: 2,
                   "&:hover": {
-                    cursor: 'pointer',
+                    cursor: "pointer",
                     border: 1,
                     borderColor: "#ccd0d5",
                     borderRadius: 1,
@@ -375,11 +369,10 @@ export default function DictionaryPage() {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  width: "80px",
                   height: "30px",
                   m: 2,
                   "&:hover": {
-                    cursor: 'pointer',
+                    cursor: "pointer",
                     border: 1,
                     borderColor: "#ccd0d5",
                     borderRadius: 1,
@@ -400,6 +393,6 @@ export default function DictionaryPage() {
           </Paper>
         </Grid>
       </Grid>
-    </>
+    </Container>
   );
 }

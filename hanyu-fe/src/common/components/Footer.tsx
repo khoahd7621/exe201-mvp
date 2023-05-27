@@ -1,16 +1,13 @@
-import { Container, Grid, Box, Typography, Stack } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
+import GoogleIcon from "@mui/icons-material/Google";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 
 export default function Footer() {
   return (
     <Container
+      maxWidth={false}
       sx={{
-        position: "relative",
-        minWidth: "100vw",
-        bottom: 0,
-        borderTop: 2,
-        borderColor: "#363636",
+        borderTop: "1px solid #e0e0e0",
       }}
     >
       <Grid container spacing={3}>
