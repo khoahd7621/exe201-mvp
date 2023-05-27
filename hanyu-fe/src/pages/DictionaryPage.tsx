@@ -2,7 +2,6 @@ import { Button, Grid, Stack, Paper, Box, TextField, Typography } from "@mui/mat
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/material/styles";
 import Carousel from "react-material-ui-carousel";
-import { wrap } from "module";
 
 const SearchBox = styled(TextField)({
   input: {
