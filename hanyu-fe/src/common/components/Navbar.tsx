@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import MenuIcon from "@mui/icons-material/Menu";
+import SettingsIcon from "@mui/icons-material/Settings";
 import {
   AppBar,
   Box,
@@ -14,10 +16,9 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-
-import MenuIcon from "@mui/icons-material/Menu";
-import SettingsIcon from "@mui/icons-material/Settings";
 import IconButton from "@mui/material/IconButton";
+
+import AppRoutes from "~/router/AppRoutes";
 
 interface Props {
   /**
@@ -92,14 +93,9 @@ export default function Navbar({ window }: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ display: "flex" ,alignItems: 'center'}}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <img
-                src="/pandahanyu_logo _for_web.svg"
-                alt="Hanyu Logo"
-                width="48"
-                height="48"
-              />
+              <img src="/pandahanyu_logo _for_web.svg" alt="Hanyu Logo" width="48" height="48" />
             </Box>
             <Typography
               variant="h6"
@@ -163,6 +159,7 @@ export default function Navbar({ window }: Props) {
                     textDecoration: "underline #fff",
                   },
                 }}
+                onClick={() => navigate(AppRoutes.login)}
               >
                 Login
               </Button>
@@ -178,6 +175,7 @@ export default function Navbar({ window }: Props) {
                     textDecoration: "underline #000000",
                   },
                 }}
+                onClick={() => navigate(AppRoutes.register)}
               >
                 Register
               </Button>

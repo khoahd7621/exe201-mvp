@@ -5,9 +5,11 @@ import {
   CommunityPage,
   DictionaryPage,
   ExamPage,
+  LoginPage,
   NoteBookPage,
   QuizPage,
   ReadingPage,
+  RegisterPage,
   TestPage,
   TranslatePage,
 } from "../pages";
@@ -43,6 +45,14 @@ const routes: RouteObject[] = [
         element: <ReadingPage />,
       },
     ],
+  },
+  {
+    path: AppRoutes.login,
+    element: <LoginPage />,
+  },
+  {
+    path: AppRoutes.register,
+    element: <RegisterPage />,
   },
   {
     path: AppRoutes.test,

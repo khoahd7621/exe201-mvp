@@ -6,6 +6,8 @@ const AppRoutes = {
   test: "/test",
   notebook: "/notebook",
   reading: "/reading",
+  login: "/login",
+  register: "/register",
 };
 
 export default AppRoutes;

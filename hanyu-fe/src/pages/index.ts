@@ -8,6 +8,9 @@ import ExamPage from "./test/ExamPage";
 import TestPage from "./test/TestPage";
 import QuizPage from "./test/QuizPage";
 
+import LoginPage from "./auth/LoginPage";
+import RegisterPage from "./auth/RegisterPage";
+
 export {
   DictionaryPage,
   TranslatePage,
@@ -17,4 +20,6 @@ export {
   ReadingPage,
   TestPage,
   QuizPage,
+  LoginPage,
+  RegisterPage,
 };
