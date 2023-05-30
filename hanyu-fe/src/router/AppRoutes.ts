@@ -8,6 +8,7 @@ const AppRoutes = {
   reading: "/reading",
   login: "/login",
   register: "/register",
+  profile: "/profile",
 };
 
 export default AppRoutes;

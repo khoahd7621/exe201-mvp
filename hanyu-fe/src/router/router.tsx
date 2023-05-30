@@ -7,6 +7,7 @@ import {
   ExamPage,
   LoginPage,
   NoteBookPage,
+  ProfilePage,
   QuizPage,
   ReadingPage,
   RegisterPage,
@@ -43,6 +44,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.reading,
         element: <ReadingPage />,
+      },
+      {
+        path: AppRoutes.profile,
+        element: <ProfilePage />,
       },
     ],
   },

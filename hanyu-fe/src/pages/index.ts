@@ -10,6 +10,7 @@ import QuizPage from "./test/QuizPage";
 
 import LoginPage from "./auth/LoginPage";
 import RegisterPage from "./auth/RegisterPage";
+import ProfilePage from "./auth/ProfilePage";
 
 export {
   DictionaryPage,
@@ -22,4 +23,5 @@ export {
   QuizPage,
   LoginPage,
   RegisterPage,
+  ProfilePage,
 };
