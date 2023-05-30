@@ -6,6 +6,7 @@ import {
   DictionaryPage,
   ExamPage,
   LoginPage,
+  NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,
   QuizPage,
@@ -36,10 +37,6 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.community,
         element: <CommunityPage />,
-      },
-      {
-        path: AppRoutes.notebook,
-        element: <NoteBookPage />,
       },
       {
         path: AppRoutes.reading,
@@ -80,6 +77,20 @@ const routes: RouteObject[] = [
       {
         index: true,
         element: <QuizPage />,
+      },
+    ],
+  },
+  {
+    path: AppRoutes.notebook,
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <NoteBookPage />,
+      },
+      {
+        path: `:noteBookSlug`,
+        element: <NoteBookDetailPage />,
       },
     ],
   },

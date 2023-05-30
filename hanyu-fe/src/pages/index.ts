@@ -12,6 +12,7 @@ import RegisterPage from "./auth/RegisterPage";
 import ProfilePage from "./auth/ProfilePage";
 
 import NoteBookPage from "./notebook/NoteBookPage";
+import NoteBookDetailPage from "./notebook/NoteBookDetailPage";
 
 export {
   DictionaryPage,
@@ -25,4 +26,5 @@ export {
   LoginPage,
   RegisterPage,
   ProfilePage,
+  NoteBookDetailPage,
 };
