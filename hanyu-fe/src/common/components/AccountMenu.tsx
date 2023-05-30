@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Logout } from "@mui/icons-material";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
@@ -14,8 +15,10 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import AppRoutes from "~/router/AppRoutes";
 
 export default function AccountMenu() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -123,7 +126,7 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => navigate(AppRoutes.profile)}>
           <Stack direction={"row"} alignItems={"center"} spacing={2}>
             <Stack
               direction={"row"}

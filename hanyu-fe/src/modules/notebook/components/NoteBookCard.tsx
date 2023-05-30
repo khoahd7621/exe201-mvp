@@ -2,12 +2,17 @@ import { useNavigate } from "react-router-dom";
 
 import { Avatar, Card, Grid, Stack, Typography } from "@mui/material";
 import AppRoutes from "~/router/AppRoutes";
+import { NoteBook } from "../models";
 
-export default function NoteBookCard() {
+type Props = {
+  notebook: NoteBook;
+};
+
+export default function NoteBookCard({ notebook }: Props) {
   const navigate = useNavigate();
 
   const handleClickCard = () => {
-    navigate(`${AppRoutes.notebook}/notebook-slug`);
+    navigate(`${AppRoutes.notebook}/${notebook.slug}`);
   };
 
   return (
@@ -25,7 +30,7 @@ export default function NoteBookCard() {
         onClick={handleClickCard}
       >
         <Stack direction="row" gap={1} alignItems="center">
-          <Avatar children={"T"} sx={{ width: 32, height: 32 }} />
+          <Avatar children={notebook.title.charAt(0)} sx={{ width: 32, height: 32 }} />
           <Stack
             sx={{
               overflow: "hidden",
@@ -34,12 +39,12 @@ export default function NoteBookCard() {
             flexGrow={1}
           >
             <Typography fontSize={14} fontWeight="bold" noWrap>
-              HSK 1
+              {notebook.title}
             </Typography>
 
             <Stack direction="row" justifyContent="space-between">
-              <Typography fontSize={12}>100w</Typography>
-              <Typography fontSize={12}>01-08-2019</Typography>
+              <Typography fontSize={12}>{notebook.totalWords}w</Typography>
+              <Typography fontSize={12}>{notebook.createdAt}</Typography>
             </Stack>
           </Stack>
         </Stack>
