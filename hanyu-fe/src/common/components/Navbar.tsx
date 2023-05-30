@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import SettingsIcon from "@mui/icons-material/Settings";
 import {
   AppBar,
   Box,
@@ -19,6 +18,7 @@ import {
 import IconButton from "@mui/material/IconButton";
 
 import AppRoutes from "~/router/AppRoutes";
+import AccountMenu from "./AccountMenu";
 
 interface Props {
   /**
@@ -148,7 +148,7 @@ export default function Navbar({ window }: Props) {
             }}
           >
             <Box sx={{ m: 1, display: "flex", alignItems: "center", cursor: "pointer" }}>
-              <SettingsIcon />
+              <AccountMenu />
             </Box>
             <Box sx={{ m: 1 }}>
               <Button
