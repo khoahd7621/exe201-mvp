@@ -25,7 +25,7 @@ export const ListSubscriptions: Subscription[] = [
     isBest: false,
   },
   {
-    id: 1,
+    id: 3,
     name: "Vĩnh viễn",
     description: "Được người dùng yêu thích nhất",
     period: "99",

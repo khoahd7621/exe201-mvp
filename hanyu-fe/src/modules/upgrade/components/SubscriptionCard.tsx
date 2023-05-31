@@ -4,9 +4,10 @@ import { Subscription } from "../models/Subscription";
 
 type Props = {
   subscription: Subscription;
+  handleOpenModal: () => void;
 };
 
-export default function SubscriptionCard({ subscription }: Props) {
+export default function SubscriptionCard({ subscription, handleOpenModal }: Props) {
   return (
     <Stack
       direction="row"
@@ -25,6 +26,7 @@ export default function SubscriptionCard({ subscription }: Props) {
             "rgb(0 121 255 / 40%) 0px 0px 0px 2px, rgb(255 0 0 / 65%) 0px 4px 6px -1px, rgb(42 19 19 / 8%) 0px 1px 0px inset",
         },
       }}
+      onClick={handleOpenModal}
     >
       <Stack>
         <Typography variant="h6" fontWeight="bold" textAlign="center">

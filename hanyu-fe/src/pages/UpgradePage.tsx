@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import ShareIcon from "@mui/icons-material/Share";
+import StarRateIcon from "@mui/icons-material/StarRate";
 import {
   Button,
   Card,
@@ -11,10 +15,9 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import ShareIcon from "@mui/icons-material/Share";
-import StarRateIcon from "@mui/icons-material/StarRate";
 
 import {
+  PaymentModal,
   SubscriptionCard,
   SubscriptionCarousel,
   TableFeatures,
@@ -22,6 +25,11 @@ import {
 import { ListSubscriptions } from "~/modules/upgrade/models/Subscription";
 
 export default function UpgradePage() {
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
   return (
     <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
       <Grid container spacing={4}>
@@ -57,8 +65,14 @@ export default function UpgradePage() {
               </Typography>
 
               {ListSubscriptions.map((subscription) => (
-                <SubscriptionCard key={subscription.id} subscription={subscription} />
+                <SubscriptionCard
+                  key={subscription.id}
+                  subscription={subscription}
+                  handleOpenModal={handleOpenModal}
+                />
               ))}
+
+              <PaymentModal open={openModal} onClose={handleCloseModal} />
             </Stack>
 
             {/* Features */}
