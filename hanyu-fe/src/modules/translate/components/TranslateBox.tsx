@@ -1,6 +1,4 @@
-import { Box, IconButton, Stack, Typography, Tab } from "@mui/material";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
+import { Box, IconButton, Stack, Typography, Tab, Tabs } from "@mui/material";
 import SwapHorizontalCircleOutlinedIcon from "@mui/icons-material/SwapHorizontalCircleOutlined";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
@@ -136,87 +134,86 @@ const TranslateBox = () => {
               mr: "4rem",
             }}
           >
-            <TabContext value={value}>
-              <TabList
-                onChange={handleChangeTab}
+            <Tabs
+              value={value}
+              onChange={handleChangeTab}
+              sx={{
+                "& .MuiTabs-indicator": {
+                  display: "none",
+                },
+                "& .MuiTab-root.Mui-selected": {
+                  color: "#000",
+                },
+                fontSize: "14px",
+                color: "#ccc",
+                fontWeight: 700,
+              }}
+            >
+              <Tab
+                label="Trung (Giản thể)"
+                value="Chinese (Simplified)"
                 sx={{
-                  "& .MuiTabs-indicator": {
-                    display: "none",
-                  },
-                  "& .MuiTab-root.Mui-selected": {
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  textTransform: "none",
+                  "&:hover": {
+                    cursor: "pointer",
                     color: "#000",
                   },
-                  fontSize: "14px",
-                  color: "#ccc",
-                  fontWeight: 700,
+                  "&:focus": {
+                    color: "#000",
+                  },
                 }}
-              >
-                <Tab
-                  label="Trung (Giản thể)"
-                  value="Chinese (Simplified)"
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "#000",
-                    },
-                    "&:focus": {
-                      color: "#000",
-                    },
-                  }}
-                />
-                <Tab
-                  label="Trung (Phồn thể)"
-                  value="Chinese (Traditional)"
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "#000",
-                    },
-                    "&:focus": {
-                      color: "#000",
-                    },
-                  }}
-                />
-                <Tab
-                  label="Tiếng Việt"
-                  value="Vietnamese"
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "#000",
-                    },
-                    "&:focus": {
-                      color: "#000",
-                    },
-                  }}
-                />
-                <Tab
-                  label="Tiếng Anh"
-                  value="English"
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "#000",
-                    },
-                    "&:focus": {
-                      color: "#000",
-                    },
-                  }}
-                />
-              </TabList>
-            </TabContext>
+              />
+              <Tab
+                label="Trung (Phồn thể)"
+                value="Chinese (Traditional)"
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  textTransform: "none",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: "#000",
+                  },
+                  "&:focus": {
+                    color: "#000",
+                  },
+                }}
+              />
+              <Tab
+                label="Tiếng Việt"
+                value="Vietnamese"
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  textTransform: "none",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: "#000",
+                  },
+                  "&:focus": {
+                    color: "#000",
+                  },
+                }}
+              />
+              <Tab
+                label="Tiếng Anh"
+                value="English"
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  textTransform: "none",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: "#000",
+                  },
+                  "&:focus": {
+                    color: "#000",
+                  },
+                }}
+              />
+            </Tabs>
           </Box>
           <IconButton onClick={handleSwap}>
             <SwapHorizontalCircleOutlinedIcon
@@ -232,85 +229,84 @@ const TranslateBox = () => {
               ml: "4rem",
             }}
           >
-            <TabContext value={valueOutput}>
-              <TabList
-                onChange={handleChangeTabOutput}
+            <Tabs
+              value={valueOutput}
+              onChange={handleChangeTabOutput}
+              sx={{
+                "& .MuiTabs-indicator": {
+                  display: "none",
+                },
+                "& .MuiTab-root.Mui-selected": {
+                  color: "#000",
+                },
+                fontSize: "14px",
+                fontWeight: 700,
+              }}
+            >
+              <Tab
+                label="Trung (Giản thể)"
+                value="Chinese (Simplified)"
                 sx={{
-                  "& .MuiTabs-indicator": {
-                    display: "none",
-                  },
-                  "& .MuiTab-root.Mui-selected": {
+                  fontWeight: 700,
+                  textTransform: "none",
+                  "&:hover": {
+                    cursor: "pointer",
                     color: "#000",
                   },
+                  "&:focus": {
+                    color: "#000",
+                  },
+                }}
+              />
+              <Tab
+                label="Trung (Phồn thể)"
+                value="Chinese (Traditional)"
+                sx={{
                   fontSize: "14px",
                   fontWeight: 700,
+                  textTransform: "none",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: "#000",
+                  },
+                  "&:focus": {
+                    color: "#000",
+                  },
                 }}
-              >
-                <Tab
-                  label="Trung (Giản thể)"
-                  value="Chinese (Simplified)"
-                  sx={{
-                    fontWeight: 700,
-                    textTransform: "none",
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "#000",
-                    },
-                    "&:focus": {
-                      color: "#000",
-                    },
-                  }}
-                />
-                <Tab
-                  label="Trung (Phồn thể)"
-                  value="Chinese (Traditional)"
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "#000",
-                    },
-                    "&:focus": {
-                      color: "#000",
-                    },
-                  }}
-                />
-                <Tab
-                  label="Tiếng Việt"
-                  value="Vietnamese"
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "#000",
-                    },
-                    "&:focus": {
-                      color: "#000",
-                    },
-                  }}
-                />
-                <Tab
-                  label="Tiếng Anh"
-                  value="English"
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "#000",
-                    },
-                    "&:focus": {
-                      color: "#000",
-                    },
-                  }}
-                />
-              </TabList>
-            </TabContext>
+              />
+              <Tab
+                label="Tiếng Việt"
+                value="Vietnamese"
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  textTransform: "none",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: "#000",
+                  },
+                  "&:focus": {
+                    color: "#000",
+                  },
+                }}
+              />
+              <Tab
+                label="Tiếng Anh"
+                value="English"
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  textTransform: "none",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: "#000",
+                  },
+                  "&:focus": {
+                    color: "#000",
+                  },
+                }}
+              />
+            </Tabs>
           </Box>
         </Stack>
         <Stack display="flex" direction="row" justifyContent="center">
