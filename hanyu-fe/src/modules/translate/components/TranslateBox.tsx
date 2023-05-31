@@ -59,54 +59,53 @@ const TranslateBox = () => {
     setValue(temp);
   };
 
-  const handleTranslate = async () => {
-    setWordCount(sourceText.length);
-    let sourceLang = "en";
-    let targetLang = "zh_cn";
-
-    if (value == "Chinese (Simplified)") {
-      sourceLang = "zh-cn";
-    }
-    if (value == "Chinese (Traditional)") {
-      sourceLang = "zh_HANT";
-    }
-    if (value == "Vietnamese") {
-      sourceLang = "vi-VN";
-    }
-    if (value == "English") {
-      sourceLang = "en";
-    }
-
-    if (valueOutput == "Chinese (Simplified)") {
-      targetLang = "zh-cn";
-    }
-    if (valueOutput == "Chinese (Traditional)") {
-      targetLang = "zh_HANT";
-    }
-    if (valueOutput == "Vietnamese") {
-      targetLang = "vi-VN";
-    }
-    if (valueOutput == "English") {
-      targetLang = "en";
-    }
-
-    try {
-      const url =
-        "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
-        sourceLang +
-        "&tl=" +
-        targetLang +
-        "&dt=t&q=" +
-        encodeURI(sourceText);
-      const response = await fetch(url);
-      const responseJson = await response.json();
-      setResultTranslate(responseJson[0][0][0]);
-    } catch (error) {
-      setResultTranslate("");
-    }
-  };
-
   useEffect(() => {
+    const handleTranslate = async () => {
+      setWordCount(sourceText.length);
+      let sourceLang = "en";
+      let targetLang = "zh_cn";
+
+      if (value == "Chinese (Simplified)") {
+        sourceLang = "zh-cn";
+      }
+      if (value == "Chinese (Traditional)") {
+        sourceLang = "zh_HANT";
+      }
+      if (value == "Vietnamese") {
+        sourceLang = "vi-VN";
+      }
+      if (value == "English") {
+        sourceLang = "en";
+      }
+
+      if (valueOutput == "Chinese (Simplified)") {
+        targetLang = "zh-cn";
+      }
+      if (valueOutput == "Chinese (Traditional)") {
+        targetLang = "zh_HANT";
+      }
+      if (valueOutput == "Vietnamese") {
+        targetLang = "vi-VN";
+      }
+      if (valueOutput == "English") {
+        targetLang = "en";
+      }
+
+      try {
+        const url =
+          "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
+          sourceLang +
+          "&tl=" +
+          targetLang +
+          "&dt=t&q=" +
+          encodeURI(sourceText);
+        const response = await fetch(url);
+        const responseJson = await response.json();
+        setResultTranslate(responseJson[0][0][0]);
+      } catch (error) {
+        setResultTranslate("");
+      }
+    };
     handleTranslate();
   }, [value, valueOutput, sourceText]);
   return (
@@ -134,7 +133,7 @@ const TranslateBox = () => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              mr: "4rem"
+              mr: "4rem",
             }}
           >
             <TabContext value={value}>
@@ -230,7 +229,7 @@ const TranslateBox = () => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              ml: "4rem"
+              ml: "4rem",
             }}
           >
             <TabContext value={valueOutput}>
