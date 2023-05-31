@@ -152,7 +152,7 @@ const TranslateBox = () => {
                 }}
               >
                 <Tab
-                  label="Chinese (Simplified)"
+                  label="Trung (Giản thể)"
                   value="Chinese (Simplified)"
                   sx={{
                     fontSize: "14px",
@@ -168,7 +168,7 @@ const TranslateBox = () => {
                   }}
                 />
                 <Tab
-                  label="Chinese (Traditional)"
+                  label="Trung (Phồn thể)"
                   value="Chinese (Traditional)"
                   sx={{
                     fontSize: "14px",
@@ -184,7 +184,7 @@ const TranslateBox = () => {
                   }}
                 />
                 <Tab
-                  label="Vietnamese"
+                  label="Tiếng Việt"
                   value="Vietnamese"
                   sx={{
                     fontSize: "14px",
@@ -200,7 +200,7 @@ const TranslateBox = () => {
                   }}
                 />
                 <Tab
-                  label="English"
+                  label="Tiếng Anh"
                   value="English"
                   sx={{
                     fontSize: "14px",
@@ -247,7 +247,7 @@ const TranslateBox = () => {
                 }}
               >
                 <Tab
-                  label="Chinese (Simplified)"
+                  label="Trung (Giản thể)"
                   value="Chinese (Simplified)"
                   sx={{
                     fontWeight: 700,
@@ -262,7 +262,7 @@ const TranslateBox = () => {
                   }}
                 />
                 <Tab
-                  label="Chinese (Traditional)"
+                  label="Trung (Phồn thể)"
                   value="Chinese (Traditional)"
                   sx={{
                     fontSize: "14px",
@@ -278,7 +278,7 @@ const TranslateBox = () => {
                   }}
                 />
                 <Tab
-                  label="Vietnamese"
+                  label="Tiếng Việt"
                   value="Vietnamese"
                   sx={{
                     fontSize: "14px",
@@ -294,7 +294,7 @@ const TranslateBox = () => {
                   }}
                 />
                 <Tab
-                  label="English"
+                  label="Tiếng Anh"
                   value="English"
                   sx={{
                     fontSize: "14px",
@@ -315,7 +315,7 @@ const TranslateBox = () => {
         </Stack>
         <Stack display="flex" direction="row" justifyContent="center">
           <Box sx={{ borderRight: 1, borderRightColor: "#ccc" }}>
-            <StyledTextarea onChange={(e: any) => setSourceText(e.target.value)} />
+            <StyledTextarea onChange={(e) => setSourceText(e.target.value)} />
             <Box
               sx={{
                 display: "flex",
