@@ -2,6 +2,7 @@ import DictionaryPage from "./DictionaryPage";
 import TranslatePage from "./TranslatePage";
 import CommunityPage from "./CommunityPage";
 import ReadingPage from "./ReadingPage";
+import UpgradePage from "./UpgradePage";
 
 import ExamPage from "./test/ExamPage";
 import TestPage from "./test/TestPage";
@@ -27,4 +28,5 @@ export {
   RegisterPage,
   ProfilePage,
   NoteBookDetailPage,
+  UpgradePage,
 };

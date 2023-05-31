@@ -9,6 +9,7 @@ const AppRoutes = {
   login: "/login",
   register: "/register",
   profile: "/profile",
+  upgrade: "/upgrade",
 };
 
 export default AppRoutes;

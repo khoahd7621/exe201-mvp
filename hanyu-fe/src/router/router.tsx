@@ -14,6 +14,7 @@ import {
   RegisterPage,
   TestPage,
   TranslatePage,
+  UpgradePage,
 } from "../pages";
 import AppRoutes from "./AppRoutes";
 
@@ -45,6 +46,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.profile,
         element: <ProfilePage />,
+      },
+      {
+        path: AppRoutes.upgrade,
+        element: <UpgradePage />,
       },
     ],
   },

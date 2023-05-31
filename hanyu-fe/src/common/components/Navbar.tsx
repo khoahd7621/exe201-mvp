@@ -29,7 +29,32 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Dictionary", "Translate", "Community", "Test", "Notebook", "Reading"];
+const navItems = [
+  {
+    title: "Từ Điển",
+    path: AppRoutes.dictionary,
+  },
+  {
+    title: "Dịch",
+    path: AppRoutes.translate,
+  },
+  {
+    title: "Cộng Đồng",
+    path: AppRoutes.community,
+  },
+  {
+    title: "Sổ tay",
+    path: AppRoutes.notebook,
+  },
+  {
+    title: "Luyện Đọc",
+    path: AppRoutes.reading,
+  },
+  {
+    title: "Nâng cấp",
+    path: AppRoutes.upgrade,
+  },
+];
 
 export default function Navbar({ window }: Props) {
   const navigate = useNavigate();
@@ -41,9 +66,8 @@ export default function Navbar({ window }: Props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const routeChange = (item: string) => {
-    const path = item.toLowerCase();
-    navigate(`/${path}`, { replace: true });
+  const routeChange = (path: string) => {
+    navigate(path, { replace: true });
   };
 
   const drawer = (
@@ -54,9 +78,9 @@ export default function Navbar({ window }: Props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }} onClick={() => routeChange(item)}>
-              <ListItemText primary={item} />
+          <ListItem key={item.path} disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }} onClick={() => routeChange(item.path)}>
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -112,7 +136,7 @@ export default function Navbar({ window }: Props) {
           <Box sx={{ display: { xs: "none", md: "block", height: "4rem", p: 0 } }}>
             {navItems.map((item) => (
               <Button
-                key={item}
+                key={item.path}
                 sx={{
                   color: "#fff",
                   height: "100%",
@@ -134,10 +158,10 @@ export default function Navbar({ window }: Props) {
                     borderBottomColor: "#fff",
                   },
                 }}
-                className={location.pathname === `/${item.toLowerCase()}` ? "active" : ""}
-                onClick={() => routeChange(item)}
+                className={location.pathname === `/${item.path.toLowerCase()}` ? "active" : ""}
+                onClick={() => routeChange(item.path)}
               >
-                {item}
+                {item.title}
               </Button>
             ))}
           </Box>
@@ -161,7 +185,7 @@ export default function Navbar({ window }: Props) {
                 }}
                 onClick={() => navigate(AppRoutes.login)}
               >
-                Login
+                Đăng Nhập
               </Button>
             </Box>
             <Box sx={{ m: 1 }}>
@@ -177,7 +201,7 @@ export default function Navbar({ window }: Props) {
                 }}
                 onClick={() => navigate(AppRoutes.register)}
               >
-                Register
+                Đăng ký
               </Button>
             </Box>
           </Box>
