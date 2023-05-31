@@ -1,13 +1,14 @@
-import { Box, IconButton, Stack, Typography, Tab, Tabs } from "@mui/material";
-import SwapHorizontalCircleOutlinedIcon from "@mui/icons-material/SwapHorizontalCircleOutlined";
-import TextareaAutosize from "@mui/base/TextareaAutosize";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import HistoryIcon from "@mui/icons-material/History";
-import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
-import MicIcon from "@mui/icons-material/Mic";
-import { styled } from "@mui/system";
-import TranslateIcon from "@mui/icons-material/Translate";
 import { useEffect, useState } from "react";
+
+import TextareaAutosize from "@mui/base/TextareaAutosize";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import HistoryIcon from "@mui/icons-material/History";
+import MicIcon from "@mui/icons-material/Mic";
+import SwapHorizontalCircleOutlinedIcon from "@mui/icons-material/SwapHorizontalCircleOutlined";
+import TranslateIcon from "@mui/icons-material/Translate";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import { Box, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
+import { styled } from "@mui/system";
 
 const StyledTextarea = styled(TextareaAutosize)(
   () => `
@@ -106,6 +107,7 @@ const TranslateBox = () => {
     };
     handleTranslate();
   }, [value, valueOutput, sourceText]);
+
   return (
     <Stack direction="row" display="flex" alignItems="center" justifyContent="center">
       <Box
