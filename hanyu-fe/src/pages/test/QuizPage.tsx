@@ -1,8 +1,9 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { AppBar, Box, Button, Grid, Stack, Toolbar, Typography } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import useCountdown from "~/hooks/useCountdown";
 
-import { ListeningQuestionCard, QuizPanel } from "~/modules/test/components";
+import { LeaveQuizBtn, ListeningQuestionCard, QuizPanel } from "~/modules/test/components";
 import { ListExams } from "~/modules/test/datas/ExamData";
 import { QuestionList } from "~/modules/test/datas/QuestionData";
 import { ListTests } from "~/modules/test/datas/TestData";
@@ -16,6 +17,13 @@ export default function QuizPage() {
   const test: Test | undefined = ListTests.find((test) => test.slug === quizSlug);
 
   const examStructures: ExamStructure[] = useMemo(() => (exam ? exam.structures : []), [exam]);
+
+  const [hours, minutes, seconds] = useCountdown(
+    useMemo(
+      () => examStructures.reduce((prev, curr) => (prev += curr.totalTime), 0) * 60000,
+      [examStructures]
+    )
+  );
 
   const listQuestions: Question[] = useMemo(
     () => (test ? QuestionList.filter((question) => question.testId === test.id) : []),
@@ -37,6 +45,10 @@ export default function QuizPage() {
     }
   }, [listQuestions]);
 
+  if (hours + minutes + seconds <= 0) {
+    console.log("Time out");
+  }
+
   if (!exam) {
     return <Navigate to={AppRoutes.test} />;
   }
@@ -47,103 +59,139 @@ export default function QuizPage() {
   let currentQuantityQuestion = 0;
   let previousQuantityQuestion = 0;
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{
-        paddingLeft: {
-          xs: "0px",
-          md: "20px",
-        },
-      }}
-    >
-      {/* Left panel */}
-      <Grid item xs={12} md={3} sx={{ position: "relative" }}>
-        <QuizPanel structures={examStructures} selectedQuestions={selectedQuestions} />
-      </Grid>
-
-      {/* Main panel */}
-      <Grid
-        item
-        xs={12}
-        md={9}
+    <>
+      <Box
         sx={{
-          maxHeight: {
-            xs: "unset",
-            md: "calc(100vh - 56px)",
+          display: "flex",
+          height: {
+            xs: "56px",
+            sm: "4rem",
           },
-          overflowY: "auto",
         }}
       >
-        <Box
+        <AppBar component="nav">
+          <Toolbar
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              backgroundColor: "#000",
+            }}
+          >
+            <Box sx={{ display: "flex" }}>
+              <LeaveQuizBtn />
+            </Box>
+            <Stack direction="row" spacing={3} alignItems="center" justifyContent="space-between">
+              <Typography variant="body1" component="div">
+                {hours + minutes + seconds <= 0
+                  ? "0 : 00 : 00"
+                  : `${hours} : ${minutes} : ${seconds}`}
+              </Typography>
+              <Button variant="contained" color="success">
+                Nộp bài
+              </Button>
+            </Stack>
+          </Toolbar>
+        </AppBar>
+      </Box>
+
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          paddingLeft: {
+            xs: "0px",
+            md: "20px",
+          },
+        }}
+      >
+        {/* Left panel */}
+        <Grid item xs={12} md={3} sx={{ position: "relative" }}>
+          <QuizPanel structures={examStructures} selectedQuestions={selectedQuestions} />
+        </Grid>
+
+        {/* Main panel */}
+        <Grid
+          item
+          xs={12}
+          md={9}
           sx={{
-            padding: {
-              xs: "0px",
-              md: "24px 20px 0",
+            maxHeight: {
+              xs: "unset",
+              md: "calc(100vh - 56px)",
             },
+            overflowY: "auto",
           }}
         >
-          {/* Quiz part */}
-          {examStructures.map((structure) => {
-            const listSubQuestions: SelectedQuestion[] = selectedQuestions.filter(
-              (selectedQuestion) => selectedQuestion.question.structureId === structure.id
-            );
-            let startQuestion = currentQuantityQuestion;
-            previousQuantityQuestion = currentQuantityQuestion;
-            currentQuantityQuestion += listSubQuestions.length;
-            return (
-              <Box key={structure.id}>
-                <Grid container>
-                  <Grid item xs={3}>
-                    <Box
-                      sx={{
-                        backgroundColor: "#2d2d2d",
-                        color: "#fff",
-                        padding: "5px 10px",
-                        borderTopLeftRadius: "0.8rem",
-                        borderTopRightRadius: "0.8rem",
-                      }}
-                    >
-                      <Typography variant="h6">{structure.hanyu}</Typography>
-                    </Box>
+          <Box
+            sx={{
+              padding: {
+                xs: "0px",
+                md: "24px 20px 0",
+              },
+            }}
+          >
+            {/* Quiz part */}
+            {examStructures.map((structure) => {
+              const listSubQuestions: SelectedQuestion[] = selectedQuestions.filter(
+                (selectedQuestion) => selectedQuestion.question.structureId === structure.id
+              );
+              let startQuestion = currentQuantityQuestion;
+              previousQuantityQuestion = currentQuantityQuestion;
+              currentQuantityQuestion += listSubQuestions.length;
+              return (
+                <Box key={structure.id}>
+                  <Grid container>
+                    <Grid item xs={3}>
+                      <Box
+                        sx={{
+                          backgroundColor: "#2d2d2d",
+                          color: "#fff",
+                          padding: "5px 10px",
+                          borderTopLeftRadius: "0.8rem",
+                          borderTopRightRadius: "0.8rem",
+                        }}
+                      >
+                        <Typography variant="h6">{structure.hanyu}</Typography>
+                      </Box>
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs={12}>
-                    <Box
-                      sx={{
-                        backgroundColor: "#75d5d9",
-                        padding: "5px 10px",
-                        borderTopRightRadius: "0.8rem",
-                      }}
-                    >
-                      <Typography variant="body1">
-                        第 {++previousQuantityQuestion}-{currentQuantityQuestion} 题:{" "}
-                        {structure.id === 1 ? "请选出与所听内容一致的一项。" : ""}
-                      </Typography>
-                    </Box>
+                  <Grid container>
+                    <Grid item xs={12}>
+                      <Box
+                        sx={{
+                          backgroundColor: "#75d5d9",
+                          padding: "5px 10px",
+                          borderTopRightRadius: "0.8rem",
+                        }}
+                      >
+                        <Typography variant="body1">
+                          第 {++previousQuantityQuestion}-{currentQuantityQuestion} 题:{" "}
+                          {structure.id === 1 ? "请选出与所听内容一致的一项。" : ""}
+                        </Typography>
+                      </Box>
+                    </Grid>
                   </Grid>
-                </Grid>
-                {listSubQuestions.map((selectedQuestion) => {
-                  if (structure.id == 1) {
-                    return (
-                      <ListeningQuestionCard
-                        key={selectedQuestion.question.id}
-                        index={++startQuestion}
-                        question={selectedQuestion.question}
-                        examStructure={structure}
-                        selectedAnswer={selectedQuestion.selectedAnswer}
-                        selectedQuestions={selectedQuestions}
-                        setSelectedQuestions={setSelectedQuestions}
-                      />
-                    );
-                  } else return null;
-                })}
-              </Box>
-            );
-          })}
-        </Box>
+                  {listSubQuestions.map((selectedQuestion) => {
+                    if (structure.id == 1) {
+                      return (
+                        <ListeningQuestionCard
+                          key={selectedQuestion.question.id}
+                          index={++startQuestion}
+                          question={selectedQuestion.question}
+                          examStructure={structure}
+                          selectedAnswer={selectedQuestion.selectedAnswer}
+                          selectedQuestions={selectedQuestions}
+                          setSelectedQuestions={setSelectedQuestions}
+                        />
+                      );
+                    } else return null;
+                  })}
+                </Box>
+              );
+            })}
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 }
