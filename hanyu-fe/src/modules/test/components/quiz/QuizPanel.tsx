@@ -1,14 +1,26 @@
+import { useCallback } from "react";
+
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 
-import { ExamStructure } from "../../models";
-import { Question } from "../../models/Question";
+import { ExamStructure, SelectedQuestion } from "../../models";
 
 type QuizPanelProps = {
   structures: ExamStructure[];
-  questions: Question[];
+  selectedQuestions: SelectedQuestion[];
 };
 
-export default function QuizPanel({ structures, questions }: QuizPanelProps) {
+export default function QuizPanel({ structures, selectedQuestions }: QuizPanelProps) {
+  const scrollToQuestion = useCallback((questionId: number) => {
+    const questionElement = document.getElementById(`question-${questionId}`);
+    if (questionElement) {
+      questionElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+      });
+    }
+  }, []);
+
   return (
     <Box
       component="div"
@@ -35,11 +47,13 @@ export default function QuizPanel({ structures, questions }: QuizPanelProps) {
               </Typography>
 
               <Stack direction="row" flexWrap="wrap" gap={2} sx={{ marginTop: "20px" }}>
-                {questions
-                  .filter((question) => question.structureId === structure.id)
-                  .map((question) => (
+                {selectedQuestions
+                  .filter(
+                    (selectedQuestion) => selectedQuestion.question.structureId === structure.id
+                  )
+                  .map((selectedQuestion) => (
                     <Avatar
-                      key={question.id}
+                      key={selectedQuestion.question.id}
                       children={++count}
                       sx={{
                         width: "35px",
@@ -52,11 +66,13 @@ export default function QuizPanel({ structures, questions }: QuizPanelProps) {
                         "&:hover": {
                           borderColor: "#3965c9",
                         },
-                        "&:active": {
+                        "&.active": {
                           backgroundColor: "#3965c9",
                           color: "#fff",
                         },
                       }}
+                      className={selectedQuestion.selectedAnswer ? "active" : ""}
+                      onClick={() => scrollToQuestion(selectedQuestion.question.id)}
                     />
                   ))}
               </Stack>

@@ -1,12 +1,12 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
-import { ListeningQuizCard, QuizPanel } from "~/modules/test/components";
+import { ListeningQuestionCard, QuizPanel } from "~/modules/test/components";
 import { ListExams } from "~/modules/test/datas/ExamData";
 import { QuestionList } from "~/modules/test/datas/QuestionData";
 import { ListTests } from "~/modules/test/datas/TestData";
-import { Exam, ExamStructure, Test } from "~/modules/test/models";
+import { Exam, ExamStructure, SelectedQuestion, Test } from "~/modules/test/models";
 import { Question } from "~/modules/test/models/Question";
 import AppRoutes from "~/router/AppRoutes";
 
@@ -21,6 +21,21 @@ export default function QuizPage() {
     () => (test ? QuestionList.filter((question) => question.testId === test.id) : []),
     [test]
   );
+
+  const [selectedQuestions, setSelectedQuestions] = useState<SelectedQuestion[]>([]);
+
+  useEffect(() => {
+    if (listQuestions.length > 0) {
+      setSelectedQuestions(
+        listQuestions.map((question) => {
+          return {
+            question: question,
+            selectedAnswer: "",
+          };
+        })
+      );
+    }
+  }, [listQuestions]);
 
   if (!exam) {
     return <Navigate to={AppRoutes.test} />;
@@ -44,7 +59,7 @@ export default function QuizPage() {
     >
       {/* Left panel */}
       <Grid item xs={12} md={3} sx={{ position: "relative" }}>
-        <QuizPanel structures={examStructures} questions={listQuestions} />
+        <QuizPanel structures={examStructures} selectedQuestions={selectedQuestions} />
       </Grid>
 
       {/* Main panel */}
@@ -70,8 +85,8 @@ export default function QuizPage() {
         >
           {/* Quiz part */}
           {examStructures.map((structure) => {
-            const listSubQuestions: Question[] = listQuestions.filter(
-              (question) => question.structureId === structure.id
+            const listSubQuestions: SelectedQuestion[] = selectedQuestions.filter(
+              (selectedQuestion) => selectedQuestion.question.structureId === structure.id
             );
             let startQuestion = currentQuantityQuestion;
             previousQuantityQuestion = currentQuantityQuestion;
@@ -109,14 +124,17 @@ export default function QuizPage() {
                     </Box>
                   </Grid>
                 </Grid>
-                {listSubQuestions.map((question) => {
+                {listSubQuestions.map((selectedQuestion) => {
                   if (structure.id == 1) {
                     return (
-                      <ListeningQuizCard
-                        key={question.id}
+                      <ListeningQuestionCard
+                        key={selectedQuestion.question.id}
                         index={++startQuestion}
-                        question={question}
+                        question={selectedQuestion.question}
                         examStructure={structure}
+                        selectedAnswer={selectedQuestion.selectedAnswer}
+                        selectedQuestions={selectedQuestions}
+                        setSelectedQuestions={setSelectedQuestions}
                       />
                     );
                   } else return null;

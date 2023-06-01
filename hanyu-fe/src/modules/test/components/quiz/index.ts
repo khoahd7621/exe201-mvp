@@ -1,4 +1,4 @@
-import ListeningQuizCard from "./ListeningQuizCard";
+import ListeningQuestionCard from "./ListeningQuestionCard";
 import QuizPanel from "./QuizPanel";
 
-export { QuizPanel, ListeningQuizCard };
+export { QuizPanel, ListeningQuestionCard };

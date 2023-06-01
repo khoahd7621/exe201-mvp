@@ -1,23 +1,47 @@
 import VolumeUpOutlinedIcon from "@mui/icons-material/VolumeUpOutlined";
 import { Avatar, Button, Card, CardContent, CardMedia, IconButton, Stack } from "@mui/material";
 
-import { ExamStructure } from "../../models";
+import { ExamStructure, SelectedQuestion } from "../../models";
 import { Question } from "../../models/Question";
 
-type ListeningQuizCardProps = {
+type ListeningQuestionCardProps = {
   index: number;
   question: Question;
   examStructure: ExamStructure;
+  selectedAnswer: string;
+  selectedQuestions: SelectedQuestion[];
+  setSelectedQuestions: (selectedQuestions: SelectedQuestion[]) => void;
 };
 
-export default function ListeningQuizCard({
+export default function ListeningQuestionCard({
   index,
   question,
   examStructure,
-}: ListeningQuizCardProps) {
+  selectedAnswer,
+  selectedQuestions,
+  setSelectedQuestions,
+}: ListeningQuestionCardProps) {
   const handlePlayAudio = () => {
     const audio = new Audio(question.audioUrl);
     audio.play();
+  };
+
+  const handleSelectQuestion = (option: string) => {
+    const selectedQuestionsJsonStr = JSON.stringify(selectedQuestions);
+    const tmpSelectedQuestions = JSON.parse(selectedQuestionsJsonStr);
+
+    for (let i = 0; i < tmpSelectedQuestions.length; i++) {
+      const item = tmpSelectedQuestions[i];
+      if (item.question.id === question.id) {
+        if (item.selectedAnswer !== option) {
+          item.selectedAnswer = option;
+
+          setSelectedQuestions(tmpSelectedQuestions);
+
+          break;
+        }
+      }
+    }
   };
 
   return (
@@ -123,11 +147,13 @@ export default function ListeningQuizCard({
                       height: "35px",
                       fontSize: "1rem",
                       color: "#000",
-                      "&:active": {
-                        backgroundColor: "#3965c9",
+                      "&.active": {
+                        backgroundColor: "#3965c9 !important",
                         color: "#fff",
                       },
                     }}
+                    className={selectedAnswer === option ? "active" : ""}
+                    onClick={() => handleSelectQuestion(option)}
                   >
                     {option}
                   </Button>
@@ -146,11 +172,13 @@ export default function ListeningQuizCard({
                     height: "35px",
                     fontSize: "1rem",
                     color: "#000",
-                    "&:active": {
+                    "&.active": {
                       backgroundColor: "#3965c9",
                       color: "#fff",
                     },
                   }}
+                  className={selectedAnswer === option ? "active" : ""}
+                  onClick={() => handleSelectQuestion(option)}
                 >
                   {option}
                 </Button>
