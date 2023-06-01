@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useMemo } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
-import { QuizPanel, QuizSubPart } from "~/modules/test/components";
+import { ListeningQuizCard, QuizPanel } from "~/modules/test/components";
 import { ListExams } from "~/modules/test/datas/ExamData";
 import { QuestionList } from "~/modules/test/datas/QuestionData";
 import { ListTests } from "~/modules/test/datas/TestData";
@@ -17,19 +17,10 @@ export default function QuizPage() {
 
   const examStructures: ExamStructure[] = useMemo(() => (exam ? exam.structures : []), [exam]);
 
-  const listQuestions: Question[] = useMemo(() => {
-    const listQuestionsTmp: Question[] = [];
-    examStructures.forEach((structure) => {
-      structure.parts.forEach((part) => {
-        QuestionList.forEach((question) => {
-          if (question.partId === part.id) {
-            listQuestionsTmp.push(question);
-          }
-        });
-      });
-    });
-    return listQuestionsTmp;
-  }, [examStructures]);
+  const listQuestions: Question[] = useMemo(
+    () => (test ? QuestionList.filter((question) => question.testId === test.id) : []),
+    [test]
+  );
 
   if (!exam) {
     return <Navigate to={AppRoutes.test} />;
@@ -79,7 +70,12 @@ export default function QuizPage() {
         >
           {/* Quiz part */}
           {examStructures.map((structure) => {
-            let count = 0;
+            const listSubQuestions: Question[] = listQuestions.filter(
+              (question) => question.structureId === structure.id
+            );
+            let startQuestion = currentQuantityQuestion;
+            previousQuantityQuestion = currentQuantityQuestion;
+            currentQuantityQuestion += listSubQuestions.length;
             return (
               <Box key={structure.id}>
                 <Grid container>
@@ -97,27 +93,33 @@ export default function QuizPage() {
                     </Box>
                   </Grid>
                 </Grid>
-
-                {structure.parts.map((part) => {
-                  const listSubQuestions: Question[] = listQuestions.filter(
-                    (question) => question.partId === part.id
-                  );
-                  previousQuantityQuestion = currentQuantityQuestion;
-                  currentQuantityQuestion += listSubQuestions.length;
-
-                  if (listSubQuestions.length === 0) return null;
-
-                  return (
-                    <QuizSubPart
-                      key={part.id}
-                      index={++count}
-                      listQuestions={listSubQuestions}
-                      currentQuantity={currentQuantityQuestion}
-                      previousQuantity={previousQuantityQuestion}
-                      examStructure={structure}
-                      examPart={part}
-                    />
-                  );
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Box
+                      sx={{
+                        backgroundColor: "#75d5d9",
+                        padding: "5px 10px",
+                        borderTopRightRadius: "0.8rem",
+                      }}
+                    >
+                      <Typography variant="body1">
+                        第 {++previousQuantityQuestion}-{currentQuantityQuestion} 题:{" "}
+                        {structure.id === 1 ? "请选出与所听内容一致的一项。" : ""}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+                {listSubQuestions.map((question) => {
+                  if (structure.id == 1) {
+                    return (
+                      <ListeningQuizCard
+                        key={question.id}
+                        index={++startQuestion}
+                        question={question}
+                        examStructure={structure}
+                      />
+                    );
+                  } else return null;
                 })}
               </Box>
             );

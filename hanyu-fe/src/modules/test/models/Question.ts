@@ -1,11 +1,11 @@
 export type Question = {
   id: number;
   testId: number;
-  partId: number;
   structureId: number;
-  question?: string;
   answer: string;
   options: string[];
+  type: number;
+  question?: string;
   description?: string;
   imageUrl?: string;
   audioUrl?: string;

@@ -76,19 +76,17 @@ const ExamStructure = ({ examName, structures }: ExamStructureProps) => (
                 }}
               />
               <Stack direction="column" spacing={1}>
-                {item.parts.map((part) => (
-                  <Avatar
-                    children={part.totalQuestion}
-                    sx={{
-                      width: "30px",
-                      height: "30px",
-                      fontSize: "0.8rem",
-                      backgroundColor: "transparent",
-                      color: "#000",
-                      border: "1px solid #ccc",
-                    }}
-                  />
-                ))}
+                <Avatar
+                  children={item.totalQuestion}
+                  sx={{
+                    width: "30px",
+                    height: "30px",
+                    fontSize: "0.8rem",
+                    backgroundColor: "transparent",
+                    color: "#000",
+                    border: "1px solid #ccc",
+                  }}
+                />
               </Stack>
             </Stack>
           </Typography>

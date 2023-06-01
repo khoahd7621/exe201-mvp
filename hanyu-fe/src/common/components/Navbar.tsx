@@ -47,6 +47,10 @@ const navItems = [
     path: AppRoutes.notebook,
   },
   {
+    title: "Thi thử",
+    path: AppRoutes.test,
+  },
+  {
     title: "Luyện Đọc",
     path: AppRoutes.reading,
   },
