@@ -1,0 +1,4 @@
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://hanyu-postgres:5432/hanyu-db
