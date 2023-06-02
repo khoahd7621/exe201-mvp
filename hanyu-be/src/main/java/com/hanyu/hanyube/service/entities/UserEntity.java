@@ -11,6 +11,9 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +24,8 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import java.time.Instant;
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -31,7 +36,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "hu_user")
 @Entity
-public class UserEntity {
+public class UserEntity implements UserDetails {
     public static final String[] IGNORED_UPDATED_FIELDS = {
             "id",
             "password",
@@ -41,6 +46,7 @@ public class UserEntity {
             "role",
             "updatedAt"
     };
+
     @PrePersist
     public void autofill() {
         if (this.getId() == null) {
@@ -76,8 +82,9 @@ public class UserEntity {
     private String shortDescription;
 
     @Column(name = "role")
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private UserRoleEnum role;
+    private UserRoleEnum role = UserRoleEnum.USER;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)
@@ -86,4 +93,34 @@ public class UserEntity {
     @LastModifiedDate
     @Column(name = "updated_at")
     private Instant updatedAt;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(this.role.getName()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserStatusEnum.ACTIVE.equals(status);
+    }
 }

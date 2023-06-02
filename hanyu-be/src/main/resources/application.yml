@@ -19,3 +19,12 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+hu:
+  public-apis:
+    path:
+      - /api/settings/**
+      - /api/auth/**
+      - /swagger-ui/**
+      - /swagger-ui/**/**
+      - /v3/api-docs/**
