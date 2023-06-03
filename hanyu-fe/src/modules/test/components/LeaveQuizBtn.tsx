@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import {
@@ -10,15 +10,21 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+
 import AppRoutes from "~/router/AppRoutes";
 
-export default function LeaveQuizBtn() {
+type Props = {
+  examType: string;
+  isFinished: boolean;
+};
+
+export default function LeaveQuizBtn({ examType, isFinished }: Props) {
   const navigate = useNavigate();
-  const { examType } = useParams();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    if (isFinished) navigate(`${AppRoutes.test}/${examType}`);
+    else setOpen(true);
   };
 
   const handleClose = () => {

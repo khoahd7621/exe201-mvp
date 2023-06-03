@@ -1,13 +1,27 @@
-import { AppBar, Box, Button, Grid, Stack, Toolbar, Typography } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import useCountdown from "~/hooks/useCountdown";
 
-import { LeaveQuizBtn, ListeningQuestionCard, QuizPanel } from "~/modules/test/components";
+import { AppBar, Box, Grid, Stack, Toolbar, Typography } from "@mui/material";
+
+import useCountdown from "~/hooks/useCountdown";
+import {
+  LeaveQuizBtn,
+  ListeningQuestionCard,
+  QuizPanel,
+  ResultModal,
+  SubmitQuizBtn,
+} from "~/modules/test/components";
 import { ListExams } from "~/modules/test/datas/ExamData";
 import { QuestionList } from "~/modules/test/datas/QuestionData";
 import { ListTests } from "~/modules/test/datas/TestData";
-import { Exam, ExamStructure, SelectedQuestion, Test } from "~/modules/test/models";
+import {
+  Exam,
+  ExamStructure,
+  PartResult,
+  SelectedQuestion,
+  Test,
+  TestResult,
+} from "~/modules/test/models";
 import { Question } from "~/modules/test/models/Question";
 import AppRoutes from "~/router/AppRoutes";
 
@@ -31,6 +45,9 @@ export default function QuizPage() {
   );
 
   const [selectedQuestions, setSelectedQuestions] = useState<SelectedQuestion[]>([]);
+  const [isFinished, setIsFinished] = useState<boolean>(false);
+  const [openModalResult, setOpenModalResult] = useState(false);
+  const [testResult, setTestResult] = useState<TestResult | null>(null);
 
   useEffect(() => {
     if (listQuestions.length > 0) {
@@ -45,8 +62,42 @@ export default function QuizPage() {
     }
   }, [listQuestions]);
 
+  const handleFinishQuiz = useCallback(() => {
+    setIsFinished(true);
+    setOpenModalResult(true);
+
+    const partResults: PartResult[] = [];
+    let realScore = 0;
+    examStructures.forEach((structure) => {
+      const listSubQuestions: SelectedQuestion[] = selectedQuestions.filter(
+        (selectedQuestion) => selectedQuestion.question.structureId === structure.id
+      );
+      let totalTrueAnswer = 0;
+      listSubQuestions.forEach((selectedQuestion) => {
+        if (selectedQuestion.selectedAnswer === selectedQuestion.question.answer) {
+          totalTrueAnswer++;
+          realScore += 5;
+        }
+      });
+      partResults.push({
+        id: structure.id,
+        label: structure.hanyu,
+        rate: listSubQuestions.length ? (totalTrueAnswer / listSubQuestions.length) * 100 : 0,
+      });
+    });
+    setTestResult({
+      id: 0,
+      userId: 0,
+      testId: test?.id as number,
+      createdAt: new Date(),
+      totalScore: selectedQuestions.length * 5,
+      realScore,
+      partResults,
+    });
+  }, [examStructures, selectedQuestions, test]);
+
   if (hours + minutes + seconds <= 0) {
-    console.log("Time out");
+    handleFinishQuiz();
   }
 
   if (!exam) {
@@ -78,18 +129,18 @@ export default function QuizPage() {
             }}
           >
             <Box sx={{ display: "flex" }}>
-              <LeaveQuizBtn />
+              <LeaveQuizBtn examType={examType as string} isFinished={isFinished} />
             </Box>
-            <Stack direction="row" spacing={3} alignItems="center" justifyContent="space-between">
-              <Typography variant="body1" component="div">
-                {hours + minutes + seconds <= 0
-                  ? "0 : 00 : 00"
-                  : `${hours} : ${minutes} : ${seconds}`}
-              </Typography>
-              <Button variant="contained" color="success">
-                Nộp bài
-              </Button>
-            </Stack>
+            {!isFinished && (
+              <Stack direction="row" spacing={3} alignItems="center" justifyContent="space-between">
+                <Typography variant="body1" component="div">
+                  {hours + minutes + seconds <= 0
+                    ? "0 : 00 : 00"
+                    : `${hours} : ${minutes} : ${seconds}`}
+                </Typography>
+                <SubmitQuizBtn handleFinishQuiz={handleFinishQuiz} />
+              </Stack>
+            )}
           </Toolbar>
         </AppBar>
       </Box>
@@ -192,6 +243,15 @@ export default function QuizPage() {
           </Box>
         </Grid>
       </Grid>
+
+      {testResult !== null && (
+        <ResultModal
+          testResult={testResult}
+          examType={examType as string}
+          open={openModalResult}
+          setOpen={setOpenModalResult}
+        />
+      )}
     </>
   );
 }
