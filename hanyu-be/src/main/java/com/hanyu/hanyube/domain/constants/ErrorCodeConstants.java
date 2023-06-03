@@ -16,4 +16,8 @@ public class ErrorCodeConstants {
     public static final String MISSING_PERMISSION = "You do not have permission!";
     public static final String ACCOUNT_NOT_EXIST = "Your account %s not exist!";
     /*User Error Code*/
+
+    /*Comment Error Code*/
+    public static final String COMMENT_NOT_FOUND = "Comment %s not found";
+    /*Comment Error Code*/
 }

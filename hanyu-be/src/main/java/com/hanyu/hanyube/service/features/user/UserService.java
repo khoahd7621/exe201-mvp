@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import static com.hanyu.hanyube.domain.constants.ErrorCodeConstants.ACCOUNT_NOT_EXIST;
@@ -74,6 +75,10 @@ public class UserService implements UserDetailsService {
                         String.format(USER_NOT_FOUND, userId)));
     }
 
+    public List<UserEntity> getAllByIds(final Set<UUID> userIds){
+        return userRepository.findByIdIn(userIds);
+    }
+
     public UserProfileResponse getProfile() {
         var userId = AuthUtils.getUserId();
         var userEntity = userRepository.findById(userId)
@@ -111,7 +116,7 @@ public class UserService implements UserDetailsService {
 
     public List<UserProfileResponse> getAllProfile(int pageSize, int pageNum) {
         checkAdminPermission(AuthUtils.getUserId());
-        Pageable pageable = PageRequest.of(pageSize, pageNum, Sort.by("name").descending());
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by("name").descending());
 
         return userRepository.findAll(pageable).stream().map(it -> modelMapper.map(it, UserProfileResponse.class)).toList();
     }
