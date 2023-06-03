@@ -31,7 +31,7 @@ public class AuthService {
             var user = authByUserAndPassword(username, password);
             SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword(), user.getAuthorities()));
             var tokenClaims = TokenClaim.builder()
-                    .userPackage(user.getUserPackage())
+                    .userPackage(user.getUsePackage())
                     .tokenType(TokenTypeEnum.ACCESS_TOKEN)
                     .userId(user.getId())
                     .userRole(user.getRole())

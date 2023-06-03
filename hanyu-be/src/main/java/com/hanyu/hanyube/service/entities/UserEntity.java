@@ -1,6 +1,6 @@
 package com.hanyu.hanyube.service.entities;
 
-import com.hanyu.hanyube.domain.enums.UserPackageEnum;
+import com.hanyu.hanyube.domain.enums.UsePackageEnum;
 import com.hanyu.hanyube.domain.enums.UserRoleEnum;
 import com.hanyu.hanyube.domain.enums.UserStatusEnum;
 import lombok.AllArgsConstructor;
@@ -72,11 +72,11 @@ public class UserEntity implements UserDetails {
 
     @Column(name = "user_package")
     @Enumerated(EnumType.STRING)
-    private UserPackageEnum userPackage = UserPackageEnum.BASIC;
+    private UsePackageEnum usePackage = UsePackageEnum.BASIC;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private UserStatusEnum status = UserStatusEnum.INACTIVE;
+    private UserStatusEnum status = UserStatusEnum.ACTIVE;
 
     @Column(name = "short_description")
     private String shortDescription;

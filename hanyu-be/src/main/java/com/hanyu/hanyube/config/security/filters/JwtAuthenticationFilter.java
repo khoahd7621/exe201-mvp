@@ -1,5 +1,6 @@
 package com.hanyu.hanyube.config.security.filters;
 
+import com.hanyu.hanyube.service.entities.UserEntity;
 import com.hanyu.hanyube.service.exceptions.BadRequestException;
 import com.hanyu.hanyube.service.features.user.UserService;
 import com.hanyu.hanyube.service.utils.JwtUtils;
@@ -16,6 +17,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.html.parser.Entity;
 import java.io.IOException;
 
 
@@ -50,9 +52,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         String email = jwtUtil.getEmail(token);
-        var validUser = userDetailService.loadUserByUsername(email);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(email, validUser.getPassword(), validUser.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        var validUser = (UserEntity) userDetailService.loadUserByUsername(email);
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(
+                        validUser.getId(),
+                        validUser.getPassword(),
+                        validUser.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 
