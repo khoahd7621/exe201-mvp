@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS hu_comment
     status                      VARCHAR(20)            NOT NULL,
     member_type                 VARCHAR(20)            NOT NULL,
     created_at                  TIMESTAMP              NOT NULL DEFAULT now(),
-    updated_at                  TIMESTAMP              NOT NULL DEFAULT now(),
+    updated_at                  TIMESTAMP              NOT NULL DEFAULT now()
 );
 
 CREATE INDEX IF NOT EXISTS hu_parent_id_status_index ON hu_comment(parent_id, status);

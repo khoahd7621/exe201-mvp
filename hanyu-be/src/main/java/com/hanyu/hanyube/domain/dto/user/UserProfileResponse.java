@@ -4,23 +4,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hanyu.hanyube.domain.enums.UsePackageEnum;
 import com.hanyu.hanyube.domain.enums.UserStatusEnum;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserProfileResponse {
-    private UUID userId;
+    private UUID id;
     private String email;
     private String name;
     private String shortDescription;
     private String phone;
     private UsePackageEnum userPackage;
+    @Builder.Default
+    private Boolean isSubscribed = Boolean.FALSE;
+    @Builder.Default
+    private Instant subscriptionExpiredDate = null;
     private UserStatusEnum status;
 }
