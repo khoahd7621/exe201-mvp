@@ -2,6 +2,7 @@ package com.hanyu.hanyube.domain.api.auth;
 
 import com.hanyu.hanyube.domain.dto.login.LoginForm;
 import com.hanyu.hanyube.domain.dto.login.UserAccessResponse;
+import com.hanyu.hanyube.domain.enums.UserRoleEnum;
 import com.hanyu.hanyube.service.features.auth.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +25,7 @@ public class AuthController {
 
 
     @PostMapping("/api/settings/test")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('" + UserRoleEnum.Role.ADMIN + "')")
     public String TestAuthorization() {
         return "Oke Pro";
     }

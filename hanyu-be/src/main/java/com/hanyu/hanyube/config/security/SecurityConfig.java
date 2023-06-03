@@ -42,14 +42,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        String[] antPatterns = configProperties.getPath().toArray(new String[0]);
+
         http
                 .authorizeHttpRequests(auth -> auth
-                        .antMatchers("/api/settings/**").permitAll()
-                        .antMatchers("/api/auth/**").permitAll()
-                        .antMatchers("/swagger-ui/**").permitAll()
-                        .antMatchers("/swagger-ui/**/**").permitAll()
-                        .antMatchers("/hanyu-be/swagger-ui/**/**").permitAll()
-                        .antMatchers("/v3/api-docs/**").permitAll()
+                        .antMatchers(antPatterns).permitAll()
                         .anyRequest().authenticated()
                 ).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable);

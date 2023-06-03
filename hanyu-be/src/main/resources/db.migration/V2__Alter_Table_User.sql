@@ -1,0 +1,1 @@
+ALTER TABLE hu_user RENAME COLUMN user_package TO use_package;

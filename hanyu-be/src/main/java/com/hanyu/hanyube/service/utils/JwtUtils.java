@@ -37,7 +37,7 @@ public class JwtUtils {
     }
 
     public boolean validate(String token) {
-        return getEmail(token) != null && isExpired(token);
+        return getEmail(token) != null && !isExpired(token);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {

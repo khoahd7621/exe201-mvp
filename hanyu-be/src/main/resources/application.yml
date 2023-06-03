@@ -28,3 +28,4 @@ hu:
       - /swagger-ui/**
       - /swagger-ui/**/**
       - /v3/api-docs/**
+      - /api/users/register

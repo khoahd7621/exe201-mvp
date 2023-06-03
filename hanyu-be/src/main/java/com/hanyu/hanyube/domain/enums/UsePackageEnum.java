@@ -1,5 +1,5 @@
 package com.hanyu.hanyube.domain.enums;
 
-public enum UserPackageEnum {
+public enum UsePackageEnum {
     BASIC, PREMIUM
 }
