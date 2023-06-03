@@ -1,12 +1,15 @@
 package com.hanyu.hanyube.config.security.filters;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hanyu.hanyube.service.entities.UserEntity;
 import com.hanyu.hanyube.service.exceptions.BadRequestException;
+import com.hanyu.hanyube.service.exceptions.ErrorResponse;
 import com.hanyu.hanyube.service.features.user.UserService;
 import com.hanyu.hanyube.service.utils.JwtUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -17,7 +20,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.html.parser.Entity;
 import java.io.IOException;
 
 
@@ -34,32 +36,40 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     @NonNull HttpServletResponse httpServletResponse,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        if (isExcludedPattern(httpServletRequest.getRequestURI().substring(9))) {
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
-            return;
-        }
-        String authorizationHeader = httpServletRequest.getHeader("Authorization");
-        if (authorizationHeader == null || authorizationHeader.isEmpty()) {
-            throw new BadRequestException("Token is missing!");
-        }
-        if (authorizationHeader.startsWith("Bearer")) {
-            authorizationHeader = authorizationHeader.split(" ")[1];
-        }
+        try {
+            if (isExcludedPattern(httpServletRequest.getRequestURI().substring(9))) {
+                filterChain.doFilter(httpServletRequest, httpServletResponse);
+                return;
+            }
+            String authorizationHeader = httpServletRequest.getHeader("Authorization");
+            if (authorizationHeader == null || authorizationHeader.isEmpty()) {
+                throw new BadRequestException("Token is missing!");
+            }
+            if (authorizationHeader.startsWith("Bearer")) {
+                authorizationHeader = authorizationHeader.split(" ")[1];
+            }
 
-        final String token = authorizationHeader.trim();
-        if (!jwtUtil.validate(token)) {
+            final String token = authorizationHeader.trim();
+            if (!jwtUtil.validate(token)) {
+                filterChain.doFilter(httpServletRequest, httpServletResponse);
+                return;
+            }
+            String email = jwtUtil.getEmail(token);
+            var validUser = (UserEntity) userDetailService.loadUserByUsername(email);
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(
+                            validUser.getId(),
+                            validUser.getPassword(),
+                            validUser.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             filterChain.doFilter(httpServletRequest, httpServletResponse);
-            return;
+        } catch (Exception ex) {
+            ErrorResponse errorResponse  = ErrorResponse.builder().message(ex.getMessage()).status(HttpStatus.BAD_REQUEST.value()).build();
+            httpServletResponse.getWriter().write(new ObjectMapper().writeValueAsString(errorResponse));
+            httpServletResponse.setContentType("application/json");
+            httpServletResponse.setCharacterEncoding("UTF-8");
+            ((HttpServletResponse) httpServletResponse).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
-        String email = jwtUtil.getEmail(token);
-        var validUser = (UserEntity) userDetailService.loadUserByUsername(email);
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(
-                        validUser.getId(),
-                        validUser.getPassword(),
-                        validUser.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 
 

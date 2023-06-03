@@ -70,7 +70,7 @@ public class UserEntity implements UserDetails {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "user_package")
+    @Column(name = "use_package")
     @Enumerated(EnumType.STRING)
     private UsePackageEnum usePackage = UsePackageEnum.BASIC;
 
@@ -85,6 +85,10 @@ public class UserEntity implements UserDetails {
     @Builder.Default
     @Enumerated(EnumType.STRING)
     private UserRoleEnum role = UserRoleEnum.USER;
+
+    @Builder.Default
+    @Column(name = "subscription_expired_date")
+    private Instant subscriptionExpiredDate = Instant.now();
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)

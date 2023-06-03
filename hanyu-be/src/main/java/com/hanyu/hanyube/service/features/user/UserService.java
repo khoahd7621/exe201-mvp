@@ -24,13 +24,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.time.Instant;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 import static com.hanyu.hanyube.domain.constants.ErrorCodeConstants.ACCOUNT_NOT_EXIST;
 import static com.hanyu.hanyube.domain.constants.ErrorCodeConstants.MISSING_PERMISSION;
 import static com.hanyu.hanyube.domain.constants.ErrorCodeConstants.USER_ALREADY_EXISTED;
 import static com.hanyu.hanyube.domain.constants.ErrorCodeConstants.USER_NOT_FOUND;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 @RequiredArgsConstructor
@@ -74,11 +78,19 @@ public class UserService implements UserDetailsService {
                         String.format(USER_NOT_FOUND, userId)));
     }
 
+    public List<UserEntity> getAllByIds(final Set<UUID> userIds){
+        return userRepository.findByIdIn(userIds);
+    }
+
     public UserProfileResponse getProfile() {
         var userId = AuthUtils.getUserId();
         var userEntity = userRepository.findById(userId)
                 .orElseThrow(() -> new BadRequestException(String.format(USER_NOT_FOUND, userId)));
-        return modelMapper.map(userEntity, UserProfileResponse.class);
+        var response = modelMapper.map(userEntity, UserProfileResponse.class);
+        if(Objects.nonNull(response)){
+            response.setIsSubscribed(userEntity.getSubscriptionExpiredDate().compareTo(Instant.now()) > 0);
+        }
+        return response;
     }
 
     public void create(UserCreateRequest userCreateRequest) {
@@ -106,12 +118,13 @@ public class UserService implements UserDetailsService {
 
         var userEntity = getByUserId(userId);
         modelMapper.map(request, userEntity);
+        userEntity.setSubscriptionExpiredDate(Instant.now().plus(30, DAYS));
         return modelMapper.map(userRepository.saveAndFlush(userEntity), UserProfileResponse.class);
     }
 
     public List<UserProfileResponse> getAllProfile(int pageSize, int pageNum) {
         checkAdminPermission(AuthUtils.getUserId());
-        Pageable pageable = PageRequest.of(pageSize, pageNum, Sort.by("name").descending());
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by("name").descending());
 
         return userRepository.findAll(pageable).stream().map(it -> modelMapper.map(it, UserProfileResponse.class)).toList();
     }
