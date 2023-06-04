@@ -1,396 +1,72 @@
-import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Container, Grid, Paper, Stack, TextField, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Carousel from "react-material-ui-carousel";
+import { Box, Card, Container, Grid, Link, Paper, Stack, Typography } from "@mui/material";
 
-const SearchBox = styled(TextField)({
-  input: {
-    width: 1200,
-    height: "20px",
-    fontWeight: 600,
-    paddingLeft: 25,
-    "&::placeholder": {
-      fontWeight: 600,
-    },
-  },
-  fieldset: {
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-    borderTopLeftRadius: 30,
-    borderBottomLeftRadius: 30,
-    "&::focus": {
-      borderColor: "#000 !important",
-      background: "#000",
-    },
-  },
-  "& .MuiOutlinedInput-root.Mui-focused": {
-    "& > fieldset": {
-      borderColor: "#000",
-    },
-  },
-  "& .MuiOutlinedInput-root:focus": {
-    "& > fieldset": {
-      borderColor: "#000",
-    },
-  },
-});
+import {
+  BannerCarousel,
+  Rankings,
+  SearchInput,
+  TipsLearning,
+} from "~/modules/dictionary/components";
 
 export default function DictionaryPage() {
-  const items = [
-    {
-      name: "Random Name #1",
-      description: "Probably the most random thing you have ever seen!",
-      img: "https://static.vecteezy.com/system/resources/previews/005/161/901/original/cute-funny-baby-panda-hanging-on-the-bamboo-free-vector.jpg",
-    },
-    {
-      name: "Random Name #2",
-      description: "Hello World!",
-      img: "https://media.istockphoto.com/id/902296516/vector/set-of-pandas-vector-illustration.jpg?s=612x612&w=0&k=20&c=Dq-xDL-C_Ag9j-_aAEUIgRIWPMCBdScmYYSvkCKz4EE=",
-    },
-    {
-      name: "Random Name #3",
-      description: "Hello World!",
-      img: "https://i.ytimg.com/vi/Ji7FnAWO96o/maxresdefault.jpg",
-    },
-  ];
-
   return (
     <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
-      {/* Search blocks */}
-      <Stack direction="row" alignItems="center" justifyContent="center" marginBottom={5}>
-        <SearchBox id="search" type="search" placeholder="Search here" variant="outlined" />
-        <Button
-          sx={{
-            backgroundColor: "#000",
-            color: "#fff",
-            height: "53px",
-            width: 80,
-            "&:hover": {
-              backgroundColor: "#363636",
-            },
-            borderTopRightRadius: 30,
-            borderBottomRightRadius: 30,
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
-          }}
-        >
-          <SearchIcon />
-        </Button>
-      </Stack>
+      <SearchInput />
 
       <Grid container spacing={2}>
-        <Grid item xs={2} md={3}>
-          <Stack display={"flex"} direction={"column"}>
+        <Grid item xs={12} md={3}>
+          <Stack direction="column" spacing={3}>
             <Box>
-              <Typography variant="h6" sx={{ fontSize: 13, fontWeight: 600, mb: 2 }}>
-                Hot search
+              <Typography variant="h6" fontWeight="600" fontSize={16} marginBottom="1rem">
+                Từ khóa hot
               </Typography>
-              <Box display={"flex"} flexWrap={"wrap"}>
-                <Box
+              <Stack direction="row" flexWrap="wrap">
+                <Link
+                  href="#"
+                  underline="none"
                   sx={{
-                    p: "6px",
-                    m: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
+                    color: "#707070",
+                    backgroundColor: "#fff",
+                    padding: "4px 16px",
                     borderRadius: "16px",
-                    width: "auto",
+                    border: "1px solid #707070",
+                    "&:hover": {
+                      border: "1px solid #000",
+                      color: "#000",
+                    },
                   }}
                 >
-                  实事
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  事实事
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  实事
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  Teacher
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  实事实实
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  Student
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  实事实实
-                </Box>
-              </Box>
+                  <Typography>实事</Typography>
+                </Link>
+              </Stack>
             </Box>
             <Box>
-              <Typography variant="h6" sx={{ fontSize: 13, fontWeight: 600, mb: 2 }}>
-                History
+              <Typography variant="h6" fontWeight="600" fontSize={16} marginBottom="1rem">
+                Thành ngữ hôm nay
               </Typography>
-              <Box display={"flex"} flexWrap={"wrap"}>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  实事
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  事实事
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  实事
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  Panda
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  实事实实
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  实事实实
-                </Box>
-                <Box
-                  sx={{
-                    p: "6px",
-                    m: 1,
-                    alignItems: "center",
-                    background: "#fff",
-                    boder: 1,
-                    borderColor: "#000",
-                    borderRadius: "16px",
-                    width: "auto",
-                  }}
-                >
-                  Hanyu
-                </Box>
-              </Box>
+              <Card variant="outlined" sx={{ borderRadius: "12px", padding: "16px" }}>
+                <Stack spacing={2}>
+                  <Typography variant="body1">
+                    明日复明日，明日何其多？我生待明日，万事成蹉跎。
+                  </Typography>
+                  <Typography variant="body1" fontWeight={600}>
+                    Míngrì fù míngrì, míngrì héqí duō? Wǒ shēng dài míngrì, wànshì chéng cuōtuó.
+                  </Typography>
+                </Stack>
+              </Card>
             </Box>
           </Stack>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <Paper>
-            <Carousel>
-              {items.map((item, i) => (
-                <Box key={i} sx={{ m: 1, display: "flex", alignItems: "center" }}>
-                  <img src={item.img} alt="Hanyu Banner" width="100%" height="360" />
-                </Box>
-              ))}
-            </Carousel>
-          </Paper>
-        </Grid>
-        <Grid item xs={3} md={3}>
-          <Paper>
-            <Typography variant="body2" sx={{ fontWeight: 600, pt: 1, pl: 1 }}>
-              Rankings
-            </Typography>
-            <Stack display={"flex"} justifyContent="space-between" direction={"row"}>
-              <Button
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "30px",
-                  m: 2,
-                  "&:hover": {
-                    cursor: "pointer",
-                    border: 1,
-                    borderColor: "#ccd0d5",
-                    borderRadius: 1,
-                    background: "#f8f8f8",
-                  },
-                  "&:focus": {
-                    border: 1,
-                    borderColor: "#ccd0d5",
-                    borderRadius: 1,
-                  },
-                }}
-              >
-                <Typography variant="body2" sx={{ color: "#6c757d", fontSize: "12px" }}>
-                  Day
-                </Typography>
-              </Button>
-              <Button
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "30px",
-                  m: 2,
-                  "&:hover": {
-                    cursor: "pointer",
-                    border: 1,
-                    borderColor: "#ccd0d5",
-                    borderRadius: 1,
-                    background: "#f8f8f8",
-                  },
-                  "&:focus": {
-                    border: 1,
-                    borderColor: "#ccd0d5",
-                    borderRadius: 1,
-                  },
-                }}
-              >
-                <Typography variant="body2" sx={{ color: "#6c757d", fontSize: "14px" }}>
-                  Week
-                </Typography>
-              </Button>
-              <Button
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "30px",
-                  m: 2,
-                  "&:hover": {
-                    cursor: "pointer",
-                    border: 1,
-                    borderColor: "#ccd0d5",
-                    borderRadius: 1,
-                    background: "#f8f8f8",
-                  },
-                  "&:focus": {
-                    border: 1,
-                    borderColor: "#ccd0d5",
-                    borderRadius: 1,
-                  },
-                }}
-              >
-                <Typography variant="body2" sx={{ color: "#6c757d", fontSize: "14px" }}>
-                  Month
-                </Typography>
-              </Button>
+        <Grid item xs={12} md={6}>
+          <Paper variant="outlined" sx={{ padding: "1rem", borderRadius: "12px" }}>
+            <Stack spacing={2}>
+              <BannerCarousel />
+
+              <TipsLearning />
             </Stack>
           </Paper>
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <Rankings />
         </Grid>
       </Grid>
     </Container>
