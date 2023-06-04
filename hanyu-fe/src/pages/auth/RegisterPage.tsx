@@ -161,8 +161,11 @@ export default function RegisterPage() {
             toast.success("Đăng ký thành công! Vui lòng đăng nhập.");
           })
           .catch((err) => {
-            toast.error("Đã có lỗi xảy ra! Đăng ký thất bại.");
-            console.log(err);
+            if (err.response?.status === 400) {
+              toast.error("Email đã tồn tại! Vui lòng đăng ký với email khác.");
+            } else {
+              toast.error("Đã có lỗi xảy ra! Đăng ký thất bại.");
+            }
           });
       }
     }

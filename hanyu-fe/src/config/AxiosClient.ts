@@ -1,14 +1,21 @@
 import axios from "axios";
 
+import { store } from "~/redux/store";
+
 // Set config defaults when creating the instance
 const AxiosClient = axios.create({
-  baseURL: "http://hnbe.online/hanyu-be/api",
+  baseURL: "https://hnbe.online/hanyu-be/api",
 });
 
 // Add a request interceptor
 AxiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    const accessToken = store.getState().auth.accessToken;
+    if (accessToken !== "") {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
     return config;
   },
   function (error) {

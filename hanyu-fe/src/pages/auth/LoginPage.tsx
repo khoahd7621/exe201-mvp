@@ -1,12 +1,137 @@
-import { Link as RouterLink } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, Button, Card, CardMedia, Link, Stack, TextField, Typography } from "@mui/material";
 
 import BackgroundImage from "~/assets/images/modules/auth/background.jpg";
+import authApi from "~/modules/auth/apis/authApi";
+import { LoginForm } from "~/modules/auth/models";
+import { login } from "~/redux/slices/authSlice";
 import AppRoutes from "~/router/AppRoutes";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState<
+    LoginForm & {
+      errors: {
+        [key: string]: string;
+      }[];
+    }
+  >({
+    email: "",
+    password: "",
+    errors: [],
+  });
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      const oldErrorIndex = formData.errors.findIndex((error) => error.name === "email");
+      if (value.length === 0) {
+        const error = { name: "email", message: "Email không được để trống" };
+        setFormData((prev) => ({
+          ...prev,
+          [name]: value,
+          errors:
+            oldErrorIndex === -1
+              ? [...prev.errors, error]
+              : prev.errors.filter((error) => error.name !== "email").concat(error),
+        }));
+      } else if (
+        !value.match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+      ) {
+        const error = { name: "email", message: "Email không hợp lệ" };
+        setFormData((prev) => ({
+          ...prev,
+          [name]: value,
+          errors:
+            oldErrorIndex === -1
+              ? [...prev.errors, error]
+              : prev.errors.filter((error) => error.name !== "email").concat(error),
+        }));
+      } else {
+        setFormData((prev) => ({
+          ...prev,
+          [name]: value,
+          errors: prev.errors.filter((error) => error.name !== "email"),
+        }));
+      }
+    } else {
+      const oldErrorIndex = formData.errors.findIndex((error) => error.name === "password");
+      if (value.length === 0) {
+        const error = { name: "password", message: "Mật khẩu không được để trống" };
+        setFormData((prev) => ({
+          ...prev,
+          [name]: value,
+          errors:
+            oldErrorIndex === -1
+              ? [...prev.errors, error]
+              : prev.errors.filter((error) => error.name !== "password").concat(error),
+        }));
+      } else if (value.length < 6) {
+        const error = { name: "password", message: "Mật khẩu phải có ít nhất 6 ký tự" };
+        setFormData((prev) => ({
+          ...prev,
+          [name]: value,
+          errors:
+            oldErrorIndex === -1
+              ? [...prev.errors, error]
+              : prev.errors.filter((error) => error.name !== "password").concat(error),
+        }));
+      } else {
+        setFormData((prev) => ({
+          ...prev,
+          [name]: value,
+          errors: prev.errors.filter((error) => error.name !== "password"),
+        }));
+      }
+    }
+  };
+
+  const handleSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (formData.errors.length === 0) {
+      let isValid = true;
+      if (formData.email.length === 0) {
+        const error = { name: "email", message: "Email của bạn không được để trống" };
+        setFormData((prev) => ({
+          ...prev,
+          errors: [...prev.errors, error],
+        }));
+        isValid = false;
+      }
+      if (formData.password.length === 0) {
+        const error = { name: "password", message: "Mật khẩu không được để trống" };
+        setFormData((prev) => ({
+          ...prev,
+          errors: [...prev.errors, error],
+        }));
+        isValid = false;
+      }
+      if (isValid) {
+        authApi
+          .login({
+            email: formData.email.trim().toLowerCase(),
+            password: formData.password,
+          })
+          .then((response) => {
+            dispatch(login(response.data?.accessToken));
+            navigate(AppRoutes.home);
+            toast.success("Đăng nhập thành công");
+          })
+          .catch(() => {
+            toast.error("Email hoặc mật khẩu không chính xác.");
+          });
+      }
+    }
+  };
+
   return (
     <Box sx={{ backgroundImage: `url(${BackgroundImage})`, height: "100vh", position: "relative" }}>
       <Box
@@ -66,27 +191,35 @@ export default function LoginPage() {
                 </Typography>
               </Stack>
 
-              <form>
+              <form onSubmit={handleSubmitLogin}>
                 <Stack direction="column" spacing={3}>
                   <TextField
                     label="Email"
                     id="email"
                     placeholder="Nhập email của bạn"
-                    defaultValue=""
                     variant="filled"
-                    type="email"
+                    type="text"
                     size="small"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChangeInput}
+                    error={formData.errors.some((error) => error.name === "email")}
+                    helperText={formData.errors.find((error) => error.name === "email")?.message}
                   />
                   <TextField
                     label="Mật khẩu"
                     id="password"
                     placeholder="Nhập mật khẩu"
-                    defaultValue=""
                     variant="filled"
                     type="password"
                     size="small"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChangeInput}
+                    error={formData.errors.some((error) => error.name === "password")}
+                    helperText={formData.errors.find((error) => error.name === "password")?.message}
                   />
-                  <Button variant="contained" sx={{ padding: "0.6rem 0" }}>
+                  <Button type="submit" variant="contained" sx={{ padding: "0.6rem 0" }}>
                     Đăng nhập
                   </Button>
 
