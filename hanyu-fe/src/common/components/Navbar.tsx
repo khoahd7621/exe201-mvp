@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -8,6 +8,7 @@ import {
   Button,
   Divider,
   Drawer,
+  Link,
   List,
   ListItem,
   ListItemButton,
@@ -93,6 +94,7 @@ export default function Navbar({ window }: Props) {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
+  const rootPath = `/${location.pathname.split("/")[1]}`;
 
   return (
     <Box
@@ -112,6 +114,7 @@ export default function Navbar({ window }: Props) {
             backgroundColor: "#000",
           }}
         >
+          {/* Mobile icon */}
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -121,22 +124,21 @@ export default function Navbar({ window }: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <img src="/pandahanyu_logo _for_web.svg" alt="Hanyu Logo" width="48" height="48" />
-            </Box>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", md: "block" },
-                marginLeft: 1,
-              }}
-            >
+
+          {/* Desktop logo */}
+          <Link
+            to={AppRoutes.home}
+            underline="none"
+            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", color: "#fff" }}
+            component={RouterLink}
+          >
+            <img src="/pandahanyu_logo _for_web.svg" alt="Hanyu Logo" width="48" height="48" />
+            <Typography variant="h6" component="div" display={{ xs: "none", md: "block" }}>
               Hanyu
             </Typography>
-          </Box>
+          </Link>
+
+          {/* Desktop navbar */}
           <Box sx={{ display: { xs: "none", md: "block", height: "4rem", p: 0 } }}>
             {navItems.map((item) => (
               <Button
@@ -162,7 +164,15 @@ export default function Navbar({ window }: Props) {
                     borderBottomColor: "#fff",
                   },
                 }}
-                className={location.pathname === `/${item.path.toLowerCase()}` ? "active" : ""}
+                className={
+                  rootPath !== "/"
+                    ? rootPath === `${item.path.toLowerCase()}`
+                      ? "active"
+                      : ""
+                    : item.path === AppRoutes.dictionary
+                    ? "active"
+                    : ""
+                }
                 onClick={() => routeChange(item.path)}
               >
                 {item.title}
@@ -211,6 +221,8 @@ export default function Navbar({ window }: Props) {
           </Box>
         </Toolbar>
       </AppBar>
+
+      {/* Mobile navbar */}
       <Box component="nav">
         <Drawer
           container={container}

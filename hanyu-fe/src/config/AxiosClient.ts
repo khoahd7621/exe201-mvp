@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Set config defaults when creating the instance
 const AxiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "http://hnbe.online/hanyu-be/api",
 });
 
 // Add a request interceptor
