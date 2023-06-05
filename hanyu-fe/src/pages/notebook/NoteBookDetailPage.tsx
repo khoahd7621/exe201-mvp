@@ -1,21 +1,26 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Navigate, Link as RouterLink, useParams } from "react-router-dom";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ClearIcon from "@mui/icons-material/Clear";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import HistoryIcon from "@mui/icons-material/History";
 import SearchIcon from "@mui/icons-material/Search";
 import { Container, Grid, Link, Paper, Stack, Typography } from "@mui/material";
+import { toast } from "react-toastify";
 
+import { useDebounced } from "~/hooks/useDebounced";
 import { WordCard } from "~/modules/notebook/components";
 import ListNoteBooks from "~/modules/notebook/datas/ListNoteBooks";
 import ListWords from "~/modules/notebook/datas/ListWords";
 import { NoteBook } from "~/modules/notebook/models";
 import { Word } from "~/modules/notebook/models/Word";
+import { useAppSelector } from "~/redux/hooks";
 import AppRoutes from "~/router/AppRoutes";
 
 export default function NoteBookDetailPage() {
   const { noteBookSlug } = useParams<{ noteBookSlug: string }>();
+  const profile = useAppSelector((state) => state.profile.user);
 
   const currentNoteBook: NoteBook | undefined = ListNoteBooks.find(
     (item) => item.slug === noteBookSlug
@@ -26,7 +31,38 @@ export default function NoteBookDetailPage() {
     return ListWords.filter((item) => item.noteBookId === currentNoteBook.id);
   }, [currentNoteBook]);
 
+  const [listWordsFiltered, setListWordsFiltered] = useState<Word[]>([]);
+  const [searchInput, setSearchInput] = useState<string>("");
+
+  const keyword = useDebounced(searchInput, 300);
+
+  useEffect(() => {
+    if (keyword) {
+      const newListWordsFiltered = listWords.filter((item) => {
+        const word = item.word.toLowerCase();
+        const meaning = item.meaning.toLowerCase();
+        const pinyin = item.pinyin.toLowerCase();
+        const keywordLowerCase = keyword.toLowerCase();
+
+        return (
+          word.includes(keywordLowerCase) ||
+          meaning.includes(keywordLowerCase) ||
+          pinyin.includes(keywordLowerCase)
+        );
+      });
+
+      setListWordsFiltered(newListWordsFiltered);
+    } else {
+      setListWordsFiltered(listWords);
+    }
+  }, [keyword, listWords]);
+
   if (!currentNoteBook) {
+    return <Navigate to={AppRoutes.notebook} />;
+  }
+
+  if (currentNoteBook.isPremium && !profile.isSubscribed) {
+    toast.error("Bạn cần nâng cấp tài khoản để sử dụng tính năng này");
     return <Navigate to={AppRoutes.notebook} />;
   }
 
@@ -106,8 +142,17 @@ export default function NoteBookDetailPage() {
                     flexGrow: 1,
                     fontSize: "1rem",
                   }}
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
                 />
-
+                {searchInput && (
+                  <ClearIcon
+                    sx={{
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setSearchInput("")}
+                  />
+                )}
                 <SearchIcon
                   sx={{
                     cursor: "pointer",
@@ -122,9 +167,13 @@ export default function NoteBookDetailPage() {
         <Grid item xs={12} md={8} lg={9}>
           <Paper variant="outlined" sx={{ borderRadius: "0.5rem", padding: "1rem" }}>
             <Stack spacing={2}>
-              {listWords.map((item) => (
-                <WordCard key={item.id} word={item} />
-              ))}
+              {listWordsFiltered.length > 0 ? (
+                listWordsFiltered.map((item) => <WordCard key={item.id} word={item} />)
+              ) : (
+                <Typography variant="body2" textAlign="center">
+                  Không tìm thấy từ vựng nào
+                </Typography>
+              )}
             </Stack>
           </Paper>
         </Grid>

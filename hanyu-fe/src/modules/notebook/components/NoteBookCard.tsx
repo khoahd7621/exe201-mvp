@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import { Avatar, Card, Grid, Stack, Typography } from "@mui/material";
+import { toast } from "react-toastify";
+
+import { useAppSelector } from "~/redux/hooks";
 import AppRoutes from "~/router/AppRoutes";
 import { NoteBook } from "../models";
 
@@ -9,9 +12,21 @@ type Props = {
 };
 
 export default function NoteBookCard({ notebook }: Props) {
+  const auth = useAppSelector((state) => state.auth);
+  const profile = useAppSelector((state) => state.profile.user);
   const navigate = useNavigate();
 
   const handleClickCard = () => {
+    if (notebook.isPremium) {
+      if (!auth.isAuthenticated) {
+        toast.error("Bạn cần đăng nhập để sử dụng tính năng này");
+        return;
+      }
+      if (!profile.isSubscribed) {
+        toast.error("Bạn cần nâng cấp tài khoản để sử dụng tính năng này");
+        return;
+      }
+    }
     navigate(`${AppRoutes.notebook}/${notebook.slug}`);
   };
 

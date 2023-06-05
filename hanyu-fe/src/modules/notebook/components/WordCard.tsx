@@ -1,6 +1,8 @@
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { Box, Card, Stack, Typography } from "@mui/material";
+import { toast } from "react-toastify";
 
+import { useAppSelector } from "~/redux/hooks";
 import { Word } from "../models/Word";
 
 type Props = {
@@ -8,6 +10,21 @@ type Props = {
 };
 
 export default function WordCard({ word }: Props) {
+  const auth = useAppSelector((state) => state.auth);
+  const profile = useAppSelector((state) => state.profile.user);
+
+  const handleClickAddNote = () => {
+    if (!auth.isAuthenticated) {
+      toast.error("Bạn cần đăng nhập để sử dụng tính năng này");
+      return;
+    }
+    if (!profile.isSubscribed) {
+      toast.error("Bạn cần nâng cấp tài khoản để sử dụng tính năng này");
+      return;
+    }
+    toast.success("Tính năng đang được phát triển! Xin lỗi vì sự bất tiện này!");
+  };
+
   return (
     <Card variant="outlined">
       <Stack>
@@ -51,7 +68,11 @@ export default function WordCard({ word }: Props) {
             fontWeight="bold"
             sx={{
               cursor: "pointer",
+              "&:hover": {
+                textDecoration: "underline",
+              },
             }}
+            onClick={handleClickAddNote}
           >
             Thêm
           </Typography>
