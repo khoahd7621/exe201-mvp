@@ -25,8 +25,13 @@ export default function SubscriptionCard({ subscription, handleOpenModal }: Prop
           boxShadow:
             "rgb(0 121 255 / 40%) 0px 0px 0px 2px, rgb(255 0 0 / 65%) 0px 4px 6px -1px, rgb(42 19 19 / 8%) 0px 1px 0px inset",
         },
+        "&.best": {
+          backgroundColor: "#5C469C",
+          color: "#fff",
+        },
       }}
       onClick={handleOpenModal}
+      className={subscription.isBest ? "best" : ""}
     >
       <Stack>
         <Typography variant="h6" fontWeight="bold" textAlign="center">

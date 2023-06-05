@@ -15,6 +15,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { toast } from "react-toastify";
 
 import {
   PaymentModal,
@@ -23,11 +24,16 @@ import {
   TableFeatures,
 } from "~/modules/upgrade/components";
 import { ListSubscriptions } from "~/modules/upgrade/models/Subscription";
+import { useAppSelector } from "~/redux/hooks";
 
 export default function UpgradePage() {
+  const auth = useAppSelector((state) => state.auth);
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const handleOpenModal = () => setOpenModal(true);
+  const handleOpenModal = () => {
+    if (auth.isAuthenticated) setOpenModal(true);
+    else toast.info("Bạn cần đăng nhập trước khi thực hiện nâng cấp tài khoản nhen ^^");
+  };
   const handleCloseModal = () => setOpenModal(false);
 
   return (
