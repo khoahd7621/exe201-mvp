@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Navigate, Link as RouterLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -9,12 +8,16 @@ import { Box, Button, Card, CardMedia, Link, Stack, TextField, Typography } from
 import BackgroundImage from "~/assets/images/modules/auth/background.jpg";
 import authApi from "~/modules/auth/apis/authApi";
 import { LoginForm } from "~/modules/auth/models";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks";
 import { login } from "~/redux/slices/authSlice";
+import { fetchUserProfile } from "~/redux/slices/profileSlice";
 import AppRoutes from "~/router/AppRoutes";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector((state) => state.auth);
+
   const [formData, setFormData] = useState<
     LoginForm & {
       errors: {
@@ -122,6 +125,7 @@ export default function LoginPage() {
           })
           .then((response) => {
             dispatch(login(response.data?.accessToken));
+            dispatch(fetchUserProfile());
             navigate(AppRoutes.home);
             toast.success("Đăng nhập thành công");
           })
@@ -131,6 +135,8 @@ export default function LoginPage() {
       }
     }
   };
+
+  if (auth.isAuthenticated) return <Navigate to={AppRoutes.home} />;
 
   return (
     <Box sx={{ backgroundImage: `url(${BackgroundImage})`, height: "100vh", position: "relative" }}>

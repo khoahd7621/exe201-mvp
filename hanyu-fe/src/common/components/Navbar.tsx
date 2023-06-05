@@ -18,6 +18,9 @@ import {
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 
+import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { logout } from "~/redux/slices/authSlice";
+import { remove } from "~/redux/slices/profileSlice";
 import AppRoutes from "~/router/AppRoutes";
 import AccountMenu from "./AccountMenu";
 
@@ -64,6 +67,8 @@ const navItems = [
 export default function Navbar({ window }: Props) {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector((state) => state.auth);
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -89,6 +94,48 @@ export default function Navbar({ window }: Props) {
             </ListItemButton>
           </ListItem>
         ))}
+        {auth.isAuthenticated ? (
+          <>
+            <ListItem disablePadding>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => routeChange(AppRoutes.profile)}
+              >
+                <ListItemText primary="Tài khoản" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => () => {
+                  dispatch(logout());
+                  dispatch(remove());
+                }}
+              >
+                <ListItemText primary="Đăng xuất" />
+              </ListItemButton>
+            </ListItem>
+          </>
+        ) : (
+          <>
+            <ListItem disablePadding>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => routeChange(AppRoutes.login)}
+              >
+                <ListItemText primary="Đăng nhập" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => routeChange(AppRoutes.register)}
+              >
+                <ListItemText primary="Đăng ký" />
+              </ListItemButton>
+            </ListItem>
+          </>
+        )}
       </List>
     </Box>
   );
@@ -129,7 +176,7 @@ export default function Navbar({ window }: Props) {
           <Link
             to={AppRoutes.home}
             underline="none"
-            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", color: "#fff" }}
+            sx={{ display: "flex", alignItems: "center", color: "#fff" }}
             component={RouterLink}
           >
             <img src="/pandahanyu_logo _for_web.svg" alt="Hanyu Logo" width="48" height="48" />
@@ -185,39 +232,44 @@ export default function Navbar({ window }: Props) {
               justifyContent: "space-between",
             }}
           >
-            <Box sx={{ m: 1, display: "flex", alignItems: "center", cursor: "pointer" }}>
-              <AccountMenu />
-            </Box>
-            <Box sx={{ m: 1 }}>
-              <Button
-                variant="text"
-                sx={{
-                  color: "#fff",
-                  "&:hover": {
-                    textDecoration: "underline #fff",
-                  },
-                }}
-                onClick={() => navigate(AppRoutes.login)}
-              >
-                Đăng Nhập
-              </Button>
-            </Box>
-            <Box sx={{ m: 1 }}>
-              <Button
-                variant="contained"
-                sx={{
-                  background: "#fff",
-                  color: "#000",
-                  "&:hover": {
-                    backgroundColor: "#EEEEEE",
-                    textDecoration: "underline #000000",
-                  },
-                }}
-                onClick={() => navigate(AppRoutes.register)}
-              >
-                Đăng ký
-              </Button>
-            </Box>
+            {auth.isAuthenticated ? (
+              <Box sx={{ m: 1, display: "flex", alignItems: "center", cursor: "pointer" }}>
+                <AccountMenu />
+              </Box>
+            ) : (
+              <>
+                <Box sx={{ m: 1 }}>
+                  <Button
+                    variant="text"
+                    sx={{
+                      color: "#fff",
+                      "&:hover": {
+                        textDecoration: "underline #fff",
+                      },
+                    }}
+                    onClick={() => navigate(AppRoutes.login)}
+                  >
+                    Đăng Nhập
+                  </Button>
+                </Box>
+                <Box sx={{ m: 1 }}>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      background: "#fff",
+                      color: "#000",
+                      "&:hover": {
+                        backgroundColor: "#EEEEEE",
+                        textDecoration: "underline #000000",
+                      },
+                    }}
+                    onClick={() => navigate(AppRoutes.register)}
+                  >
+                    Đăng ký
+                  </Button>
+                </Box>
+              </>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Navigate, Link as RouterLink, useNavigate } from "react-router-dom";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, Button, Card, CardMedia, Link, Stack, TextField, Typography } from "@mui/material";
@@ -8,10 +8,13 @@ import { toast } from "react-toastify";
 import BackgroundImage from "~/assets/images/modules/auth/background.jpg";
 import authApi from "~/modules/auth/apis/authApi";
 import { RegisterForm } from "~/modules/auth/models";
+import { useAppSelector } from "~/redux/hooks";
 import AppRoutes from "~/router/AppRoutes";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const auth = useAppSelector((state) => state.auth);
+
   const [formData, setFormData] = useState<
     RegisterForm & {
       errors: {
@@ -170,6 +173,8 @@ export default function RegisterPage() {
       }
     }
   };
+
+  if (auth.isAuthenticated) return <Navigate to={AppRoutes.home} />;
 
   return (
     <Box sx={{ backgroundImage: `url(${BackgroundImage})`, height: "100vh", position: "relative" }}>

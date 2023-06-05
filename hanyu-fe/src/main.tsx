@@ -6,9 +6,12 @@ import { ToastContainer } from "react-toastify";
 
 import { store } from "./redux/store";
 import router from "./router/router";
+import { fetchUserProfile } from "./redux/slices/profileSlice";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
+
+store.dispatch(fetchUserProfile());
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

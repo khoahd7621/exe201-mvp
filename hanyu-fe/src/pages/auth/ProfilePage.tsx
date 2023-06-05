@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Navigate, Link as RouterLink } from "react-router-dom";
 
 import {
   Avatar,
@@ -15,8 +15,10 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
+import { toast } from "react-toastify";
 
 import { ChangePassword } from "~/modules/profile/components";
+import { useAppSelector } from "~/redux/hooks";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,11 +54,18 @@ function a11yProps(index: number) {
 }
 
 export default function ProfilePage() {
+  const auth = useAppSelector((state) => state.auth);
+  const profile = useAppSelector((state) => state.profile.user);
   const [value, setValue] = useState(0);
 
   const handleChangeTab = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  if (!auth.isAuthenticated) {
+    toast.error("Bạn cần đăng nhập để truy cập trang này");
+    return <Navigate to="/login" replace={true} />;
+  }
 
   return (
     <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
@@ -82,13 +91,13 @@ export default function ProfilePage() {
                 <Grid item xs={12} md={6}>
                   <Stack>
                     <Typography variant="h6" fontWeight="bold">
-                      Nguyen Van A
+                      {profile.name}
                     </Typography>
                     <Typography variant="subtitle2">
-                      <strong>Email:</strong> sample@sample.com
+                      <strong>Email:</strong> {profile.email}
                     </Typography>
                     <Typography variant="subtitle2">
-                      <strong>Ngày tham gia:</strong> 2023-05-14 16:42:57
+                      <strong>Ngày tham gia:</strong> {new Date().getFullYear()}
                     </Typography>
                   </Stack>
                 </Grid>
@@ -109,12 +118,16 @@ export default function ProfilePage() {
                     </Typography>
                     <Typography variant="subtitle2">
                       <strong>Loại tài khoản:</strong>{" "}
-                      <Typography component="span" color="red">
-                        Premium
+                      <Typography component="span" color={profile.isSubscribed ? "red" : "#000"}>
+                        {profile.isSubscribed ? "Premium" : "Free"}
                       </Typography>
                     </Typography>
                     <Typography variant="subtitle2">
-                      <strong>Thời hạn:</strong> 2023-05-14 16:42:57 -{" "}
+                      <strong>Thời hạn:</strong>{" "}
+                      {profile.subscriptionExpiredDate
+                        ? new Date(profile.subscriptionExpiredDate).toLocaleDateString("vi-VN")
+                        : "N/a"}{" "}
+                      -{" "}
                       <Link to="" component={RouterLink} underline="hover">
                         Gia hạn
                       </Link>

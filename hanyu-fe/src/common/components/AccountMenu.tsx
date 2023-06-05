@@ -15,10 +15,15 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { logout } from "~/redux/slices/authSlice";
+import { remove } from "~/redux/slices/profileSlice";
 import AppRoutes from "~/router/AppRoutes";
 
 export default function AccountMenu() {
   const navigate = useNavigate();
+  const profile = useAppSelector((state) => state.profile.user);
+  const dispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -49,7 +54,7 @@ export default function AccountMenu() {
               display: "block",
             },
           }}
-          className="vip"
+          className={profile.isSubscribed ? "vip" : ""}
         >
           <Avatar
             sx={{ width: 30, height: 30 }}
@@ -145,7 +150,7 @@ export default function AccountMenu() {
                   display: "block",
                 },
               }}
-              className="vip"
+              className={profile.isSubscribed ? "vip" : ""}
             >
               <Avatar
                 sx={{ width: 30, height: 30, margin: "0 !important" }}
@@ -176,16 +181,21 @@ export default function AccountMenu() {
             </Stack>
             <Stack>
               <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                Nguyen Van A
+                {profile.name}
               </Typography>
               <Typography component="p" fontSize="0.8rem">
-                nguyenvana@sample.com
+                {profile.email}
               </Typography>
             </Stack>
           </Stack>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={() => {
+            dispatch(logout());
+            dispatch(remove());
+          }}
+        >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
