@@ -3,22 +3,25 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { persistor, store } from "./redux/store"; // Must be imported before PersistGate
 
-import { store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import App from "./App";
 import router from "./router/router";
-import { fetchUserProfile } from "./redux/slices/profileSlice";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
 
-store.dispatch(fetchUserProfile());
-
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PersistGate loading={null} persistor={persistor}>
+        <App>
+          <RouterProvider router={router} />
 
-      <ToastContainer />
+          <ToastContainer />
+        </App>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
