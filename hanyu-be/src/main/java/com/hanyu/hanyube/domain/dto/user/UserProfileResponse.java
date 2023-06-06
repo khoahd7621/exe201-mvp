@@ -1,6 +1,7 @@
 package com.hanyu.hanyube.domain.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hanyu.hanyube.domain.enums.PackageTime;
 import com.hanyu.hanyube.domain.enums.UsePackageEnum;
 import com.hanyu.hanyube.domain.enums.UserRoleEnum;
 import com.hanyu.hanyube.domain.enums.UserStatusEnum;
@@ -25,11 +26,14 @@ public class UserProfileResponse {
     private String name;
     private String shortDescription;
     private String phone;
-    private UsePackageEnum userPackage;
+    private UsePackageEnum usePackage;
     private UserRoleEnum role;
+    private UserStatusEnum status;
+    @Builder.Default
+    private PackageTime packageTime = null;
     @Builder.Default
     private Boolean isSubscribed = Boolean.FALSE;
     @Builder.Default
     private Instant subscriptionExpiredDate = null;
-    private UserStatusEnum status;
+    private Instant createdAt;
 }

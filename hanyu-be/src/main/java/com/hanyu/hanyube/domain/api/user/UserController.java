@@ -56,13 +56,12 @@ public class UserController {
         return userService.update(request);
     }
 
-    @PutMapping("/api/admin/users/{userId}/profile")
+    @PutMapping("/api/admin/users/upgrade")
     @PreAuthorize("hasRole('" + UserRoleEnum.Role.ADMIN + "')")
     @ResponseStatus(HttpStatus.OK)
-    public UserProfileResponse upgradePackage(@PathVariable("userId") UUID userId, @RequestBody @Valid UpdatePackageRequest request) {
-        return userService.updateUserProfile(userId, request);
+    public UserProfileResponse upgradePackage(@RequestBody @Valid UpdatePackageRequest request) {
+        return userService.updateUserProfile(request);
     }
-
 
     @DeleteMapping("/api/admin/users/{userId}")
     @PreAuthorize("hasRole('" + UserRoleEnum.Role.ADMIN + "')")

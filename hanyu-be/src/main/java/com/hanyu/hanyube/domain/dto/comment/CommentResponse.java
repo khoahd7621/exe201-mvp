@@ -26,5 +26,6 @@ public class CommentResponse {
     private UUID userId;
     private MemberTypeEnum memberType;
     private UserLifeInfo userLifeInfo;
+    private String topic;
     private Instant createdAt;
 }

@@ -1,5 +1,6 @@
 package com.hanyu.hanyube.service.entities;
 
+import com.hanyu.hanyube.domain.enums.PackageTime;
 import com.hanyu.hanyube.domain.enums.UsePackageEnum;
 import com.hanyu.hanyube.domain.enums.UserRoleEnum;
 import com.hanyu.hanyube.domain.enums.UserStatusEnum;
@@ -88,7 +89,11 @@ public class UserEntity implements UserDetails {
 
     @Builder.Default
     @Column(name = "subscription_expired_date")
-    private Instant subscriptionExpiredDate = Instant.now();
+    private Instant subscriptionExpiredDate = null;
+
+    @Builder.Default
+    @Column(name = "package_time")
+    private PackageTime packageTime = null;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)

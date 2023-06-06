@@ -5,6 +5,7 @@ import com.hanyu.hanyube.domain.dto.user.ProfileUpdateRequest;
 import com.hanyu.hanyube.domain.dto.user.UpdatePackageRequest;
 import com.hanyu.hanyube.domain.dto.user.UserCreateRequest;
 import com.hanyu.hanyube.domain.dto.user.UserProfileResponse;
+import com.hanyu.hanyube.domain.enums.PackageTime;
 import com.hanyu.hanyube.domain.enums.UsePackageEnum;
 import com.hanyu.hanyube.domain.enums.UserRoleEnum;
 import com.hanyu.hanyube.domain.enums.UserStatusEnum;
@@ -87,8 +88,10 @@ public class UserService implements UserDetailsService {
         var userEntity = userRepository.findById(userId)
                 .orElseThrow(() -> new BadRequestException(String.format(USER_NOT_FOUND, userId)));
         var response = modelMapper.map(userEntity, UserProfileResponse.class);
-        if(Objects.nonNull(response)){
-            response.setIsSubscribed(userEntity.getSubscriptionExpiredDate().compareTo(Instant.now()) > 0);
+        if(Objects.nonNull(response.getPackageTime()) && !response.getPackageTime().equals(PackageTime.LIFETIME)){
+            response.setIsSubscribed(Objects.compare(response.getSubscriptionExpiredDate(), Instant.now(), Instant::compareTo) > 0);
+        }else if (Objects.nonNull(response.getPackageTime())){
+            response.setIsSubscribed(true);
         }
         return response;
     }
@@ -108,25 +111,61 @@ public class UserService implements UserDetailsService {
         var userEntity = userRepository.findById(userId)
                 .orElseThrow(() -> new BadRequestException(String.format(USER_NOT_FOUND, userId)));
         modelMapper.map(request, userEntity);
-        return modelMapper.map(userRepository.saveAndFlush(userEntity), UserProfileResponse.class);
+        var response = modelMapper.map(userRepository.saveAndFlush(userEntity), UserProfileResponse.class);
+        if(Objects.nonNull(response.getPackageTime()) && !response.getPackageTime().equals(PackageTime.LIFETIME)){
+            response.setIsSubscribed(Objects.compare(response.getSubscriptionExpiredDate(), Instant.now(), Instant::compareTo) > 0);
+        }else if (Objects.nonNull(response.getPackageTime())){
+            response.setIsSubscribed(true);
+        }
+        return response;
     }
 
-    public UserProfileResponse updateUserProfile(final UUID userId, final UpdatePackageRequest request) {
+    public UserProfileResponse updateUserProfile(final UpdatePackageRequest request) {
         //Check permission of authenticated user
-        userRepository.findById(AuthUtils.getUserId())
+        var entity = userRepository.findById(AuthUtils.getUserId())
                 .orElseThrow(() -> new BadRequestException(MISSING_PERMISSION));
+        if (entity.getRole().equals(UserRoleEnum.USER)){
+            throw new BadRequestException(MISSING_PERMISSION);
+        }
 
-        var userEntity = getByUserId(userId);
+        var userEntity = getByUserId(request.getUserId());
         modelMapper.map(request, userEntity);
-        userEntity.setSubscriptionExpiredDate(Instant.now().plus(30, DAYS));
-        return modelMapper.map(userRepository.saveAndFlush(userEntity), UserProfileResponse.class);
+        switch (request.getPackageTime()){
+            case QUARTER -> {
+                userEntity.setSubscriptionExpiredDate(Instant.now().plus(PackageTime.QUARTER.getTime(), DAYS));
+                userEntity.setPackageTime(PackageTime.QUARTER);
+            }
+            case YEAR -> {
+                userEntity.setSubscriptionExpiredDate(Instant.now().plus(PackageTime.YEAR.getTime(), DAYS));
+                userEntity.setPackageTime(PackageTime.YEAR);
+            }
+            case LIFETIME -> {
+                userEntity.setSubscriptionExpiredDate(null);
+                userEntity.setPackageTime(PackageTime.LIFETIME);
+            }
+        }
+        var response = modelMapper.map(userRepository.saveAndFlush(userEntity), UserProfileResponse.class);
+        if(Objects.nonNull(response.getPackageTime()) && !response.getPackageTime().equals(PackageTime.LIFETIME)){
+            response.setIsSubscribed(Objects.compare(userEntity.getSubscriptionExpiredDate(), Instant.now(), Instant::compareTo) > 0);
+        }else if (Objects.nonNull(response.getPackageTime())){
+            response.setIsSubscribed(true);
+        }
+        return response;
     }
 
     public List<UserProfileResponse> getAllProfile(int pageSize, int pageNum) {
         checkAdminPermission(AuthUtils.getUserId());
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by("name").descending());
 
-        return userRepository.findAll(pageable).stream().map(it -> modelMapper.map(it, UserProfileResponse.class)).toList();
+        return userRepository.findAll(pageable).stream().map(it -> {
+            var response = modelMapper.map(it, UserProfileResponse.class);
+            if(Objects.nonNull(response.getPackageTime()) && !response.getPackageTime().equals(PackageTime.LIFETIME)){
+                response.setIsSubscribed(Objects.compare(response.getSubscriptionExpiredDate(), Instant.now(), Instant::compareTo) > 0);
+            }else if (Objects.nonNull(response.getPackageTime())){
+                response.setIsSubscribed(true);
+            }
+            return response;
+        }).toList();
     }
 
     public void checkAdminPermission(UUID userId) {

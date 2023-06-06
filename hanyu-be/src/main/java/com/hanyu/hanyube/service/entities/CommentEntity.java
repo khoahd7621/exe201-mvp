@@ -51,6 +51,9 @@ public class CommentEntity {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "topic", nullable = false)
+    private String topic;
+
     @Builder.Default
     @Column(name = "parent_id")
     private UUID parentId = null;

@@ -19,4 +19,6 @@ public class CreateCommentRequest {
     private String title;
     @NotNull
     private String content;
+    @NotNull
+    private String topic;
 }
