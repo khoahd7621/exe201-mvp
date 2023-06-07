@@ -6,6 +6,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, Button, Card, CardMedia, Link, Stack, TextField, Typography } from "@mui/material";
 
 import BackgroundImage from "~/assets/images/modules/auth/background.jpg";
+import { Seo } from "~/common/components";
 import authApi from "~/modules/auth/apis/authApi";
 import { LoginForm } from "~/modules/auth/models";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks";
@@ -139,131 +140,148 @@ export default function LoginPage() {
   if (auth.isAuthenticated) return <Navigate to={AppRoutes.home} />;
 
   return (
-    <Box sx={{ backgroundImage: `url(${BackgroundImage})`, height: "100vh", position: "relative" }}>
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          width: "100%",
-          transform: "translateY(-50%)",
+    <>
+      <Seo
+        data={{
+          title: "Panda Hanyu | Đăng Nhập",
+          description: "Panda Hanyu Đăng Nhập",
+          url: `https://hanyu-chinesee-learning.vercel.app/${AppRoutes.login}`,
+          href: AppRoutes.login,
+          thumbnailUrl:
+            "https://res.cloudinary.com/khoahd7621/image/upload/v1686117832/banner-2_fkf4w3.png",
         }}
-      >
-        <Stack direction="row" justifyContent="center">
-          <Card
-            sx={{
-              width: "100%",
-              maxWidth: "600px",
-              margin: {
-                xs: "2rem",
-                sm: "2rem 6rem",
-              },
-            }}
-          >
-            <Box sx={{ padding: "2rem 0 0 2rem" }}>
-              <Link
-                to={AppRoutes.home}
-                component={RouterLink}
-                sx={{
-                  color: "#000",
-                  "&:hover": {
-                    color: "#ccc",
-                  },
-                }}
-              >
-                <ArrowBackIosIcon />
-              </Link>
-            </Box>
+      />
 
-            <Stack
-              direction="column"
-              justifyContent="space-between"
+      <Box
+        sx={{ backgroundImage: `url(${BackgroundImage})`, height: "100vh", position: "relative" }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            width: "100%",
+            transform: "translateY(-50%)",
+          }}
+        >
+          <Stack direction="row" justifyContent="center">
+            <Card
               sx={{
-                height: "600px",
-                padding: {
+                width: "100%",
+                maxWidth: "600px",
+                margin: {
                   xs: "2rem",
-                  md: "2rem 6rem",
+                  sm: "2rem 6rem",
                 },
               }}
             >
-              <Stack direction="column" alignItems="center" justifyContent="center" spacing={2}>
-                <CardMedia
-                  component="img"
-                  image="/pandahanyu_logo _for_web.svg"
-                  alt="Logo"
-                  sx={{ width: "60px" }}
-                />
-                <Typography variant="h4" textAlign="center" fontWeight="bold" fontSize="1.8rem">
-                  Đăng nhập vào Hanyu
-                </Typography>
-              </Stack>
+              <Box sx={{ padding: "2rem 0 0 2rem" }}>
+                <Link
+                  to={AppRoutes.home}
+                  component={RouterLink}
+                  sx={{
+                    color: "#000",
+                    "&:hover": {
+                      color: "#ccc",
+                    },
+                  }}
+                >
+                  <ArrowBackIosIcon />
+                </Link>
+              </Box>
 
-              <form onSubmit={handleSubmitLogin}>
-                <Stack direction="column" spacing={3}>
-                  <TextField
-                    label="Email"
-                    id="email"
-                    placeholder="Nhập email của bạn"
-                    variant="filled"
-                    type="text"
-                    size="small"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChangeInput}
-                    error={formData.errors.some((error) => error.name === "email")}
-                    helperText={formData.errors.find((error) => error.name === "email")?.message}
+              <Stack
+                direction="column"
+                justifyContent="space-between"
+                sx={{
+                  height: "600px",
+                  padding: {
+                    xs: "2rem",
+                    md: "2rem 6rem",
+                  },
+                }}
+              >
+                <Stack direction="column" alignItems="center" justifyContent="center" spacing={2}>
+                  <CardMedia
+                    component="img"
+                    image="/pandahanyu_logo _for_web.svg"
+                    alt="Logo"
+                    sx={{ width: "60px" }}
                   />
-                  <TextField
-                    label="Mật khẩu"
-                    id="password"
-                    placeholder="Nhập mật khẩu"
-                    variant="filled"
-                    type="password"
-                    size="small"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChangeInput}
-                    error={formData.errors.some((error) => error.name === "password")}
-                    helperText={formData.errors.find((error) => error.name === "password")?.message}
-                  />
-                  <Button type="submit" variant="contained" sx={{ padding: "0.6rem 0" }}>
-                    Đăng nhập
-                  </Button>
-
-                  <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
-                    <Typography>Bạn chưa có tài khoản?</Typography>
-                    <Link
-                      to={AppRoutes.register}
-                      variant="body2"
-                      underline="hover"
-                      component={RouterLink}
-                    >
-                      <Typography>Đăng ký</Typography>
-                    </Link>
-                  </Stack>
-
-                  <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
-                    <Link href="#" variant="body2" underline="hover">
-                      <Typography>Quên mật khẩu?</Typography>
-                    </Link>
-                  </Stack>
+                  <Typography variant="h4" textAlign="center" fontWeight="bold" fontSize="1.8rem">
+                    Đăng nhập vào Hanyu
+                  </Typography>
                 </Stack>
-              </form>
 
-              <Stack>
-                <Typography fontSize={12} textAlign="center">
-                  Việc bạn tiếp tục sử dụng trang web này đồng nghĩa bạn đồng ý với
-                </Typography>
-                <Typography fontSize={12} textAlign="center">
-                  <Link href="#" underline="hover">
-                    Điều khoản sử dụng
-                  </Link>{" "}
-                  của chúng tôi
-                </Typography>
+                <form onSubmit={handleSubmitLogin}>
+                  <Stack direction="column" spacing={3}>
+                    <TextField
+                      label="Email"
+                      id="email"
+                      placeholder="Nhập email của bạn"
+                      variant="filled"
+                      type="text"
+                      size="small"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChangeInput}
+                      error={formData.errors.some((error) => error.name === "email")}
+                      helperText={formData.errors.find((error) => error.name === "email")?.message}
+                    />
+                    <TextField
+                      label="Mật khẩu"
+                      id="password"
+                      placeholder="Nhập mật khẩu"
+                      variant="filled"
+                      type="password"
+                      size="small"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChangeInput}
+                      error={formData.errors.some((error) => error.name === "password")}
+                      helperText={
+                        formData.errors.find((error) => error.name === "password")?.message
+                      }
+                    />
+                    <Button type="submit" variant="contained" sx={{ padding: "0.6rem 0" }}>
+                      Đăng nhập
+                    </Button>
+
+                    <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
+                      <Typography>Bạn chưa có tài khoản?</Typography>
+                      <Link
+                        to={AppRoutes.register}
+                        variant="body2"
+                        underline="hover"
+                        component={RouterLink}
+                      >
+                        <Typography>Đăng ký</Typography>
+                      </Link>
+                    </Stack>
+
+                    <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
+                      <Link href="#" variant="body2" underline="hover">
+                        <Typography>Quên mật khẩu?</Typography>
+                      </Link>
+                    </Stack>
+                  </Stack>
+                </form>
+
+                <Stack>
+                  <Typography fontSize={12} textAlign="center">
+                    Việc bạn tiếp tục sử dụng trang web này đồng nghĩa bạn đồng ý với
+                  </Typography>
+                  <Typography fontSize={12} textAlign="center">
+                    <Link href="#" underline="hover">
+                      Điều khoản sử dụng
+                    </Link>{" "}
+                    của chúng tôi
+                  </Typography>
+                </Stack>
               </Stack>
-            </Stack>
-          </Card>
-        </Stack>
+            </Card>
+          </Stack>
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 }

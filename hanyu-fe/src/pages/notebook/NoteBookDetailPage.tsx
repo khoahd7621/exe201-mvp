@@ -9,6 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Container, Grid, Link, Paper, Stack, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 
+import { Seo } from "~/common/components";
 import { useDebounced } from "~/hooks/useDebounced";
 import { WordCard } from "~/modules/notebook/components";
 import ListNoteBooks from "~/modules/notebook/datas/ListNoteBooks";
@@ -67,117 +68,130 @@ export default function NoteBookDetailPage() {
   }
 
   return (
-    <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
-      <Grid container spacing={4}>
-        {/* Left bar */}
-        <Grid item xs={12} md={4} lg={3}>
-          <Stack spacing={2}>
-            <Paper variant="outlined" sx={{ borderRadius: "0.5rem", padding: "0.8rem" }}>
-              <Stack>
-                <Link
-                  component={RouterLink}
-                  to={AppRoutes.notebook}
-                  underline="hover"
-                  sx={{
-                    color: "#000",
-                    "&:hover": {
-                      color: "#333",
-                    },
-                  }}
-                >
-                  <Stack direction="row" alignItems="center">
-                    <ArrowBackIosIcon sx={{ fontSize: 14 }} />
+    <>
+      <Seo
+        data={{
+          title: "Panda Hanyu | Sổ Tay Chi Tiết",
+          description: "Panda Hanyu Sổ Tay Chi Tiết",
+          url: `https://hanyu-chinesee-learning.vercel.app/${AppRoutes.notebook}/${currentNoteBook.slug}`,
+          href: `${AppRoutes.notebook}/${currentNoteBook.slug}`,
+          thumbnailUrl:
+            "https://res.cloudinary.com/khoahd7621/image/upload/v1686117832/banner-2_fkf4w3.png",
+        }}
+      />
 
-                    <Typography variant="body2" fontWeight="bold">
-                      Back
-                    </Typography>
-                  </Stack>
-                </Link>
+      <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+        <Grid container spacing={4}>
+          {/* Left bar */}
+          <Grid item xs={12} md={4} lg={3}>
+            <Stack spacing={2}>
+              <Paper variant="outlined" sx={{ borderRadius: "0.5rem", padding: "0.8rem" }}>
+                <Stack>
+                  <Link
+                    component={RouterLink}
+                    to={AppRoutes.notebook}
+                    underline="hover"
+                    sx={{
+                      color: "#000",
+                      "&:hover": {
+                        color: "#333",
+                      },
+                    }}
+                  >
+                    <Stack direction="row" alignItems="center">
+                      <ArrowBackIosIcon sx={{ fontSize: 14 }} />
 
-                <Typography
-                  variant="h5"
-                  fontWeight="bold"
-                  marginBottom={1}
-                  textAlign="center"
-                  margin="0.5rem 0"
-                >
-                  {currentNoteBook.title}
-                </Typography>
+                      <Typography variant="body2" fontWeight="bold">
+                        Back
+                      </Typography>
+                    </Stack>
+                  </Link>
 
-                <Stack direction="row" justifyContent="space-between">
-                  <Stack direction="row" alignItems="center" gap={1}>
-                    <EditNoteIcon />
-                    <Typography variant="body2" fontWeight="bold">
-                      {currentNoteBook.totalWords}w
-                    </Typography>
-                  </Stack>
+                  <Typography
+                    variant="h5"
+                    fontWeight="bold"
+                    marginBottom={1}
+                    textAlign="center"
+                    margin="0.5rem 0"
+                  >
+                    {currentNoteBook.title}
+                  </Typography>
 
-                  <Stack direction="row" alignItems="center" gap={1}>
-                    <HistoryIcon />
-                    <Typography variant="body2" fontWeight="bold">
-                      {currentNoteBook.createdAt}
-                    </Typography>
+                  <Stack direction="row" justifyContent="space-between">
+                    <Stack direction="row" alignItems="center" gap={1}>
+                      <EditNoteIcon />
+                      <Typography variant="body2" fontWeight="bold">
+                        {currentNoteBook.totalWords}w
+                      </Typography>
+                    </Stack>
+
+                    <Stack direction="row" alignItems="center" gap={1}>
+                      <HistoryIcon />
+                      <Typography variant="body2" fontWeight="bold">
+                        {currentNoteBook.createdAt}
+                      </Typography>
+                    </Stack>
                   </Stack>
                 </Stack>
-              </Stack>
-            </Paper>
+              </Paper>
 
-            <Paper
-              variant="outlined"
-              sx={{
-                borderRadius: "0.5rem",
-                padding: "0.8rem",
-                "&:focus": {
-                  outline: "none",
-                },
-              }}
-            >
-              <Stack direction="row" gap={1}>
-                <input
-                  type="text"
-                  placeholder="Search"
-                  style={{
-                    border: "none",
+              <Paper
+                variant="outlined"
+                sx={{
+                  borderRadius: "0.5rem",
+                  padding: "0.8rem",
+                  "&:focus": {
                     outline: "none",
-                    flexGrow: 1,
-                    fontSize: "1rem",
-                  }}
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                />
-                {searchInput && (
-                  <ClearIcon
+                  },
+                }}
+              >
+                <Stack direction="row" gap={1}>
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    style={{
+                      border: "none",
+                      outline: "none",
+                      flexGrow: 1,
+                      fontSize: "1rem",
+                    }}
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                  />
+                  {searchInput && (
+                    <ClearIcon
+                      sx={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setSearchInput("")}
+                    />
+                  )}
+                  <SearchIcon
                     sx={{
                       cursor: "pointer",
                     }}
-                    onClick={() => setSearchInput("")}
                   />
+                </Stack>
+              </Paper>
+            </Stack>
+          </Grid>
+
+          {/* Main content */}
+          <Grid item xs={12} md={8} lg={9}>
+            <Paper variant="outlined" sx={{ borderRadius: "0.5rem", padding: "1rem" }}>
+              <Stack spacing={2}>
+                {listWordsFiltered.length > 0 ? (
+                  listWordsFiltered.map((item) => <WordCard key={item.id} word={item} />)
+                ) : (
+                  <Typography variant="body2" textAlign="center">
+                    Không tìm thấy từ vựng nào
+                  </Typography>
                 )}
-                <SearchIcon
-                  sx={{
-                    cursor: "pointer",
-                  }}
-                />
               </Stack>
             </Paper>
-          </Stack>
+          </Grid>
         </Grid>
-
-        {/* Main content */}
-        <Grid item xs={12} md={8} lg={9}>
-          <Paper variant="outlined" sx={{ borderRadius: "0.5rem", padding: "1rem" }}>
-            <Stack spacing={2}>
-              {listWordsFiltered.length > 0 ? (
-                listWordsFiltered.map((item) => <WordCard key={item.id} word={item} />)
-              ) : (
-                <Typography variant="body2" textAlign="center">
-                  Không tìm thấy từ vựng nào
-                </Typography>
-              )}
-            </Stack>
-          </Paper>
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 }

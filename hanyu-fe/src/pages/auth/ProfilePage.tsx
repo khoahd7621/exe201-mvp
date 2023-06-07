@@ -17,8 +17,10 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 
+import { Seo } from "~/common/components";
 import { ChangePassword } from "~/modules/profile/components";
 import { useAppSelector } from "~/redux/hooks";
+import AppRoutes from "~/router/AppRoutes";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -68,98 +70,112 @@ export default function ProfilePage() {
   }
 
   return (
-    <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
-      <Stack direction="row" justifyContent="center">
-        <Card variant="outlined" sx={{ width: "100%", maxWidth: "800px" }}>
-          <CardContent>
-            <Stack direction="row" gap={2}>
-              <Stack
-                sx={{
-                  width: "80px",
-                  height: "80px",
-                }}
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Avatar
-                  sx={{ width: 60, height: 60 }}
-                  src="https://api.dicebear.com/6.x/adventurer-neutral/svg?seed=Max"
-                />
-              </Stack>
-              <Grid container>
-                <Grid item xs={12} md={6}>
-                  <Stack>
-                    <Typography variant="h6" fontWeight="bold">
-                      {profile.name}
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      <strong>Email:</strong> {profile.email}
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      <strong>Ngày tham gia:</strong> {new Date().getFullYear()}
-                    </Typography>
-                  </Stack>
-                </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  md={6}
+    <>
+      <Seo
+        data={{
+          title: "Panda Hanyu | Thông Tin Của Bạn",
+          description: "Panda Hanyu Thông Tin Của Bạn",
+          url: `https://hanyu-chinesee-learning.vercel.app/${AppRoutes.profile}`,
+          href: AppRoutes.profile,
+          thumbnailUrl:
+            "https://res.cloudinary.com/khoahd7621/image/upload/v1686117832/banner-2_fkf4w3.png",
+          noindex: true,
+        }}
+      />
+
+      <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+        <Stack direction="row" justifyContent="center">
+          <Card variant="outlined" sx={{ width: "100%", maxWidth: "800px" }}>
+            <CardContent>
+              <Stack direction="row" gap={2}>
+                <Stack
                   sx={{
-                    marginTop: {
-                      xs: "1rem",
-                      md: "0",
-                    },
+                    width: "80px",
+                    height: "80px",
                   }}
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
                 >
-                  <Stack>
-                    <Typography variant="h6" fontWeight="bold">
-                      Gói đăng ký
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      <strong>Loại tài khoản:</strong>{" "}
-                      <Typography component="span" color={profile.isSubscribed ? "red" : "#000"}>
-                        {profile.isSubscribed ? "Premium" : "Free"}
+                  <Avatar
+                    sx={{ width: 60, height: 60 }}
+                    src="https://api.dicebear.com/6.x/adventurer-neutral/svg?seed=Max"
+                  />
+                </Stack>
+                <Grid container>
+                  <Grid item xs={12} md={6}>
+                    <Stack>
+                      <Typography variant="h6" fontWeight="bold">
+                        {profile.name}
                       </Typography>
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      <strong>Thời hạn:</strong>{" "}
-                      {profile.subscriptionExpiredDate
-                        ? new Date(profile.subscriptionExpiredDate).toLocaleDateString("vi-VN")
-                        : "N/a"}{" "}
-                      -{" "}
-                      <Link to="" component={RouterLink} underline="hover">
-                        Gia hạn
-                      </Link>
-                    </Typography>
-                  </Stack>
+                      <Typography variant="subtitle2">
+                        <strong>Email:</strong> {profile.email}
+                      </Typography>
+                      <Typography variant="subtitle2">
+                        <strong>Ngày tham gia:</strong> {new Date().getFullYear()}
+                      </Typography>
+                    </Stack>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    md={6}
+                    sx={{
+                      marginTop: {
+                        xs: "1rem",
+                        md: "0",
+                      },
+                    }}
+                  >
+                    <Stack>
+                      <Typography variant="h6" fontWeight="bold">
+                        Gói đăng ký
+                      </Typography>
+                      <Typography variant="subtitle2">
+                        <strong>Loại tài khoản:</strong>{" "}
+                        <Typography component="span" color={profile.isSubscribed ? "red" : "#000"}>
+                          {profile.isSubscribed ? "Premium" : "Free"}
+                        </Typography>
+                      </Typography>
+                      <Typography variant="subtitle2">
+                        <strong>Thời hạn:</strong>{" "}
+                        {profile.subscriptionExpiredDate
+                          ? new Date(profile.subscriptionExpiredDate).toLocaleDateString("vi-VN")
+                          : "N/a"}{" "}
+                        -{" "}
+                        <Link to="" component={RouterLink} underline="hover">
+                          Gia hạn
+                        </Link>
+                      </Typography>
+                    </Stack>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Stack>
+              </Stack>
 
-            <Divider sx={{ margin: "0.8rem 0" }} />
+              <Divider sx={{ margin: "0.8rem 0" }} />
 
-            <Box sx={{ width: "100%" }}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <Tabs value={value} onChange={handleChangeTab} aria-label="basic tabs example">
-                  <Tab label="Bình luận" {...a11yProps(0)} />
-                  <Tab label="Tương tác" {...a11yProps(1)} />
-                  <Tab label="Đổi mật khẩu" {...a11yProps(2)} />
-                </Tabs>
+              <Box sx={{ width: "100%" }}>
+                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                  <Tabs value={value} onChange={handleChangeTab} aria-label="basic tabs example">
+                    <Tab label="Bình luận" {...a11yProps(0)} />
+                    <Tab label="Tương tác" {...a11yProps(1)} />
+                    <Tab label="Đổi mật khẩu" {...a11yProps(2)} />
+                  </Tabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                  Tính năng đang được phát triển, bạn vui lòng quay lại sau nhé ^^
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  Tính năng đang được phát triển, bạn vui lòng quay lại sau nhé ^^
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                  <ChangePassword />
+                </TabPanel>
               </Box>
-              <TabPanel value={value} index={0}>
-                Tính năng đang được phát triển, bạn vui lòng quay lại sau nhé ^^
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                Tính năng đang được phát triển, bạn vui lòng quay lại sau nhé ^^
-              </TabPanel>
-              <TabPanel value={value} index={2}>
-                <ChangePassword />
-              </TabPanel>
-            </Box>
-          </CardContent>
-        </Card>
-      </Stack>
-    </Container>
+            </CardContent>
+          </Card>
+        </Stack>
+      </Container>
+    </>
   );
 }
