@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 
 import { AppBar, Box, Grid, Stack, Toolbar, Typography } from "@mui/material";
 
+import { Seo } from "~/common/components";
 import useCountdown from "~/hooks/useCountdown";
 import {
   LeaveQuizBtn,
@@ -111,6 +112,17 @@ export default function QuizPage() {
   let previousQuantityQuestion = 0;
   return (
     <>
+      <Seo
+        data={{
+          title: `Panda Hanyu | Làm Bài Thi`,
+          description: `Panda Hanyu Làm Bài Thi`,
+          url: `https://hanyu-chinesee-learning.vercel.app/${AppRoutes.test}/${exam.slug}/${test.slug}`,
+          href: `${AppRoutes.test}/${exam.slug}/${test.slug}`,
+          thumbnailUrl:
+            "https://res.cloudinary.com/khoahd7621/image/upload/v1686117832/banner-2_fkf4w3.png",
+        }}
+      />
+
       <Box
         sx={{
           display: "flex",

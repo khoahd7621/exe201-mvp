@@ -1,0 +1,9 @@
+https://hanyu-chinesee-learning.vercel.app/
+https://hanyu-chinesee-learning.vercel.app/login
+https://hanyu-chinesee-learning.vercel.app/register
+https://hanyu-chinesee-learning.vercel.app/dictionary
+https://hanyu-chinesee-learning.vercel.app/translate
+https://hanyu-chinesee-learning.vercel.app/community
+https://hanyu-chinesee-learning.vercel.app/test
+https://hanyu-chinesee-learning.vercel.app/notebook
+https://hanyu-chinesee-learning.vercel.app/upgrade
