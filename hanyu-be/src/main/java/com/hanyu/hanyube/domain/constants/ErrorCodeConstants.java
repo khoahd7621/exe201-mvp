@@ -15,6 +15,8 @@ public class ErrorCodeConstants {
     public static final String USER_ALREADY_EXISTED = "User %s is already existed!";
     public static final String MISSING_PERMISSION = "You do not have permission!";
     public static final String ACCOUNT_NOT_EXIST = "Your account %s not exist!";
+    public static final String PASSWORD_NOT_CORRECT = "Password Not Correct!";
+    public static final String PASSWORD_NOT_MATCH = "Password Not Match!";
     /*User Error Code*/
 
     /*Comment Error Code*/

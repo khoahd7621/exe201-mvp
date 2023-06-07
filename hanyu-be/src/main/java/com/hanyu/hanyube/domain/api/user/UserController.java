@@ -1,5 +1,6 @@
 package com.hanyu.hanyube.domain.api.user;
 
+import com.hanyu.hanyube.domain.dto.user.ChangePasswordRequest;
 import com.hanyu.hanyube.domain.dto.user.ProfileUpdateRequest;
 import com.hanyu.hanyube.domain.dto.user.UpdatePackageRequest;
 import com.hanyu.hanyube.domain.dto.user.UserCreateRequest;
@@ -69,4 +70,13 @@ public class UserController {
     public void delete(@PathVariable UUID userId) {
         userService.delete(userId);
     }
+
+    @PutMapping("/api/password")
+    @PreAuthorize("hasAnyRole('" + UserRoleEnum.Role.USER + "', '" + UserRoleEnum.Role.ADMIN + "')")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void changePassword(@RequestBody @Valid ChangePasswordRequest request) {
+        userService.changePassword(request);
+    }
+
+
 }
