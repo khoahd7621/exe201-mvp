@@ -9,8 +9,7 @@ export const fetchUserProfile = createAsyncThunk(
   "profiles/fetchUserProfile",
   async (_, thunkApi) => {
     try {
-      const response = await profileApi.fetch();
-      return response.data;
+      return await profileApi.fetch();
     } catch (error) {
       thunkApi.dispatch(remove());
       thunkApi.dispatch(logout());
@@ -30,6 +29,7 @@ const initialState: ProfileState = {
     email: "",
     name: "",
     role: "",
+    createdAt: null,
     subscriptionExpiredDate: null,
     status: "",
   },

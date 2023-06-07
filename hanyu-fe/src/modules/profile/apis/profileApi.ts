@@ -1,7 +1,8 @@
 import AxiosClient from "~/config/AxiosClient";
+import { User } from "../models";
 
 const profileApi = {
-  fetch: () => AxiosClient.get("/users/profile"),
+  fetch: (): Promise<User> => AxiosClient.get("/users/profile"),
 };
 
 export default profileApi;

@@ -1,17 +1,25 @@
+import { useState } from "react";
+
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { Box, Card, Stack, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 
 import { useAppSelector } from "~/redux/hooks";
+import { WordNote } from "../models";
 import { Word } from "../models/Word";
+import { AddNoteModal } from ".";
 
 type Props = {
   word: Word;
+  wordNote: WordNote | undefined;
+  fetchListWordNotes: () => void;
 };
 
-export default function WordCard({ word }: Props) {
+export default function WordCard({ word, wordNote, fetchListWordNotes }: Props) {
   const auth = useAppSelector((state) => state.auth);
   const profile = useAppSelector((state) => state.profile.user);
+
+  const [open, setOpen] = useState(false);
 
   const handleClickAddNote = () => {
     if (!auth.isAuthenticated) {
@@ -22,7 +30,7 @@ export default function WordCard({ word }: Props) {
       toast.error("Bạn cần nâng cấp tài khoản để sử dụng tính năng này");
       return;
     }
-    toast.success("Tính năng đang được phát triển! Xin lỗi vì sự bất tiện này!");
+    setOpen(true);
   };
 
   return (
@@ -49,34 +57,43 @@ export default function WordCard({ word }: Props) {
             <Typography>{word.meaning}</Typography>
           </Stack>
         </Stack>
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          borderTop="1px solid #ccc"
-          padding="6px 10px"
-          sx={{ backgroundColor: "#f9f9f9" }}
-        >
-          <Stack direction="row" gap={1} alignItems="center">
-            <EditNoteIcon />
-            <Typography variant="body2" fontWeight="bold">
-              Ghi chú
-            </Typography>
-          </Stack>
-          <Typography
-            variant="body2"
-            fontWeight="bold"
-            sx={{
-              cursor: "pointer",
-              "&:hover": {
-                textDecoration: "underline",
-              },
-            }}
-            onClick={handleClickAddNote}
-          >
-            Thêm
-          </Typography>
-        </Stack>
+        {wordNote === undefined && (
+          <>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              borderTop="1px solid #ccc"
+              padding="6px 10px"
+              sx={{
+                backgroundColor: "#f9f9f9",
+                cursor: "pointer",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+              onClick={handleClickAddNote}
+            >
+              <Stack direction="row" gap={1} alignItems="center">
+                <EditNoteIcon />
+                <Typography variant="body2" fontWeight="bold">
+                  Ghi chú
+                </Typography>
+              </Stack>
+              <Typography variant="body2" fontWeight="bold">
+                Thêm
+              </Typography>
+            </Stack>
+
+            <AddNoteModal
+              open={open}
+              setOpen={setOpen}
+              wordNote={wordNote}
+              word={word}
+              fetchListWordNotes={fetchListWordNotes}
+            />
+          </>
+        )}
       </Stack>
     </Card>
   );

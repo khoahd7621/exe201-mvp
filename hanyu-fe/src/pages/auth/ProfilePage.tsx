@@ -112,7 +112,10 @@ export default function ProfilePage() {
                         <strong>Email:</strong> {profile.email}
                       </Typography>
                       <Typography variant="subtitle2">
-                        <strong>Ngày tham gia:</strong> {new Date().getFullYear()}
+                        <strong>Ngày tham gia:</strong>{" "}
+                        {profile.createdAt
+                          ? new Date(profile.createdAt).toLocaleDateString("vi-VN")
+                          : "N/a"}
                       </Typography>
                     </Stack>
                   </Grid>

@@ -11,10 +11,11 @@ import { toast } from "react-toastify";
 
 import { Seo } from "~/common/components";
 import { useDebounced } from "~/hooks/useDebounced";
+import noteBookApi from "~/modules/notebook/apis/noteBookApis";
 import { WordCard } from "~/modules/notebook/components";
 import ListNoteBooks from "~/modules/notebook/datas/ListNoteBooks";
 import ListWords from "~/modules/notebook/datas/ListWords";
-import { NoteBook } from "~/modules/notebook/models";
+import { NoteBook, WordNote } from "~/modules/notebook/models";
 import { Word } from "~/modules/notebook/models/Word";
 import { useAppSelector } from "~/redux/hooks";
 import AppRoutes from "~/router/AppRoutes";
@@ -34,8 +35,13 @@ export default function NoteBookDetailPage() {
 
   const [listWordsFiltered, setListWordsFiltered] = useState<Word[]>([]);
   const [searchInput, setSearchInput] = useState<string>("");
+  const [wordNotes, setWordNotes] = useState<WordNote[]>([]);
 
   const keyword = useDebounced(searchInput, 300);
+
+  useEffect(() => {
+    fetchListWordNotes();
+  }, []);
 
   useEffect(() => {
     if (keyword) {
@@ -57,6 +63,13 @@ export default function NoteBookDetailPage() {
       setListWordsFiltered(listWords);
     }
   }, [keyword, listWords]);
+
+  const fetchListWordNotes = () => {
+    noteBookApi
+      .getListWordNotes()
+      .then((res) => setWordNotes(res))
+      .catch((err) => console.log(err));
+  };
 
   if (!currentNoteBook) {
     return <Navigate to={AppRoutes.notebook} />;
@@ -181,7 +194,17 @@ export default function NoteBookDetailPage() {
             <Paper variant="outlined" sx={{ borderRadius: "0.5rem", padding: "1rem" }}>
               <Stack spacing={2}>
                 {listWordsFiltered.length > 0 ? (
-                  listWordsFiltered.map((item) => <WordCard key={item.id} word={item} />)
+                  listWordsFiltered.map((item) => {
+                    const wordNote = wordNotes.find((wordNote) => wordNote.wordId === item.id);
+                    return (
+                      <WordCard
+                        key={item.id}
+                        word={item}
+                        wordNote={wordNote}
+                        fetchListWordNotes={fetchListWordNotes}
+                      />
+                    );
+                  })
                 ) : (
                   <Typography variant="body2" textAlign="center">
                     Không tìm thấy từ vựng nào

@@ -6,7 +6,12 @@ const authApi = {
   register: (payload: RegisterForm) => {
     return AxiosClient.post("/users/register", payload);
   },
-  login: (payload: LoginForm) => {
+  login: (
+    payload: LoginForm
+  ): Promise<{
+    accessToken: string;
+    refreshToken: string;
+  }> => {
     return AxiosClient.post("/auth/login", payload);
   },
 };

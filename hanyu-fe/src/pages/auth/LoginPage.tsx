@@ -125,7 +125,7 @@ export default function LoginPage() {
             password: formData.password,
           })
           .then((response) => {
-            dispatch(login(response.data?.accessToken));
+            dispatch(login(response.accessToken));
             dispatch(fetchUserProfile());
             navigate(AppRoutes.home);
             toast.success("Đăng nhập thành công");
