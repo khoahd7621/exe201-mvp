@@ -58,15 +58,47 @@ export default function WordCard({ word, wordNote, fetchListWordNotes }: Props) 
           </Stack>
         </Stack>
         {wordNote === undefined && (
-          <>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            borderTop="1px solid #ccc"
+            padding="6px 10px"
+            sx={{
+              backgroundColor: "#f9f9f9",
+              cursor: "pointer",
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+            onClick={handleClickAddNote}
+          >
+            <Stack direction="row" gap={1} alignItems="center">
+              <EditNoteIcon />
+              <Typography variant="body2" fontWeight="bold">
+                Ghi chú
+              </Typography>
+            </Stack>
+            <Typography variant="body2" fontWeight="bold">
+              Thêm
+            </Typography>
+          </Stack>
+        )}
+        {wordNote !== undefined && (
+          <Stack
+            borderTop="1px solid #ccc"
+            padding="0px 10px 6px"
+            spacing={1}
+            sx={{
+              backgroundColor: "#f9f9f9",
+            }}
+          >
             <Stack
               direction="row"
               justifyContent="space-between"
               alignItems="center"
-              borderTop="1px solid #ccc"
-              padding="6px 10px"
               sx={{
-                backgroundColor: "#f9f9f9",
+                paddingTop: "6px",
                 cursor: "pointer",
                 "&:hover": {
                   textDecoration: "underline",
@@ -81,19 +113,19 @@ export default function WordCard({ word, wordNote, fetchListWordNotes }: Props) 
                 </Typography>
               </Stack>
               <Typography variant="body2" fontWeight="bold">
-                Thêm
+                Chỉnh sửa
               </Typography>
             </Stack>
-
-            <AddNoteModal
-              open={open}
-              setOpen={setOpen}
-              wordNote={wordNote}
-              word={word}
-              fetchListWordNotes={fetchListWordNotes}
-            />
-          </>
+            <Typography variant="body2">{wordNote.note}</Typography>
+          </Stack>
         )}
+        <AddNoteModal
+          open={open}
+          setOpen={setOpen}
+          wordNote={wordNote}
+          word={word}
+          fetchListWordNotes={fetchListWordNotes}
+        />
       </Stack>
     </Card>
   );

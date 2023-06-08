@@ -48,7 +48,7 @@ export default function AddNoteModal({ open, setOpen, wordNote, word, fetchListW
       .then(() => {
         fetchListWordNotes();
         setOpen(false);
-        toast.success("Thêm ghi chú thành công!");
+        toast.success(wordNote ? "Chỉnh sửa ghi chú thành công!" : "Thêm ghi chú thành công!");
       })
       .catch((err) => {
         toast.error("Có lỗi xảy ra! Vui lòng thử lại sau.");
