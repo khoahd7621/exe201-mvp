@@ -7,6 +7,7 @@ import UpgradePage from "./UpgradePage";
 import ExamPage from "./test/ExamPage";
 import TestPage from "./test/TestPage";
 import QuizPage from "./test/QuizPage";
+import HistoryPage from "./test/HistoryPage";
 
 import LoginPage from "./auth/LoginPage";
 import RegisterPage from "./auth/RegisterPage";
@@ -29,4 +30,5 @@ export {
   ProfilePage,
   NoteBookDetailPage,
   UpgradePage,
+  HistoryPage,
 };

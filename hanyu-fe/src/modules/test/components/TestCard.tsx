@@ -40,7 +40,7 @@ const TestCard = ({ test, isLocked, examSlug }: TestCardProps) => {
 
   return (
     <Grid item xs={12} sm={6} md={6} lg={3}>
-      <Card variant="outlined" sx={{ borderRadius: "1rem", padding: "1.5rem" }}>
+      <Card variant="outlined" sx={{ borderRadius: "1rem", padding: "1.5rem", height: "100%" }}>
         <Typography variant="body1" textAlign="center" component="div" marginBottom="1rem">
           Đề số {test.no}
         </Typography>

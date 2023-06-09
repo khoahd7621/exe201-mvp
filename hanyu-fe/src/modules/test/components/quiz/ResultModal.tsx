@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -48,7 +48,7 @@ export default function ResultModal({ examType, open, setOpen, testResult }: Pro
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title" color="green">
-        {"Kết quả"}
+        "Kết quả"
       </DialogTitle>
       <DialogContent>
         <TableContainer component={Paper} variant="outlined">
@@ -67,7 +67,11 @@ export default function ResultModal({ examType, open, setOpen, testResult }: Pro
                   {testResult.realScore}/{testResult.totalScore}
                 </TableCell>
                 <TableCell>
-                  <Link href="#" underline="hover">
+                  <Link
+                    to={`${AppRoutes.test}/${examType}`}
+                    underline="hover"
+                    component={RouterLink}
+                  >
                     Xem kết quả
                   </Link>
                 </TableCell>

@@ -11,9 +11,10 @@ import {
 
 type Props = {
   handleFinishQuiz: () => void;
+  isFinished: boolean;
 };
 
-export default function SubmitQuizBtn({ handleFinishQuiz }: Props) {
+export default function SubmitQuizBtn({ handleFinishQuiz, isFinished }: Props) {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClose = useCallback(() => {
@@ -27,7 +28,12 @@ export default function SubmitQuizBtn({ handleFinishQuiz }: Props) {
 
   return (
     <>
-      <Button variant="contained" color="success" onClick={() => setOpen(true)}>
+      <Button
+        disabled={isFinished}
+        variant="contained"
+        color="success"
+        onClick={() => setOpen(true)}
+      >
         Nộp bài
       </Button>
       <Dialog

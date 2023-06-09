@@ -1,5 +1,6 @@
 export type PartResult = {
-  id: number;
+  id: string;
   label: string;
   rate: number;
+  testResultId: string;
 };

@@ -1,11 +1,12 @@
-import { PartResult } from ".";
+import { PartResult, UserAnswer } from ".";
 
 export type TestResult = {
-  id: number;
-  userId: number;
+  id?: string;
+  userId: string;
   testId: number;
   createdAt: Date;
   totalScore: number;
   realScore: number;
   partResults: PartResult[];
+  userAnswers: UserAnswer[];
 };

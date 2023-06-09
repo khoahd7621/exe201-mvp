@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 import { Seo } from "~/common/components";
 import useCountdown from "~/hooks/useCountdown";
+import testApi from "~/modules/test/apis/testApis";
 import {
   LeaveQuizBtn,
   ListeningQuestionCard,
@@ -24,6 +25,7 @@ import {
   SelectedQuestion,
   Test,
   TestResult,
+  UserAnswer,
 } from "~/modules/test/models";
 import { Question } from "~/modules/test/models/Question";
 import { useAppSelector } from "~/redux/hooks";
@@ -69,7 +71,6 @@ export default function QuizPage() {
 
   const handleFinishQuiz = useCallback(() => {
     setIsFinished(true);
-    setOpenModalResult(true);
 
     const partResults: PartResult[] = [];
     let realScore = 0;
@@ -85,20 +86,33 @@ export default function QuizPage() {
         }
       });
       partResults.push({
-        id: structure.id,
+        id: structure.id.toString(),
         label: structure.hanyu,
         rate: listSubQuestions.length ? (totalTrueAnswer / listSubQuestions.length) * 100 : 0,
+        testResultId: "",
       });
     });
-    setTestResult({
-      id: 0,
-      userId: 0,
+    const userAnswers: UserAnswer[] = selectedQuestions.map((selectedQuestion) => ({
+      id: "",
+      questionId: selectedQuestion.question.id,
+      answer: selectedQuestion.selectedAnswer,
+      testResultId: "",
+    }));
+    const testResult: TestResult = {
+      id: "",
+      userId: "",
       testId: test?.id as number,
       createdAt: new Date(),
       totalScore: selectedQuestions.length * 5,
       realScore,
       partResults,
-    });
+      userAnswers,
+    };
+
+    testApi.saveUserAnswer(testResult).catch((error) => console.log(error));
+
+    setTestResult(testResult);
+    setOpenModalResult(true);
   }, [examStructures, selectedQuestions, test]);
 
   if (hours + minutes + seconds <= 0) {
@@ -160,7 +174,7 @@ export default function QuizPage() {
                     ? "0 : 00 : 00"
                     : `${hours} : ${minutes} : ${seconds}`}
                 </Typography>
-                <SubmitQuizBtn handleFinishQuiz={handleFinishQuiz} />
+                <SubmitQuizBtn handleFinishQuiz={handleFinishQuiz} isFinished={isFinished} />
               </Stack>
             )}
           </Toolbar>

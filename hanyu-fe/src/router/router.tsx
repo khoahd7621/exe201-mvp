@@ -5,6 +5,7 @@ import {
   CommunityPage,
   DictionaryPage,
   ExamPage,
+  HistoryPage,
   LoginPage,
   NoteBookDetailPage,
   NoteBookPage,
@@ -82,6 +83,16 @@ const routes: RouteObject[] = [
       {
         index: true,
         element: <QuizPage />,
+      },
+    ],
+  },
+  {
+    path: `${AppRoutes.test}/:examType/history/:testResultId`,
+    element: <QuizLayout />,
+    children: [
+      {
+        index: true,
+        element: <HistoryPage />,
       },
     ],
   },
