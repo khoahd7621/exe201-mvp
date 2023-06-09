@@ -4,7 +4,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { AppBar, Box, Grid, Stack, Toolbar, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 
-import { Seo } from "~/common/components";
+import { Loading, Seo } from "~/common/components";
 import useCountdown from "~/hooks/useCountdown";
 import testApi from "~/modules/test/apis/testApis";
 import {
@@ -55,6 +55,7 @@ export default function QuizPage() {
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [openModalResult, setOpenModalResult] = useState(false);
   const [testResult, setTestResult] = useState<TestResult | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (listQuestions.length > 0) {
@@ -67,6 +68,7 @@ export default function QuizPage() {
         })
       );
     }
+    setLoading(false);
   }, [listQuestions]);
 
   const handleFinishQuiz = useCallback(() => {
@@ -136,165 +138,176 @@ export default function QuizPage() {
 
   return (
     <>
-      <Seo
-        data={{
-          title: `Panda Hanyu | Làm Bài Thi`,
-          description: `Panda Hanyu Làm Bài Thi`,
-          url: `https://hanyu-chinesee-learning.vercel.app/${AppRoutes.test}/${exam.slug}/${test.slug}`,
-          href: `${AppRoutes.test}/${exam.slug}/${test.slug}`,
-          thumbnailUrl:
-            "https://res.cloudinary.com/khoahd7621/image/upload/v1686117832/banner-2_fkf4w3.png",
-        }}
-      />
-
-      <Box
-        sx={{
-          display: "flex",
-          height: {
-            xs: "56px",
-            sm: "4rem",
-          },
-        }}
-      >
-        <AppBar component="nav">
-          <Toolbar
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              backgroundColor: "#000",
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Seo
+            data={{
+              title: `Panda Hanyu | Làm Bài Thi`,
+              description: `Panda Hanyu Làm Bài Thi`,
+              url: `https://hanyu-chinesee-learning.vercel.app/${AppRoutes.test}/${exam.slug}/${test.slug}`,
+              href: `${AppRoutes.test}/${exam.slug}/${test.slug}`,
+              thumbnailUrl:
+                "https://res.cloudinary.com/khoahd7621/image/upload/v1686117832/banner-2_fkf4w3.png",
             }}
-          >
-            <Box sx={{ display: "flex" }}>
-              <LeaveQuizBtn examType={examType as string} isFinished={isFinished} />
-            </Box>
-            {!isFinished && (
-              <Stack direction="row" spacing={3} alignItems="center" justifyContent="space-between">
-                <Typography variant="body1" component="div">
-                  {hours + minutes + seconds <= 0
-                    ? "0 : 00 : 00"
-                    : `${hours} : ${minutes} : ${seconds}`}
-                </Typography>
-                <SubmitQuizBtn handleFinishQuiz={handleFinishQuiz} isFinished={isFinished} />
-              </Stack>
-            )}
-          </Toolbar>
-        </AppBar>
-      </Box>
+          />
 
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          paddingLeft: {
-            xs: "0px",
-            md: "20px",
-          },
-        }}
-      >
-        {/* Left panel */}
-        <Grid item xs={12} md={3} sx={{ position: "relative" }}>
-          <QuizPanel structures={examStructures} selectedQuestions={selectedQuestions} />
-        </Grid>
-
-        {/* Main panel */}
-        <Grid
-          item
-          xs={12}
-          md={9}
-          sx={{
-            maxHeight: {
-              xs: "unset",
-              md: "calc(100vh - 56px)",
-            },
-            overflowY: "auto",
-          }}
-        >
           <Box
             sx={{
-              padding: {
-                xs: "0px",
-                md: "24px 20px 0",
+              display: "flex",
+              height: {
+                xs: "56px",
+                sm: "4rem",
               },
             }}
           >
-            {/* Quiz part */}
-            {examStructures.map((structure) => {
-              const listSubQuestions: SelectedQuestion[] = selectedQuestions.filter(
-                (selectedQuestion) => selectedQuestion.question.structureId === structure.id
-              );
-              let startQuestion = 0;
-              return (
-                <Box key={structure.id}>
-                  <Grid container>
-                    <Grid item xs={3}>
-                      <Box
-                        sx={{
-                          backgroundColor: "#2d2d2d",
-                          color: "#fff",
-                          padding: "5px 10px",
-                          borderTopLeftRadius: "0.8rem",
-                          borderTopRightRadius: "0.8rem",
-                        }}
-                      >
-                        <Typography variant="h6">{structure.hanyu}</Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                  <Grid container>
-                    <Grid item xs={12}>
-                      <Box
-                        sx={{
-                          backgroundColor: "#75d5d9",
-                          padding: "5px 10px",
-                          borderTopRightRadius: "0.8rem",
-                        }}
-                      >
-                        <Typography variant="body1">
-                          第 1-{listSubQuestions.length} 题:{" "}
-                          {structure.id === 1 ? "请选出与所听内容一致的一项。" : ""}
-                        </Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                  {listSubQuestions.map((selectedQuestion) => {
-                    if (structure.id == 1) {
-                      return (
-                        <ListeningQuestionCard
-                          key={selectedQuestion.question.id}
-                          index={++startQuestion}
-                          question={selectedQuestion.question}
-                          examStructure={structure}
-                          selectedAnswer={selectedQuestion.selectedAnswer}
-                          selectedQuestions={selectedQuestions}
-                          setSelectedQuestions={setSelectedQuestions}
-                        />
-                      );
-                    } else
-                      return (
-                        <ReadingQuestionCard
-                          key={selectedQuestion.question.id}
-                          index={++startQuestion}
-                          question={selectedQuestion.question}
-                          selectedAnswer={selectedQuestion.selectedAnswer}
-                          selectedQuestions={selectedQuestions}
-                          setSelectedQuestions={setSelectedQuestions}
-                        />
-                      );
-                  })}
+            <AppBar component="nav">
+              <Toolbar
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  backgroundColor: "#000",
+                }}
+              >
+                <Box sx={{ display: "flex" }}>
+                  <LeaveQuizBtn examType={examType as string} isFinished={isFinished} />
                 </Box>
-              );
-            })}
+                {!isFinished && (
+                  <Stack
+                    direction="row"
+                    spacing={3}
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <Typography variant="body1" component="div">
+                      {hours + minutes + seconds <= 0
+                        ? "0 : 00 : 00"
+                        : `${hours} : ${minutes} : ${seconds}`}
+                    </Typography>
+                    <SubmitQuizBtn handleFinishQuiz={handleFinishQuiz} isFinished={isFinished} />
+                  </Stack>
+                )}
+              </Toolbar>
+            </AppBar>
           </Box>
-        </Grid>
-      </Grid>
 
-      {testResult !== null && (
-        <ResultModal
-          testResult={testResult}
-          examType={examType as string}
-          open={openModalResult}
-          setOpen={setOpenModalResult}
-        />
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              paddingLeft: {
+                xs: "0px",
+                md: "20px",
+              },
+            }}
+          >
+            {/* Left panel */}
+            <Grid item xs={12} md={3} sx={{ position: "relative" }}>
+              <QuizPanel structures={examStructures} selectedQuestions={selectedQuestions} />
+            </Grid>
+
+            {/* Main panel */}
+            <Grid
+              item
+              xs={12}
+              md={9}
+              sx={{
+                maxHeight: {
+                  xs: "unset",
+                  md: "calc(100vh - 56px)",
+                },
+                overflowY: "auto",
+              }}
+            >
+              <Box
+                sx={{
+                  padding: {
+                    xs: "0px",
+                    md: "24px 20px 0",
+                  },
+                }}
+              >
+                {/* Quiz part */}
+                {examStructures.map((structure) => {
+                  const listSubQuestions: SelectedQuestion[] = selectedQuestions.filter(
+                    (selectedQuestion) => selectedQuestion.question.structureId === structure.id
+                  );
+                  let startQuestion = 0;
+                  return (
+                    <Box key={structure.id}>
+                      <Grid container>
+                        <Grid item xs={3}>
+                          <Box
+                            sx={{
+                              backgroundColor: "#2d2d2d",
+                              color: "#fff",
+                              padding: "5px 10px",
+                              borderTopLeftRadius: "0.8rem",
+                              borderTopRightRadius: "0.8rem",
+                            }}
+                          >
+                            <Typography variant="h6">{structure.hanyu}</Typography>
+                          </Box>
+                        </Grid>
+                      </Grid>
+                      <Grid container>
+                        <Grid item xs={12}>
+                          <Box
+                            sx={{
+                              backgroundColor: "#75d5d9",
+                              padding: "5px 10px",
+                              borderTopRightRadius: "0.8rem",
+                            }}
+                          >
+                            <Typography variant="body1">
+                              第 1-{listSubQuestions.length} 题:{" "}
+                              {structure.id === 1 ? "请选出与所听内容一致的一项。" : ""}
+                            </Typography>
+                          </Box>
+                        </Grid>
+                      </Grid>
+                      {listSubQuestions.map((selectedQuestion) => {
+                        if (structure.id == 1) {
+                          return (
+                            <ListeningQuestionCard
+                              key={selectedQuestion.question.id}
+                              index={++startQuestion}
+                              question={selectedQuestion.question}
+                              examStructure={structure}
+                              selectedAnswer={selectedQuestion.selectedAnswer}
+                              selectedQuestions={selectedQuestions}
+                              setSelectedQuestions={setSelectedQuestions}
+                            />
+                          );
+                        } else
+                          return (
+                            <ReadingQuestionCard
+                              key={selectedQuestion.question.id}
+                              index={++startQuestion}
+                              question={selectedQuestion.question}
+                              selectedAnswer={selectedQuestion.selectedAnswer}
+                              selectedQuestions={selectedQuestions}
+                              setSelectedQuestions={setSelectedQuestions}
+                            />
+                          );
+                      })}
+                    </Box>
+                  );
+                })}
+              </Box>
+            </Grid>
+          </Grid>
+
+          {testResult !== null && (
+            <ResultModal
+              testResult={testResult}
+              examType={examType as string}
+              open={openModalResult}
+              setOpen={setOpenModalResult}
+            />
+          )}
+        </>
       )}
     </>
   );

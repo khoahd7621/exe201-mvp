@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
 import { Box, Container, Grid } from "@mui/material";
@@ -27,7 +27,7 @@ export default function TestPage() {
 
   const [testResult, setTestResult] = useState<TestResult[]>([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (auth.isAuthenticated) {
       testApi
         .getTestResults()

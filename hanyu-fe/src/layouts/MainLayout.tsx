@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 
+import { Box } from "@mui/material";
+
 import { Footer, Navbar } from "~/common/components";
 
 export default function MainLayout() {
@@ -7,9 +9,14 @@ export default function MainLayout() {
     <>
       <Navbar />
 
-      <div style={{ backgroundColor: "#f7f7f7" }}>
+      <Box
+        sx={{
+          backgroundColor: "#f7f7f7",
+          minHeight: "calc(100vh - 328px)",
+        }}
+      >
         <Outlet />
-      </div>
+      </Box>
 
       <Footer />
     </>
