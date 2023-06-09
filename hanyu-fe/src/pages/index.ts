@@ -1,7 +1,7 @@
 import DictionaryPage from "./DictionaryPage";
 import TranslatePage from "./TranslatePage";
 import CommunityPage from "./CommunityPage";
-import ReadingPage from "./ReadingPage";
+import ReadingPage from "./reading/ReadingPage";
 import UpgradePage from "./UpgradePage";
 
 import ExamPage from "./test/ExamPage";
