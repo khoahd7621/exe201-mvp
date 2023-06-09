@@ -61,7 +61,7 @@ export default function Footer() {
             </Typography>
             <Stack direction="row" alignItems="center" spacing={2} margin="15px">
               <Link
-                href="https://www.facebook.com/profile.php?id=100092420516497"
+                href="https://www.facebook.com/pandahanyu.page"
                 rel="noopener noreferrer"
                 target="_blank"
                 underline="hover"

@@ -261,7 +261,7 @@ export default function PaymentModal({ open, onClose }: Props) {
             </Link>
 
             <Link
-              href="https://www.facebook.com/profile.php?id=100092420516497"
+              href="https://www.facebook.com/pandahanyu.page"
               rel="noopener noreferrer"
               target="_blank"
             >
