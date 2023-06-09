@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Button, Card, Grid, Stack, Typography } from "@mui/material";
 
-import { Test } from "../models";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAppSelector } from "~/redux/hooks";
 import AppRoutes from "~/router/AppRoutes";
+import { Test } from "../models";
 
 type TestCardProps = {
   test: Test;
@@ -13,13 +16,26 @@ type TestCardProps = {
 
 const TestCard = ({ test, isLocked, examSlug }: TestCardProps) => {
   const navigate = useNavigate();
+  const auth = useAppSelector((state) => state.auth);
+  const user = useAppSelector((state) => state.profile.user);
 
   const handleClickButton = () => {
-    if (isLocked) {
-      console.log("Mở khóa");
-    } else {
-      navigate(`${AppRoutes.test}/${examSlug}/${test.slug}`);
+    if (!auth.isAuthenticated && isLocked === false) {
+      toast.error("Bạn cần phải đăng nhập thì mới vào thi được đóa ^^");
+      return;
     }
+
+    if (!auth.isAuthenticated && isLocked) {
+      toast.info("Bạn cần đăng nhập và kích hoạt premium để mở khóa toàn bộ bài thi nhen ^^");
+      return;
+    }
+
+    if (auth.isAuthenticated && isLocked && !user.isSubscribed) {
+      toast.info("Bạn cần kích hoạt premium để mở khóa toàn bộ bài thi nhen ^^");
+      return;
+    }
+
+    navigate(`${AppRoutes.test}/${examSlug}/${test.slug}`);
   };
 
   return (

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
 import { AppBar, Box, Grid, Stack, Toolbar, Typography } from "@mui/material";
+import { toast } from "react-toastify";
 
 import { Seo } from "~/common/components";
 import useCountdown from "~/hooks/useCountdown";
@@ -9,6 +10,7 @@ import {
   LeaveQuizBtn,
   ListeningQuestionCard,
   QuizPanel,
+  ReadingQuestionCard,
   ResultModal,
   SubmitQuizBtn,
 } from "~/modules/test/components";
@@ -24,10 +26,12 @@ import {
   TestResult,
 } from "~/modules/test/models";
 import { Question } from "~/modules/test/models/Question";
+import { useAppSelector } from "~/redux/hooks";
 import AppRoutes from "~/router/AppRoutes";
 
 export default function QuizPage() {
   const { examType, quizSlug } = useParams();
+  const user = useAppSelector((state) => state.profile.user);
   const exam: Exam | undefined = ListExams.find((exam) => exam.slug === examType);
   const test: Test | undefined = ListTests.find((test) => test.slug === quizSlug);
 
@@ -107,9 +111,15 @@ export default function QuizPage() {
   if (!test || test.examId !== exam.id) {
     return <Navigate to={`${AppRoutes.test}/${exam.slug}`} />;
   }
+  if (!user.isSubscribed && test.isPremium) {
+    toast.error("Bạn không được phép truy cập tài nguyên này!!!");
+    return <Navigate to={`${AppRoutes.test}/${exam.slug}`} />;
+  }
+  if (listQuestions.length <= 0) {
+    toast.info("Đề thi này chưa có câu hỏi bạn vui lòng quay lại sau nhé!!!");
+    return <Navigate to={`${AppRoutes.test}/${exam.slug}`} />;
+  }
 
-  let currentQuantityQuestion = 0;
-  let previousQuantityQuestion = 0;
   return (
     <>
       <Seo
@@ -198,9 +208,7 @@ export default function QuizPage() {
               const listSubQuestions: SelectedQuestion[] = selectedQuestions.filter(
                 (selectedQuestion) => selectedQuestion.question.structureId === structure.id
               );
-              let startQuestion = currentQuantityQuestion;
-              previousQuantityQuestion = currentQuantityQuestion;
-              currentQuantityQuestion += listSubQuestions.length;
+              let startQuestion = 0;
               return (
                 <Box key={structure.id}>
                   <Grid container>
@@ -228,7 +236,7 @@ export default function QuizPage() {
                         }}
                       >
                         <Typography variant="body1">
-                          第 {++previousQuantityQuestion}-{currentQuantityQuestion} 题:{" "}
+                          第 1-{listSubQuestions.length} 题:{" "}
                           {structure.id === 1 ? "请选出与所听内容一致的一项。" : ""}
                         </Typography>
                       </Box>
@@ -247,7 +255,17 @@ export default function QuizPage() {
                           setSelectedQuestions={setSelectedQuestions}
                         />
                       );
-                    } else return null;
+                    } else
+                      return (
+                        <ReadingQuestionCard
+                          key={selectedQuestion.question.id}
+                          index={++startQuestion}
+                          question={selectedQuestion.question}
+                          selectedAnswer={selectedQuestion.selectedAnswer}
+                          selectedQuestions={selectedQuestions}
+                          setSelectedQuestions={setSelectedQuestions}
+                        />
+                      );
                   })}
                 </Box>
               );

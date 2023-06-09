@@ -3,4 +3,5 @@ export type Test = {
   no: number;
   slug: string;
   examId: number;
+  isPremium: boolean;
 };
