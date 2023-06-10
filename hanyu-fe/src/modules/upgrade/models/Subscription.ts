@@ -13,7 +13,7 @@ export const ListSubscriptions: Subscription[] = [
     name: "3 tháng",
     description: "Gói cơ bản",
     period: "3",
-    price: "399.999đ",
+    price: "50.000đ",
     isBest: false,
   },
   {
@@ -21,7 +21,7 @@ export const ListSubscriptions: Subscription[] = [
     name: "1 năm",
     description: "Gói tiêu chuẩn",
     period: "1",
-    price: "599.999đ",
+    price: "125.000đ",
     isBest: false,
   },
   {
@@ -29,7 +29,7 @@ export const ListSubscriptions: Subscription[] = [
     name: "Vĩnh viễn",
     description: "Được người dùng yêu thích nhất",
     period: "99",
-    price: "899.999đ",
+    price: "200.000đ",
     isBest: true,
   },
 ];
