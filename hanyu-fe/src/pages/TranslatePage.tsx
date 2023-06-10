@@ -18,7 +18,7 @@ export default function TranslatePage() {
         }}
       />
 
-      <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+      <Container maxWidth={false} sx={{ padding: "2rem 0" }}>
         <TranslateBox />
       </Container>
     </>

@@ -12,7 +12,7 @@ export default function Footer() {
       <Container
         maxWidth={false}
         sx={{
-          padding: "1rem 0",
+          minHeight: "223px",
         }}
       >
         <Grid container spacing={3}>

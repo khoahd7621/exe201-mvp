@@ -58,7 +58,7 @@ export default function CommunityPage() {
   };
 
   return (
-    <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+    <Container maxWidth={false} sx={{ padding: "2rem 0" }}>
       <Grid container spacing={2}>
         <Grid item xs={3} md={3}>
           {/* Search blocks */}

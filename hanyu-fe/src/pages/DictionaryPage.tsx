@@ -23,7 +23,7 @@ export default function DictionaryPage() {
         }}
       />
 
-      <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+      <Container maxWidth={false} sx={{ padding: "2rem 0" }}>
         <SearchInput />
 
         <Grid container spacing={2}>

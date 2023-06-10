@@ -30,7 +30,7 @@ export default function NoteBookPage() {
         }}
       />
 
-      <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+      <Container maxWidth={false} sx={{ padding: "2rem 0" }}>
         <Stack spacing={4}>
           <Box>
             <Typography variant="h6" fontWeight="bold" marginBottom={1}>

@@ -6,6 +6,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, CardMedia, Container, Grid, Link, Paper, Stack, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 
+import { Seo } from "~/common/components";
 import { RenderWord } from "~/modules/reading/components";
 import ListReadings from "~/modules/reading/data/ListReadings";
 import { Reading } from "~/modules/reading/models";
@@ -35,149 +36,162 @@ export default function ReadingDetailPage() {
   }
 
   return (
-    <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
-      <Grid
-        container
-        spacing={{
-          xs: 1,
-          md: 2,
-          lg: 3,
+    <>
+      <Seo
+        data={{
+          title: `Panda Hanyu | ${reading.title}`,
+          description: `Panda Hanyu | ${reading.title}`,
+          url: `https://hanyu-chinesee-learning.vercel.app/${AppRoutes.reading}/${readingId}`,
+          href: `${AppRoutes.reading}/${readingId}`,
+          thumbnailUrl:
+            "https://res.cloudinary.com/khoahd7621/image/upload/v1686117832/banner-2_fkf4w3.png",
         }}
-      >
-        <Grid item xs={12} md={8} lg={9}>
-          <Link to={AppRoutes.reading} component={RouterLink} underline="hover" color="#000">
-            <Stack direction="row" alignItems="center" gap={0.2}>
-              <ArrowBackIosIcon
-                sx={{
-                  fontSize: "1.2rem",
-                }}
-              />
-              <Typography variant="body1">Trở lại</Typography>
-            </Stack>
-          </Link>
+      />
 
-          <Paper
-            variant="outlined"
-            sx={{
-              borderRadius: "0.7rem",
-              padding: {
-                xs: "1rem",
-                md: "1rem",
-                lg: "2rem",
-              },
-              margin: "1rem 0 0",
-            }}
-          >
-            <Typography variant="h5" fontWeight="bold" marginBottom={1}>
-              {reading.title}
-            </Typography>
-            <Typography variant="body1">
-              {reading.createdAt || new Date().toLocaleDateString("vi-VN")}
-            </Typography>
-            <Stack direction="row" justifyContent="center" marginY={1}>
-              <CardMedia
-                component="img"
-                image={reading.image}
-                alt={reading.title}
-                sx={{
-                  maxWidth: "40rem",
-                }}
-              />
-            </Stack>
-            <div
-              style={{
-                fontSize: "1.5rem",
-                lineHeight: "3.2rem",
-                margin: "2rem 0 0",
-              }}
-              dangerouslySetInnerHTML={{ __html: reading.content }}
-            />
-          </Paper>
+      <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+        <Grid
+          container
+          spacing={{
+            xs: 1,
+            md: 2,
+            lg: 3,
+          }}
+        >
+          <Grid item xs={12} md={8} lg={9}>
+            <Link to={AppRoutes.reading} component={RouterLink} underline="hover" color="#000">
+              <Stack direction="row" alignItems="center" gap={0.2}>
+                <ArrowBackIosIcon
+                  sx={{
+                    fontSize: "1.2rem",
+                  }}
+                />
+                <Typography variant="body1">Trở lại</Typography>
+              </Stack>
+            </Link>
 
-          <Stack direction="row" justifyContent="center" alignItems="center" marginTop={2}>
-            <Stack
-              direction="row"
-              alignItems="center"
+            <Paper
+              variant="outlined"
               sx={{
-                cursor: "pointer",
-                "&:hover": {
-                  textDecoration: "underline",
+                borderRadius: "0.7rem",
+                padding: {
+                  xs: "1rem",
+                  md: "1rem",
+                  lg: "2rem",
                 },
+                margin: "1rem 0 0",
               }}
-              onClick={handleClick}
             >
-              <AddCircleIcon
-                sx={{
-                  color: "red",
+              <Typography variant="h5" fontWeight="bold" marginBottom={1}>
+                {reading.title}
+              </Typography>
+              <Typography variant="body1">
+                {reading.createdAt || new Date().toLocaleDateString("vi-VN")}
+              </Typography>
+              <Stack direction="row" justifyContent="center" marginY={1}>
+                <CardMedia
+                  component="img"
+                  image={reading.image}
+                  alt={reading.title}
+                  sx={{
+                    maxWidth: "40rem",
+                  }}
+                />
+              </Stack>
+              <div
+                style={{
+                  fontSize: "1.5rem",
+                  lineHeight: "3.2rem",
+                  margin: "2rem 0 0",
                 }}
+                dangerouslySetInnerHTML={{ __html: reading.content }}
               />
-              <Typography variant="body1" fontWeight="bold" marginLeft={0.5} color="#570074">
-                Thêm bản dịch
-              </Typography>
-            </Stack>
-            <Stack
-              sx={{
-                cursor: "pointer",
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-                marginLeft: "1rem",
-                paddingLeft: "1rem",
-                borderLeft: "1px solid #999",
-              }}
-              onClick={handleClick}
-            >
-              <Typography variant="body1" fontWeight="bold" marginLeft={0.5} color="#570074">
-                Xem bản dịch
-              </Typography>
-            </Stack>
-          </Stack>
+            </Paper>
 
-          <RenderWord reading={reading} />
-        </Grid>
-        <Grid item xs={12} md={4} lg={3}>
-          <Typography variant="body1">Bài đọc liên quan</Typography>
-          <Paper
-            variant="outlined"
-            sx={{
-              borderRadius: "0.7rem",
-              padding: "1rem",
-              margin: "1rem 0 0",
-            }}
-          >
-            <Stack spacing={2}>
-              {listRelatedReadings.length > 0 ? (
-                listRelatedReadings.map((read) => (
-                  <Box
-                    key={read.id}
-                    sx={{
-                      cursor: "pointer",
-                    }}
-                    onClick={() => navigate(`${AppRoutes.reading}/${read.id}`)}
-                  >
-                    <CardMedia component="img" image={read.image} alt={read.title} />
-                    <Typography variant="body1" marginTop={1} fontSize={18} marginY={1}>
-                      {read.title}
-                    </Typography>
-                    <Stack direction="row" justifyContent="space-between" alignItems="center">
-                      <Typography variant="body2" color="#999" fontSize={12}>
-                        {read.topic.title}
-                      </Typography>
-                      <Typography variant="body2" color="#999" fontSize={12}>
-                        {read.createdAt || new Date().toLocaleDateString("vi-VN")}
-                      </Typography>
-                    </Stack>
-                  </Box>
-                ))
-              ) : (
-                <Typography variant="body1" color="#999" fontSize={16}>
-                  Không có bài đọc liên quan
+            <Stack direction="row" justifyContent="center" alignItems="center" marginTop={2}>
+              <Stack
+                direction="row"
+                alignItems="center"
+                sx={{
+                  cursor: "pointer",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+                onClick={handleClick}
+              >
+                <AddCircleIcon
+                  sx={{
+                    color: "red",
+                  }}
+                />
+                <Typography variant="body1" fontWeight="bold" marginLeft={0.5} color="#570074">
+                  Thêm bản dịch
                 </Typography>
-              )}
+              </Stack>
+              <Stack
+                sx={{
+                  cursor: "pointer",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                  marginLeft: "1rem",
+                  paddingLeft: "1rem",
+                  borderLeft: "1px solid #999",
+                }}
+                onClick={handleClick}
+              >
+                <Typography variant="body1" fontWeight="bold" marginLeft={0.5} color="#570074">
+                  Xem bản dịch
+                </Typography>
+              </Stack>
             </Stack>
-          </Paper>
+
+            <RenderWord reading={reading} />
+          </Grid>
+          <Grid item xs={12} md={4} lg={3}>
+            <Typography variant="body1">Bài đọc liên quan</Typography>
+            <Paper
+              variant="outlined"
+              sx={{
+                borderRadius: "0.7rem",
+                padding: "1rem",
+                margin: "1rem 0 0",
+              }}
+            >
+              <Stack spacing={2}>
+                {listRelatedReadings.length > 0 ? (
+                  listRelatedReadings.map((read) => (
+                    <Box
+                      key={read.id}
+                      sx={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() => navigate(`${AppRoutes.reading}/${read.id}`)}
+                    >
+                      <CardMedia component="img" image={read.image} alt={read.title} />
+                      <Typography variant="body1" marginTop={1} fontSize={18} marginY={1}>
+                        {read.title}
+                      </Typography>
+                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <Typography variant="body2" color="#999" fontSize={12}>
+                          {read.topic.title}
+                        </Typography>
+                        <Typography variant="body2" color="#999" fontSize={12}>
+                          {read.createdAt || new Date().toLocaleDateString("vi-VN")}
+                        </Typography>
+                      </Stack>
+                    </Box>
+                  ))
+                ) : (
+                  <Typography variant="body1" color="#999" fontSize={16}>
+                    Không có bài đọc liên quan
+                  </Typography>
+                )}
+              </Stack>
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 }
