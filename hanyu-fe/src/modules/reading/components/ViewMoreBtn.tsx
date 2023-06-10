@@ -1,7 +1,11 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Box, Stack, Typography } from "@mui/material";
 
-export default function ViewMoreBtn() {
+type Props = {
+  onClick: () => void;
+};
+
+export default function ViewMoreBtn({ onClick }: Props) {
   return (
     <Box
       sx={{
@@ -11,6 +15,7 @@ export default function ViewMoreBtn() {
           color: "#000",
         },
       }}
+      onClick={onClick}
     >
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
         <Typography variant="body2">Xem thêm</Typography>

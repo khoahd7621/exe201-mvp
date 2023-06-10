@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { Box, CardMedia, Divider, Stack, Typography } from "@mui/material";
+import { Box, CardMedia, Stack, Typography } from "@mui/material";
 
 import AppRoutes from "~/router/AppRoutes";
 import { Reading } from "../models";
@@ -13,7 +13,17 @@ export default function ReadingCard({ data }: Props) {
   const navigate = useNavigate();
 
   return (
-    <Stack spacing={1} onClick={() => navigate(`${AppRoutes.reading}/${data.id}`)}>
+    <Stack
+      spacing={1}
+      onClick={() => navigate(`${AppRoutes.reading}/${data.id}`)}
+      sx={{
+        "& + &": {
+          marginTop: "1rem",
+          paddingTop: "1rem",
+          borderTop: "1px solid #e0e0e0",
+        },
+      }}
+    >
       <Stack direction="row" gap={2} sx={{ cursor: "pointer" }}>
         <Box
           sx={{
@@ -66,7 +76,6 @@ export default function ReadingCard({ data }: Props) {
           </Stack>
         </Stack>
       </Stack>
-      <Divider />
     </Stack>
   );
 }

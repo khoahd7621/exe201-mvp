@@ -1,11 +1,51 @@
+import { useEffect, useState } from "react";
+
+import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Container, Grid, Paper, Stack, Typography } from "@mui/material";
 
+import { useDebounced } from "~/hooks/useDebounced";
 import { ReadingCard, TopicButton, VideoCard, ViewMoreBtn } from "~/modules/reading/components";
 import ListReadings from "~/modules/reading/data/ListReadings";
 import ListTopics from "~/modules/reading/data/ListTopics";
 
 export default function ReadingPage() {
+  const [max, setMax] = useState(4);
+
+  const [listReadingsFiltered, setListReadingsFiltered] = useState(ListReadings);
+  const [searchInput, setSearchInput] = useState<string>("");
+
+  const keyword = useDebounced(searchInput, 300);
+
+  useEffect(() => {
+    if (keyword) {
+      const newListReadingsFiltered = ListReadings.filter((item) => {
+        const title = item.title.toLowerCase();
+        const topic = item.topic.title.toLowerCase();
+        const content = item.content.toLowerCase();
+        const level = item.level.toLowerCase();
+        const keywordLowerCase = keyword.trim().toLowerCase();
+
+        return (
+          title.includes(keywordLowerCase) ||
+          topic.includes(keywordLowerCase) ||
+          content.includes(keywordLowerCase) ||
+          level.includes(keywordLowerCase)
+        );
+      });
+
+      setListReadingsFiltered(newListReadingsFiltered);
+      setMax(4);
+    } else {
+      setListReadingsFiltered(ListReadings);
+      setMax(4);
+    }
+  }, [keyword]);
+
+  const handleClickMore = () => {
+    setMax(10);
+  };
+
   return (
     <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
       <Grid
@@ -36,7 +76,7 @@ export default function ReadingPage() {
               </Typography>
 
               <Stack direction="column" spacing={2}>
-                {ListTopics.slice(0, 5).map((topic) => (
+                {ListTopics.slice(0, 2).map((topic) => (
                   <VideoCard key={topic.id} topic={topic} />
                 ))}
               </Stack>
@@ -68,7 +108,17 @@ export default function ReadingPage() {
                     display: "block",
                     flexGrow: 1,
                   }}
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
                 />
+                {searchInput && (
+                  <ClearIcon
+                    sx={{
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setSearchInput("")}
+                  />
+                )}
               </Stack>
             </Box>
 
@@ -80,12 +130,22 @@ export default function ReadingPage() {
                 padding: "0.8rem",
               }}
             >
-              <Stack spacing={3}>
-                {ListReadings.map((reading) => (
-                  <ReadingCard key={reading.id} data={reading} />
-                ))}
+              <Stack>
+                {listReadingsFiltered.length > 0 ? (
+                  <>
+                    {listReadingsFiltered.slice(0, max).map((reading) => (
+                      <ReadingCard key={reading.id} data={reading} />
+                    ))}
 
-                <ViewMoreBtn />
+                    {listReadingsFiltered.length > 4 && max < 5 && (
+                      <ViewMoreBtn onClick={handleClickMore} />
+                    )}
+                  </>
+                ) : (
+                  <Typography variant="body2" textAlign="center">
+                    Không tìm thấy bài đọc nào
+                  </Typography>
+                )}
               </Stack>
             </Paper>
           </Stack>

@@ -20,7 +20,13 @@ export default function ReadingDetailPage() {
     [readingId]
   );
 
-  const listRelatedReadings: Reading[] = useMemo(() => [], []);
+  const listRelatedReadings: Reading[] = useMemo(
+    () =>
+      reading
+        ? ListReadings.filter((read) => reading.relatedReadingIds.some((id) => id === read.id))
+        : [],
+    [reading]
+  );
 
   const handleClick = () => toast.info("Tính năng đang phát triển! Vui lòng quay lại sau nhé ^^");
 

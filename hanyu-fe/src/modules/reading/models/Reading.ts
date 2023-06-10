@@ -10,4 +10,5 @@ export type Reading = {
   readMinutes: number;
   topic: Topic;
   level: string;
+  relatedReadingIds: number[];
 };
