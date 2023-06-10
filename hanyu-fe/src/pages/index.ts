@@ -21,6 +21,7 @@ import RegisterPage from "./auth/RegisterPage";
 import FlashCardPage from "./notebook/FlashCardPage";
 import NoteBookDetailPage from "./notebook/NoteBookDetailPage";
 import NoteBookPage from "./notebook/NoteBookPage";
+import DashboardPage from './DashboardPage';
 
 export {
   CommunityPage,
@@ -31,6 +32,7 @@ export {
   LoginPage,
   LookupPage,
   ManagePage,
+  DashboardPage,
   NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,

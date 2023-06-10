@@ -3,6 +3,7 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 import { AdminLayout, MainLayout, QuizLayout } from "../layouts";
 import {
   CommunityPage,
+  DashboardPage,
   DictionaryPage,
   ExamPage,
   FlashCardPage,
@@ -139,6 +140,16 @@ const routes: RouteObject[] = [
       {
         index: true,
         element: <ManagePage />,
+      },
+    ],
+  },
+  {
+    path: AppRoutes.dashboard,
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <DashboardPage />,
       },
     ],
   },

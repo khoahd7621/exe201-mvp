@@ -33,40 +33,44 @@ import { logout } from "~/redux/slices/authSlice";
 import { remove } from "~/redux/slices/profileSlice";
 import AppRoutes from "~/router/AppRoutes";
 
-const mainListItems = (
-  <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Manage Users" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Manage Orders" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Manage Reports" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Manage Integrations" />
-    </ListItemButton>
-  </React.Fragment>
-);
+const mainListItems = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const navigate = useNavigate();
+  return (
+    <React.Fragment>
+      <ListItemButton onClick={() => navigate(AppRoutes.manage, {replace: true})}>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Manage Users" />
+      </ListItemButton>
+      <ListItemButton onClick={() => navigate(AppRoutes.dashboard, {replace: true})}>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Manage Orders" />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Manage Reports" />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary="Manage Integrations" />
+      </ListItemButton>
+    </React.Fragment>
+  )
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Copyright(props: any) {
@@ -216,7 +220,7 @@ export default function AdminLayout() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">{mainListItems}</List>
+          <List component="nav">{mainListItems()}</List>
         </Drawer>
         <Box
           component="main"

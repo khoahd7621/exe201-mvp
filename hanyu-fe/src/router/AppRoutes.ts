@@ -11,6 +11,7 @@ const AppRoutes = {
   profile: "/profile",
   upgrade: "/upgrade",
   manage: "/manage",
+  dashboard: "/dashboard",
 };
 
 export default AppRoutes;
