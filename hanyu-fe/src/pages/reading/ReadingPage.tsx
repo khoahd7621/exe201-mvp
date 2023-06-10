@@ -10,6 +10,7 @@ import { ReadingCard, TopicButton, VideoCard, ViewMoreBtn } from "~/modules/read
 import ListReadings from "~/modules/reading/data/ListReadings";
 import ListTopics from "~/modules/reading/data/ListTopics";
 import AppRoutes from "~/router/AppRoutes";
+import ListVideos from "~/modules/reading/data/ListVideos";
 
 export default function ReadingPage() {
   const [max, setMax] = useState(4);
@@ -90,8 +91,8 @@ export default function ReadingPage() {
                 </Typography>
 
                 <Stack direction="column" spacing={2}>
-                  {ListTopics.slice(0, 2).map((topic) => (
-                    <VideoCard key={topic.id} topic={topic} />
+                  {ListVideos.slice(0, 2).map((video) => (
+                    <VideoCard key={video.id} video={video} />
                   ))}
                 </Stack>
               </Stack>
