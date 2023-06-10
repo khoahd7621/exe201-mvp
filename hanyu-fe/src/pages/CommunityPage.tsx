@@ -1,3 +1,13 @@
+import { useEffect, useState } from "react";
+
+import AddIcon from "@mui/icons-material/Add";
+import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Groups2Icon from "@mui/icons-material/Groups2";
+import RecommendIcon from "@mui/icons-material/Recommend";
+import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Avatar,
   Box,
@@ -9,23 +19,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
-import RssFeedIcon from "@mui/icons-material/RssFeed";
-import ReportProblemIcon from "@mui/icons-material/ReportProblem";
-import Groups2Icon from "@mui/icons-material/Groups2";
-import RecommendIcon from "@mui/icons-material/Recommend";
-import AddIcon from '@mui/icons-material/Add';
-import { useState, useEffect } from "react";
-import { PostDialog } from "~/modules/comment/components";
+
 import commentApis from "~/modules/comment/api/commentApis";
+import { PostDialog } from "~/modules/comment/components";
 import { CommentBlog } from "~/modules/comment/models";
-import moment from "moment";
 
 const topics: string[] = [
   "Building",
-  " Chinese culture",
+  "Chinese culture",
   "Chinese tourism",
   "Find a chinese tutor",
   "Find classmates",
@@ -55,6 +56,7 @@ export default function CommunityPage() {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
       <Grid container spacing={2}>
@@ -283,7 +285,7 @@ export default function CommunityPage() {
                           variant="body2"
                           sx={{ fontSize: "12px", fontWeight: 700, color: "#ccc" }}
                         >
-                          {moment(item.createdAt).format("DD/MM/YYYY")}
+                          {new Date(item.createdAt).toLocaleString("vi-VN")}
                         </Typography>
                       </Box>
                       <Box

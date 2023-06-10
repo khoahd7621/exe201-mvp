@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Container,
   Dialog,
   DialogActions,
   DialogContent,
@@ -10,13 +11,14 @@ import {
   Select,
   SelectChangeEvent,
   TextField,
-  Container,
 } from "@mui/material";
 import { useState } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import striptags from "striptags";
+
 import commentApis from "../api/commentApis";
+
+import "react-quill/dist/quill.snow.css";
 
 type Props = {
   open: boolean;
