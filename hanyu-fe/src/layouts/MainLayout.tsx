@@ -12,7 +12,7 @@ export default function MainLayout() {
       <Box
         sx={{
           backgroundColor: "#f7f7f7",
-          minHeight: "calc(100vh - 264px)",
+          minHeight: "calc(100vh - 312px)",
         }}
       >
         <Outlet />

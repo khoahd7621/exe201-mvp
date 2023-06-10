@@ -51,7 +51,7 @@ export default function UpgradePage() {
         }}
       />
 
-      <Container maxWidth={false} sx={{ margin: "2rem 0" }}>
+      <Container maxWidth={false} sx={{ padding: "2rem 0" }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={8} lg={9}>
             {/* Carousel */}

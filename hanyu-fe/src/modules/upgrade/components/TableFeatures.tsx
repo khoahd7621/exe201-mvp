@@ -14,7 +14,6 @@ export default function TableFeatures() {
   const listFeatures: string[] = [
     "Loại bỏ quảng cáo",
     "Đồng bộ sổ tay",
-    "Ngữ pháp cao cấp",
     "Sổ tay chuyên ngành",
     "Không giới hạn bài thi HSK",
   ];
