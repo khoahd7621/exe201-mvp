@@ -34,14 +34,14 @@ export default function PaymentModal({ open, onClose }: Props) {
       id: 1,
       name: "Vietcombank",
       owner: "Đoàn Lê Trúc Huỳnh",
-      number: "12510000953635",
+      number: "0701000444554",
       branch: "Việt Nam",
     },
     {
       id: 2,
       name: "Momo",
       owner: "Đoàn Lê Trúc Huỳnh",
-      number: "0792123456",
+      number: "0908882557",
       branch: "Momo",
     },
   ];
