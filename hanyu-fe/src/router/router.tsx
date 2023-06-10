@@ -11,6 +11,7 @@ import {
   NoteBookPage,
   ProfilePage,
   QuizPage,
+  ReadingDetailPage,
   ReadingPage,
   RegisterPage,
   TestPage,
@@ -39,10 +40,6 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.community,
         element: <CommunityPage />,
-      },
-      {
-        path: AppRoutes.reading,
-        element: <ReadingPage />,
       },
       {
         path: AppRoutes.profile,
@@ -107,6 +104,20 @@ const routes: RouteObject[] = [
       {
         path: `:noteBookSlug`,
         element: <NoteBookDetailPage />,
+      },
+    ],
+  },
+  {
+    path: AppRoutes.reading,
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <ReadingPage />,
+      },
+      {
+        path: `:readingId`,
+        element: <ReadingDetailPage />,
       },
     ],
   },
