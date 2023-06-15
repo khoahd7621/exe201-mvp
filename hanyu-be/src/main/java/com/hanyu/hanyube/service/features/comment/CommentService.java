@@ -90,7 +90,6 @@ public class CommentService {
 
     public List<CommentResponse> getAnswerById(UUID rootCommentId) {
         var userIds = new HashSet<UUID>();
-        var userEntityMap = userService.getAllByIds(userIds).stream().collect(Collectors.toMap(UserEntity::getId, Function.identity()));
         var response = commentRepository.findByParentIdAndStatus(rootCommentId, CommentStatusEnum.AVAILABLE)
                 .stream()
                 .map(it -> {
@@ -99,6 +98,11 @@ public class CommentService {
                 })
                 .toList();
         if(CollectionUtils.isEmpty(response)){
+            return response;
+        }
+        var userEntityMap = userService.getAllByIds(userIds).stream()
+                .collect(Collectors.toMap(UserEntity::getId, Function.identity()));
+        if(userEntityMap.isEmpty()){
             return response;
         }
         response.stream().forEach(it -> {
