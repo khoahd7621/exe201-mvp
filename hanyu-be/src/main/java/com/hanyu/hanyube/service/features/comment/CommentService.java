@@ -89,9 +89,28 @@ public class CommentService {
     }
 
     public List<CommentResponse> getAnswerById(UUID rootCommentId) {
-        return commentRepository.findByParentIdAndStatus(rootCommentId, CommentStatusEnum.AVAILABLE)
+        var userIds = new HashSet<UUID>();
+        var userEntityMap = userService.getAllByIds(userIds).stream().collect(Collectors.toMap(UserEntity::getId, Function.identity()));
+        var response = commentRepository.findByParentIdAndStatus(rootCommentId, CommentStatusEnum.AVAILABLE)
                 .stream()
-                .map(it -> modelMapper.map(it, CommentResponse.class))
+                .map(it -> {
+                    userIds.add(it.getUserId());
+                    return modelMapper.map(it, CommentResponse.class);
+                })
                 .toList();
+        if(CollectionUtils.isEmpty(response)){
+            return response;
+        }
+        response.stream().forEach(it -> {
+            if(userEntityMap.containsKey(it.getUserId())){
+                var userEntity = userEntityMap.getOrDefault(it.getUserId(), null);
+                it.setUserLifeInfo(UserLifeInfo.builder()
+                        .userId(it.getUserId())
+                                .name(userEntity.getName())
+                                .shortDescription(userEntity.getShortDescription())
+                        .build());
+            }
+        });
+        return response;
     }
 }
