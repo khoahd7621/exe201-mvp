@@ -41,9 +41,8 @@ public class CommentController {
     }
 
 
-    @GetMapping("/api/comments")
+    @GetMapping("/api/public/comments")
     @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasRole('" + UserRoleEnum.Role.USER + "')")
     public List<CommentResponse> getAll(@RequestParam int pageSize, @RequestParam int pageNumber) {
         return commentService.getAllRoot(pageSize, pageNumber);
     }

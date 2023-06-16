@@ -34,3 +34,4 @@ hu:
       - /swagger-ui/**/**
       - /v3/api-docs/**
       - /api/users/register
+      - /api/public/comments

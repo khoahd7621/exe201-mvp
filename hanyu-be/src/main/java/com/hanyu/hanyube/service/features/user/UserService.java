@@ -1,5 +1,6 @@
 package com.hanyu.hanyube.service.features.user;
 
+import com.hanyu.hanyube.config.TelegramBot;
 import com.hanyu.hanyube.domain.constants.ErrorCodeConstants;
 import com.hanyu.hanyube.domain.dto.user.ChangePasswordRequest;
 import com.hanyu.hanyube.domain.dto.user.ProfileUpdateRequest;
@@ -46,6 +47,7 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
+    private final TelegramBot telegramBot;
 
     @PostConstruct
     public void createAdminAccount() {
@@ -199,5 +201,12 @@ public class UserService implements UserDetailsService {
         }
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
+    }
+
+    public void notifyTelegram(PackageTime packageTime) {
+        telegramBot.sendMessageToChat("-1001615406900", String.format("Người dùng %s yêu cầu nâng cấp tài khoản lên gói : %s ",
+                AuthUtils.getUserId(),
+                packageTime.name())
+        );
     }
 }

@@ -5,8 +5,10 @@ import com.hanyu.hanyube.domain.dto.user.ProfileUpdateRequest;
 import com.hanyu.hanyube.domain.dto.user.UpdatePackageRequest;
 import com.hanyu.hanyube.domain.dto.user.UserCreateRequest;
 import com.hanyu.hanyube.domain.dto.user.UserProfileResponse;
+import com.hanyu.hanyube.domain.enums.PackageTime;
 import com.hanyu.hanyube.domain.enums.UserRoleEnum;
 import com.hanyu.hanyube.service.features.user.UserService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -78,5 +80,11 @@ public class UserController {
         userService.changePassword(request);
     }
 
+    @GetMapping("/api/upgrade")
+    @PreAuthorize("hasRole('" + UserRoleEnum.Role.USER + "')")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void userRequestUpgrade(@RequestParam @Valid PackageTime packageTime) {
+        userService.notifyTelegram(packageTime);
+    }
 
 }
