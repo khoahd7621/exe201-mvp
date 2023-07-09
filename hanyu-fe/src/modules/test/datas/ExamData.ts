@@ -14,9 +14,9 @@ export const ListExams: Exam[] = [
     slug: "hsk-1",
     name: "HSK 1",
     imageUrl: img1,
-    totalTest: 4,
+    totalTest: 2,
     structures: [
-      { ...ListeningStructure, totalTime: 18, totalQuestion: 20 },
+      { ...ListeningStructure, totalTime: 18, totalQuestion: 10 },
       { ...ReadingStructure, totalTime: 17, totalQuestion: 10 },
     ],
   },
@@ -25,7 +25,7 @@ export const ListExams: Exam[] = [
     name: "HSK 2",
     slug: "hsk-2",
     imageUrl: img2,
-    totalTest: 4,
+    totalTest: 1,
     structures: [
       { ...ListeningStructure, totalTime: 28, totalQuestion: 10 },
       { ...ReadingStructure, totalTime: 22, totalQuestion: 10 },
@@ -36,11 +36,11 @@ export const ListExams: Exam[] = [
     name: "HSK 3",
     slug: "hsk-3",
     imageUrl: img3,
-    totalTest: 4,
+    totalTest: 1,
     structures: [
       { ...ListeningStructure, totalTime: 40, totalQuestion: 10 },
       { ...ReadingStructure, totalTime: 30, totalQuestion: 10 },
-      { ...WritingStructure, totalTime: 15, totalQuestion: 10 },
+      { ...WritingStructure, totalTime: 15, totalQuestion: 1 },
     ],
   },
   {
@@ -48,11 +48,11 @@ export const ListExams: Exam[] = [
     name: "HSK 4",
     slug: "hsk-4",
     imageUrl: img4,
-    totalTest: 4,
+    totalTest: 1,
     structures: [
       { ...ListeningStructure, totalTime: 35, totalQuestion: 10 },
       { ...ReadingStructure, totalTime: 40, totalQuestion: 10 },
-      { ...WritingStructure, totalTime: 25, totalQuestion: 10 },
+      { ...WritingStructure, totalTime: 25, totalQuestion: 1 },
     ],
   },
   {
@@ -60,11 +60,11 @@ export const ListExams: Exam[] = [
     name: "HSK 5",
     slug: "hsk-5",
     imageUrl: img5,
-    totalTest: 4,
+    totalTest: 1,
     structures: [
       { ...ListeningStructure, totalTime: 35, totalQuestion: 10 },
       { ...ReadingStructure, totalTime: 45, totalQuestion: 10 },
-      { ...WritingStructure, totalTime: 40, totalQuestion: 10 },
+      { ...WritingStructure, totalTime: 40, totalQuestion: 1 },
     ],
   },
   {
@@ -72,7 +72,7 @@ export const ListExams: Exam[] = [
     name: "HSK 6",
     slug: "hsk-6",
     imageUrl: img6,
-    totalTest: 4,
+    totalTest: 1,
     structures: [
       { ...ListeningStructure, totalTime: 40, totalQuestion: 10 },
       { ...ReadingStructure, totalTime: 50, totalQuestion: 10 },

@@ -21,6 +21,61 @@ import audio7 from "~/assets/audios/test/1/7.mp3";
 import audio8 from "~/assets/audios/test/1/8.mp3";
 import audio9 from "~/assets/audios/test/1/9.mp3";
 
+import audio21 from "~/assets/audios/test/2/21.mp3";
+import audio22 from "~/assets/audios/test/2/22.mp3";
+import audio23 from "~/assets/audios/test/2/23.mp3";
+import audio24 from "~/assets/audios/test/2/24.mp3";
+import audio25 from "~/assets/audios/test/2/25.mp3";
+import audio31 from "~/assets/audios/test/2/31.mp3";
+import audio32 from "~/assets/audios/test/2/32.mp3";
+import audio33 from "~/assets/audios/test/2/33.mp3";
+import audio34 from "~/assets/audios/test/2/34.mp3";
+import audio35 from "~/assets/audios/test/2/35.mp3";
+
+import audio26 from "~/assets/audios/test/3/26.mp3";
+import audio27 from "~/assets/audios/test/3/27.mp3";
+import audio28 from "~/assets/audios/test/3/28.mp3";
+import audio29 from "~/assets/audios/test/3/29.mp3";
+import audio30 from "~/assets/audios/test/3/30.mp3";
+import audio36 from "~/assets/audios/test/3/36.mp3";
+import audio37 from "~/assets/audios/test/3/37.mp3";
+import audio38 from "~/assets/audios/test/3/38.mp3";
+import audio39 from "~/assets/audios/test/3/39.mp3";
+import audio40 from "~/assets/audios/test/3/40.mp3";
+
+import audio41 from "~/assets/audios/test/4/41.mp3";
+import audio42 from "~/assets/audios/test/4/42.mp3";
+import audio43 from "~/assets/audios/test/4/43.mp3";
+import audio44 from "~/assets/audios/test/4/44.mp3";
+import audio45 from "~/assets/audios/test/4/45.mp3";
+import audio51 from "~/assets/audios/test/4/51.mp3";
+import audio52 from "~/assets/audios/test/4/52.mp3";
+import audio53 from "~/assets/audios/test/4/53.mp3";
+import audio54 from "~/assets/audios/test/4/54.mp3";
+import audio55 from "~/assets/audios/test/4/55.mp3";
+
+import audio46 from "~/assets/audios/test/5/46.mp3";
+import audio47 from "~/assets/audios/test/5/47.mp3";
+import audio48 from "~/assets/audios/test/5/48.mp3";
+import audio49 from "~/assets/audios/test/5/49.mp3";
+import audio50 from "~/assets/audios/test/5/50.mp3";
+import audio56 from "~/assets/audios/test/5/56.mp3";
+import audio57 from "~/assets/audios/test/5/57.mp3";
+import audio58 from "~/assets/audios/test/5/58.mp3";
+import audio59 from "~/assets/audios/test/5/59.mp3";
+import audio60 from "~/assets/audios/test/5/60.mp3";
+
+import audio61 from "~/assets/audios/test/6/61.mp3";
+import audio62 from "~/assets/audios/test/6/62.mp3";
+import audio63 from "~/assets/audios/test/6/63.mp3";
+import audio64 from "~/assets/audios/test/6/64.mp3";
+import audio65 from "~/assets/audios/test/6/65.mp3";
+import audio66 from "~/assets/audios/test/6/66.mp3";
+import audio67 from "~/assets/audios/test/6/67.mp3";
+import audio68 from "~/assets/audios/test/6/68.mp3";
+import audio69 from "~/assets/audios/test/6/69.mp3";
+import audio70 from "~/assets/audios/test/6/70.mp3";
+
 export const QuestionList: Question[] = [
   {
     id: 1,
@@ -129,7 +184,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 11,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     question: "Đúng hay sai?",
     answer: "Đúng",
@@ -141,7 +196,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 12,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     question: "Đúng hay sai?",
     answer: "Đúng",
@@ -153,7 +208,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 13,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     question: "Đúng hay sai?",
     answer: "Đúng",
@@ -165,7 +220,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 14,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     question: "Đúng hay sai?",
     answer: "Đúng",
@@ -177,7 +232,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 15,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     question: "Đúng hay sai?",
     answer: "Đúng",
@@ -189,7 +244,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 16,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     answer: "美国人",
     options: ["美国人", "中国人", "日本人"],
@@ -198,7 +253,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 17,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     answer: "8 月 19 号",
     options: ["8 月 19 号", "8 月 20 号", "8 月 21 号"],
@@ -207,7 +262,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 18,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     answer: "太 冷 了",
     options: ["下 雨 了", "太 冷 了", "很 热"],
@@ -216,7 +271,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 19,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     answer: "8 号",
     options: ["8 号", "9 号", "12 号"],
@@ -225,7 +280,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 20,
-    testId: 1,
+    testId: 2,
     structureId: 1,
     answer: "茶",
     options: ["茶", "咖啡", "米饭"],
@@ -304,7 +359,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 26,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question: "请选出有语病的一项。",
     answer:
@@ -319,7 +374,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 27,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question: "请选出有语病的一项。",
     answer: "在那个俱乐部上，我认识了许多经济学界的名人。",
@@ -333,7 +388,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 28,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question: "请选出有语病的一项。",
     answer:
@@ -348,7 +403,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 29,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question: "请选出有语病的一项。",
     answer: "该协议书包括了工体大屏幕下通栏广告在内的 5 块广告牌，1项运动员号码广告等共 7 项广告。",
@@ -362,7 +417,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 30,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question: "请选出有语病的一项。",
     answer:
@@ -447,7 +502,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 36,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question:
       "作为农村精神家园的农村文化，________对农村社会成员的思想观念、道德情操产生了潜移默化的影响，________使得单调缓慢的乡村生活产生了趣味和意义，使农民的精神世界________了充实和提升，农村文化在建设新农村中________着重要的作用。",
@@ -462,7 +517,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 37,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question:
       "近日，国务院公布了《关于促进旅游业改革发展的若干意见》，鼓励职工_________个人需要和工作实际分段灵活安排带薪年休假。将带薪年休假制度落实情况纳入各地政府议事_________，作为劳动监察和职工_________保障的重要容，“高等学校可结合实际调整寒、暑假时间，中小学可按有关规定安排放春假，为落实职工带薪年休假_________条件”。",
@@ -477,7 +532,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 38,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question:
       "钱学森的_________塑像_________在中科大图书馆前面的小树林里，他身_________中山装，左手叉腰，右手指向侧面，就像是在授课。_________、姿势都与钱老当年一模一样。",
@@ -487,7 +542,7 @@ export const QuestionList: Question[] = [
   },
   {
     id: 39,
-    testId: 1,
+    testId: 2,
     structureId: 2,
     question:
       "科学家找到了让电脑使用者________双眼疲劳的最简单的“运动”：使用电脑时，每隔20分钟连续________眼20秒，然后再把________    从电脑屏幕上移开，看6米以外的任何物体20秒，这样就能使双眼更________。",
@@ -497,7 +552,1220 @@ export const QuestionList: Question[] = [
   },
   {
     id: 40,
-    testId: 1,
+    testId: 2,
+    structureId: 2,
+    question:
+      "南京青奥会开幕式上，将有 6 位奥运冠军完成场内火炬_________，其中陈若琳为最后一棒火炬手，将完成点火_________，她表示，成为火炬手已经很_________，当知道是最后一棒火炬手的时候很_________。",
+    answer: "延续 关头 幸运 振奋",
+    options: [
+      "传递 环节 荣幸 激动",
+      "传达 枢纽 光荣 兴奋",
+      "延续 关头 幸运 振奋",
+      "传送 关键 侥幸 高涨",
+    ],
+    type: 1,
+  },
+
+  // HSK-2
+  {
+    id: 41,
+    testId: 3,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/12/16/5df74d11e525013459682688656.jpg",
+    audioUrl: audio21,
+    type: 1,
+  },
+  {
+    id: 42,
+    testId: 3,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/12/15/5df60e58c2fff59614668612356.jpg",
+    audioUrl: audio22,
+    type: 1,
+  },
+  {
+    id: 43,
+    testId: 3,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/11/07/5dc3c60de989466839681167716.png",
+    audioUrl: audio23,
+    type: 1,
+  },
+  {
+    id: 44,
+    testId: 3,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605856373215.jpg",
+    audioUrl: audio24,
+    type: 1,
+  },
+  {
+    id: 45,
+    testId: 3,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2019/12/15/5df6033aa24b718829680456.jpg",
+    audioUrl: audio25,
+    type: 1,
+  },
+  {
+    id: 46,
+    testId: 3,
+    structureId: 1,
+    answer: "爱学习",
+    options: ["爱学习", " 离得近", "走得快"],
+    audioUrl: audio31,
+    type: 2,
+  },
+  {
+    id: 47,
+    testId: 3,
+    structureId: 1,
+    answer: "哥哥",
+    options: ["老师", "哥哥", "同学"],
+    audioUrl: audio32,
+    type: 2,
+  },
+  {
+    id: 48,
+    testId: 3,
+    structureId: 1,
+    answer: "一百 块 钱",
+    options: ["他 儿子 不 喜欢", "椅子 有点儿 高", "一百 块 钱"],
+    audioUrl: audio33,
+    type: 2,
+  },
+  {
+    id: 49,
+    testId: 3,
+    structureId: 1,
+    answer: "不 吃",
+    options: ["一 个", "不 吃", "很 多"],
+    audioUrl: audio34,
+    type: 2,
+  },
+  {
+    id: 50,
+    testId: 3,
+    structureId: 1,
+    answer: "面条儿",
+    options: ["米饭", "面条儿", "鸡蛋"],
+    audioUrl: audio35,
+    type: 2,
+  },
+  {
+    id: 51,
+    testId: 3,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "凡是人类之外的动物、植物、器物变化人，或者虽然没如此却能像人一 样说话，跟人交往，就叫妖精。",
+    options: [
+      "凡是人类之外的动物、植物、器物变化人，或者虽然没如此却能像人一 样说话，跟人交往，就叫妖精。",
+      "近日，在北京举办的几次春季人才招聘会上，大学生 “求职难” 与 “招聘难” 共存的现象引起广泛关注。",
+      "如果关节遇冷及雨天时疼痛加重，局部有风吹进骨头缝的感觉，那就是寒性疼痛，适合喝药酒。",
+      "到底是先用半熟蛋或生蛋下锅，还是干脆生或熟蛋冷冻后，再放进已经 炖得扑鼻芬芳的卤水中慢火熬制？",
+    ],
+    type: 1,
+  },
+  {
+    id: 52,
+    testId: 3,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "在那个俱乐部上，我认识了许多经济学界的名人。",
+    options: [
+      "在那个俱乐部上，我认识了许多经济学界的名人。",
+      "不管做怎样的推论，理发师所说的话都是自相矛盾的。",
+      "我们平时所说的盲肠炎，实际上大多是阑尾炎。",
+      "谁知敏感的它真的就此不吃不喝，很快就病死了。",
+    ],
+    type: 1,
+  },
+  {
+    id: 53,
+    testId: 3,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "诗歌旨在抒情言志，即使是叙事诗或用来说明科学现象和阐明哲理的 诗，也须饱含感情，这样才能生动感人。",
+    options: [
+      "风是热气球的唯一飞行动力，因此，环球飞行的热气球必须选择速度和 方向都合适的高空气流。",
+      "在一片片错落的梯田里，到处都是整齐竖立的麦垛子f散发着庄稼成熟 的气息。",
+      "人体免疫细胞能发现并杀死被感染的细胞，其识别原理-_直困惑着人们 解决不了。",
+      "诗歌旨在抒情言志，即使是叙事诗或用来说明科学现象和阐明哲理的 诗，也须饱含感情，这样才能生动感人。",
+    ],
+    type: 1,
+  },
+  {
+    id: 54,
+    testId: 3,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "该协议书包括了工体大屏幕下通栏广告在内的 5 块广告牌，1项运动员号码广告等共 7 项广告。",
+    options: [
+      "枯燥的生活已经远去，代之而来的是五光十色的现代生活",
+      "如果不加以控制人口，就会严重影响社会经济的顺利发展。",
+      "该协议书包括了工体大屏幕下通栏广告在内的 5 块广告牌，1项运动员号码广告等共 7 项广告。",
+      "有关人士希望把世界遗产教育纳入中学教学课程之中。",
+    ],
+    type: 1,
+  },
+  {
+    id: 55,
+    testId: 3,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "尽管已经过去 21 年，但他知错能改，总算让这本书回归，有了最完美的结局，也让他的人生画上了完满的句号。",
+    options: [
+      "午后 2 时左右，适逢交接班之际，公司值班室里有营业员不断进来领取或交回贴有本人照片的上岗证。",
+      "尽管已经过去 21 年，但他知错能改，总算让这本书回归，有了最完美的结局，也让他的人生画上了完满的句号。",
+      "实体书店的经营越来越难，这种风景在城市中逐渐消失，国家已经开始重视这个问题。",
+      "昨天，我见到那位女患者时她正因腹痛蜷缩成一团，消瘦的身躯大约只占了床面积的四分之一。",
+    ],
+    type: 1,
+  },
+  {
+    id: 56,
+    testId: 3,
+    structureId: 2,
+    question:
+      "作为农村精神家园的农村文化，________对农村社会成员的思想观念、道德情操产生了潜移默化的影响，________使得单调缓慢的乡村生活产生了趣味和意义，使农民的精神世界________了充实和提升，农村文化在建设新农村中________着重要的作用。",
+    answer: "非但 还 取得 发扬",
+    options: [
+      "非但 还 取得 发扬",
+      "虽然 但是 得以 起到",
+      "不仅 而且 得到 发挥",
+      "不但 并且 获得 表现",
+    ],
+    type: 1,
+  },
+  {
+    id: 57,
+    testId: 3,
+    structureId: 2,
+    question:
+      "近日，国务院公布了《关于促进旅游业改革发展的若干意见》，鼓励职工_________个人需要和工作实际分段灵活安排带薪年休假。将带薪年休假制度落实情况纳入各地政府议事_________，作为劳动监察和职工_________保障的重要容，“高等学校可结合实际调整寒、暑假时间，中小学可按有关规定安排放春假，为落实职工带薪年休假_________条件”。",
+    answer: "联合 安排 权利 创立",
+    options: [
+      "联系 过程 利益 制作",
+      "连合 程序 权力 制造",
+      "结合 日程 权益 创造",
+      "联合 安排 权利 创立",
+    ],
+    type: 1,
+  },
+  {
+    id: 58,
+    testId: 3,
+    structureId: 2,
+    question:
+      "钱学森的_________塑像_________在中科大图书馆前面的小树林里，他身_________中山装，左手叉腰，右手指向侧面，就像是在授课。_________、姿势都与钱老当年一模一样。",
+    answer: "—位 矗立 穿 神情",
+    options: ["—位 矗立 穿 神情", "—尊 坐落 着 神态", "—座 挺立 披 精神", "—个 摆放 套 态度"],
+    type: 1,
+  },
+  {
+    id: 59,
+    testId: 3,
+    structureId: 2,
+    question:
+      "科学家找到了让电脑使用者________双眼疲劳的最简单的“运动”：使用电脑时，每隔20分钟连续________眼20秒，然后再把________    从电脑屏幕上移开，看6米以外的任何物体20秒，这样就能使双眼更________。",
+    answer: "摆脱 搓 视野 灵敏",
+    options: ["超越 眯 意识 舒畅", "摆脱 搓 视野 灵敏", "缓解 眨 目光 舒适", "激发 瞪 焦点 理智"],
+    type: 1,
+  },
+  {
+    id: 60,
+    testId: 3,
+    structureId: 2,
+    question:
+      "南京青奥会开幕式上，将有 6 位奥运冠军完成场内火炬_________，其中陈若琳为最后一棒火炬手，将完成点火_________，她表示，成为火炬手已经很_________，当知道是最后一棒火炬手的时候很_________。",
+    answer: "延续 关头 幸运 振奋",
+    options: [
+      "传递 环节 荣幸 激动",
+      "传达 枢纽 光荣 兴奋",
+      "延续 关头 幸运 振奋",
+      "传送 关键 侥幸 高涨",
+    ],
+    type: 1,
+  },
+
+  // HSK-3
+  {
+    id: 61,
+    testId: 4,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605856423619.jpg",
+    audioUrl: audio26,
+    type: 1,
+  },
+  {
+    id: 62,
+    testId: 4,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605858473248.jpg",
+    audioUrl: audio27,
+    type: 1,
+  },
+  {
+    id: 63,
+    testId: 4,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/11/27/5dde27885ccb056674112527245.jpg",
+    audioUrl: audio28,
+    type: 1,
+  },
+  {
+    id: 64,
+    testId: 4,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605856620418.jpg",
+    audioUrl: audio29,
+    type: 1,
+  },
+  {
+    id: 65,
+    testId: 4,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/12/15/5df5ed5ac8ab667352083423321.jpg",
+    audioUrl: audio30,
+    type: 1,
+  },
+  {
+    id: 66,
+    testId: 4,
+    structureId: 1,
+    answer: "教室",
+    options: ["书店", "教室", "宾馆"],
+    audioUrl: audio36,
+    type: 2,
+  },
+  {
+    id: 67,
+    testId: 4,
+    structureId: 1,
+    answer: "下 个 星期",
+    options: ["下 个 星期", "明天 上午", "下 个 月"],
+    audioUrl: audio37,
+    type: 2,
+  },
+  {
+    id: 68,
+    testId: 4,
+    structureId: 1,
+    answer: "饭店",
+    options: ["医院", "饭店", "机场"],
+    audioUrl: audio38,
+    type: 2,
+  },
+  {
+    id: 69,
+    testId: 4,
+    structureId: 1,
+    answer: "跑步",
+    options: ["打 篮球", "休息", "跑步"],
+    audioUrl: audio39,
+    type: 2,
+  },
+  {
+    id: 70,
+    testId: 4,
+    structureId: 1,
+    answer: "让 男 的 等 她",
+    options: ["想 帮 男 的", "让 男 的 等 她", "现在 不 走"],
+    audioUrl: audio40,
+    type: 2,
+  },
+  {
+    id: 71,
+    testId: 4,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "你永远无法真正了解一个人，除非你能从对方的角度看待事物。",
+    options: [
+      "你永远无法真正了解一个人，除非你能从对方的角度看待事物。",
+      "1929 年 1 月 19 日，梁启超去世，死在他毕生致力的学术研究上。",
+      "除学术外，他在古玩鉴赏方面也颇具造诣，于是常有人请他看古器。",
+      "在中国里超过一定的身高就要买票，只有一米三以下的儿童免费乘车。",
+    ],
+    type: 1,
+  },
+  {
+    id: 72,
+    testId: 4,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "比起后期人为处理过的特写镜头s这#的拍摄方式显然能让人们收获更 多的乐趣。",
+    options: [
+      "比起后期人为处理过的特写镜头s这#的拍摄方式显然能让人们收获更 多的乐趣。",
+      "此木雕作品线条流畅，刻画生动细腻，精琢的雄鹰昂首挺胸，脚踏树 干9引颈待起，栩栩如生",
+      "西汉时期的窗户是不糊任何东西的，只是用丝织品做成的帷幔遮挡一 下，因此富贵人家多用屏风来挡风",
+      "从日常用品到精致的高科技产品，无不体现出当地人对自然的尊崇和热 爱，与其民族性格和生活方式密不可分",
+    ],
+    type: 1,
+  },
+  {
+    id: 73,
+    testId: 4,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "他们在我写作过程中所给予的鞭策和鼓励，我不会忘记他们。",
+    options: [
+      "”白色污染” 是人们对塑料垃圾污染环境的一种形象说法。",
+      "他们在我写作过程中所给予的鞭策和鼓励，我不会忘记他们。",
+      "龙亭不是亭，而是建在一座髙达 13 米的巨大青砖台基上的殿堂。",
+      "在永春老醋的店铺里，儿名外国游客铙有兴味地品尝着醋制饮料。",
+    ],
+    type: 1,
+  },
+  {
+    id: 74,
+    testId: 4,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "这个家伙高我一截，接球也很轻，你可以放心球传给他。",
+    options: [
+      "人类就像一根芦苇，在风暴面前非常脆弱。",
+      "文化需要“载体”，犹如打水，水总要一个木桶来盛载。",
+      "天下没有一个真正的“音乐盲”，每一个人都可以唱响自己的歌。",
+      "这个家伙高我一截，接球也很轻，你可以放心球传给他。",
+    ],
+    type: 1,
+  },
+  {
+    id: 75,
+    testId: 4,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "这些年拍了太多的云海，但我还没有拍过如此壮观、如此让人震撼的云海景色。",
+    options: [
+      "据说在荷兰，自行车的数量比人口还多，市民的出行有七成是靠骑自行车来完成的。",
+      "腕表是精密机械制造的一种体现，它沿袭了人们看时间的传统方式。",
+      "这些年拍了太多的云海，但我还没有拍过如此壮观、如此让人震撼的云海景色。",
+      "在一定意义上说，公司能认识到错误，并能致力改正错误，这是值得称道的。",
+    ],
+    type: 1,
+  },
+  {
+    id: 76,
+    testId: 4,
+    structureId: 2,
+    question:
+      "我们赞赏坚持不懈永不放弃的奋斗精神，当你_________目标，这种执着就会成为_________成功的阶梯。但有时放弃和坚持不懈的执着并不矛盾。陶渊明放弃_________的官场，归隐田园，写出了《桃花源记》等传世之作，成为东晋时代_________的诗词散文大家。",
+    answer: "明确 前进 浑浊 卓越",
+    options: [
+      "确立 迈向 污染 非凡",
+      "明确 前进 浑浊 卓越",
+      "确定 通向 污浊 杰出",
+      "树立 通往 混浊 优异",
+    ],
+    type: 1,
+  },
+  {
+    id: 77,
+    testId: 4,
+    structureId: 2,
+    question:
+      "近期上市的新手机可谓百花齐放，_________，必然会_________起新的一轮购机狂潮。新手机的上市必然_________着髙昂的价格，同时也会带来另一个结果，那就是上一代机皇们的降价。据_________，现在仅用 2500 元甚至更低的价格就可以买到上一代的安卓四核机皇。",
+    answer: "争先恐后 翻 相伴 运算",
+    options: [
+      "百花争鸣 揭 随同 计算",
+      "争先恐后 翻 相伴 运算",
+      "争奇斗艳 掀 伴随 统计",
+      "万无一失 推 追随 概括",
+    ],
+    type: 1,
+  },
+  {
+    id: 78,
+    testId: 4,
+    structureId: 2,
+    question:
+      "造纸术的发明对于人类文明的传播有________的作用，它使得文明的传播速度更_______、传播成本更低廉，它_________了纸质书的出现，所以说这是一项极其_________的发明。",
+    answer: "庞大 快速 促使 崇高",
+    options: [
+      "庞大 快速 促使 崇高",
+      "巨大 快捷 促进 伟大",
+      "宏大 便捷 导致 高尚",
+      "重天 方便 促成 了不起",
+    ],
+    type: 1,
+  },
+  {
+    id: 79,
+    testId: 4,
+    structureId: 2,
+    question:
+      "世界自然基金会发布的一份题为《丛林的呼唤》的报告指出，大湄公河区域美丽而神秘的有蹄类动物________灭绝，其中包括许多当地_______的物种。除非政府_______有力的保护措施恢复野生种群的数量和栖息地，不然，它们将有可能________。",
+    answer: "濒临 特有 采取 消失",
+    options: [
+      "接近 独特 采纳 消亡",
+      "面对 专有 选取 灭绝",
+      "面临 特别 采用 消灭",
+      "濒临 特有 采取 消失",
+    ],
+    type: 1,
+  },
+  {
+    id: 80,
+    testId: 4,
+    structureId: 2,
+    question:
+      "研究发现，当我们长时间保持低头姿势时，脖子部位要承担  _________于20公斤以上的重物带来的压力，这对_________伤害很大。因此应 _________避免长时间伏案工作，可利用休息间隙活动一下肢体。",
+    answer: "起码 器官 索性",
+    options: ["相当 颈椎 尽量", "起码 器官 索性", "十足 神经 特意", "时光 忍耐 即将"],
+    type: 1,
+  },
+
+  // HSK-4
+  {
+    id: 81,
+    testId: 5,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/12/15/5df5f61b1e05953555286921259.jpg",
+    audioUrl: audio41,
+    type: 1,
+  },
+  {
+    id: 82,
+    testId: 5,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2019/12/15/5df65271bf80a3146395301857.jpg",
+    audioUrl: audio42,
+    type: 1,
+  },
+  {
+    id: 83,
+    testId: 5,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605856958378.jpg",
+    audioUrl: audio43,
+    type: 1,
+  },
+  {
+    id: 84,
+    testId: 5,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/11/04/5dbfdaaad9ea142856572667129.jpg",
+    audioUrl: audio44,
+    type: 1,
+  },
+  {
+    id: 85,
+    testId: 5,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/12/16/5df74d11e525013459682688656.jpg",
+    audioUrl: audio45,
+    type: 1,
+  },
+  {
+    id: 86,
+    testId: 5,
+    structureId: 1,
+    answer: "工作 了",
+    options: ["工作 了", "在 学习", "在 找 工作"],
+    audioUrl: audio51,
+    type: 2,
+  },
+  {
+    id: 87,
+    testId: 5,
+    structureId: 1,
+    answer: "爱 学习",
+    options: ["爱 学习", "离 得 近", "走 得 快"],
+    audioUrl: audio52,
+    type: 2,
+  },
+  {
+    id: 88,
+    testId: 5,
+    structureId: 1,
+    answer: "说 和 写 还 不 错",
+    options: ["读 和 写 还 不 错", "说 和 写 还 不 错", "听 和 说 还 不 错"],
+    audioUrl: audio53,
+    type: 2,
+  },
+  {
+    id: 89,
+    testId: 5,
+    structureId: 1,
+    answer: "来晚 了",
+    options: ["来晚 了", "写错 字 了", "生病 了"],
+    audioUrl: audio54,
+    type: 2,
+  },
+  {
+    id: 90,
+    testId: 5,
+    structureId: 1,
+    answer: "饭店",
+    options: ["医院", "饭店", "机场"],
+    audioUrl: audio55,
+    type: 2,
+  },
+  {
+    id: 91,
+    testId: 5,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "凡是人类之外的动物、植物、器物变化人，或者虽然没如此却能像人一 样说话，跟人交往，就叫妖精。",
+    options: [
+      "凡是人类之外的动物、植物、器物变化人，或者虽然没如此却能像人一 样说话，跟人交往，就叫妖精。",
+      "近日，在北京举办的几次春季人才招聘会上，大学生 “求职难” 与 “招聘难” 共存的现象引起广泛关注。",
+      "如果关节遇冷及雨天时疼痛加重，局部有风吹进骨头缝的感觉，那就是寒性疼痛，适合喝药酒。",
+      "到底是先用半熟蛋或生蛋下锅，还是干脆生或熟蛋冷冻后，再放进已经 炖得扑鼻芬芳的卤水中慢火熬制？",
+    ],
+    type: 1,
+  },
+  {
+    id: 92,
+    testId: 5,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "在那个俱乐部上，我认识了许多经济学界的名人。",
+    options: [
+      "在那个俱乐部上，我认识了许多经济学界的名人。",
+      "不管做怎样的推论，理发师所说的话都是自相矛盾的。",
+      "我们平时所说的盲肠炎，实际上大多是阑尾炎。",
+      "谁知敏感的它真的就此不吃不喝，很快就病死了。",
+    ],
+    type: 1,
+  },
+  {
+    id: 93,
+    testId: 5,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "诗歌旨在抒情言志，即使是叙事诗或用来说明科学现象和阐明哲理的 诗，也须饱含感情，这样才能生动感人。",
+    options: [
+      "风是热气球的唯一飞行动力，因此，环球飞行的热气球必须选择速度和 方向都合适的高空气流。",
+      "在一片片错落的梯田里，到处都是整齐竖立的麦垛子f散发着庄稼成熟 的气息。",
+      "人体免疫细胞能发现并杀死被感染的细胞，其识别原理-_直困惑着人们 解决不了。",
+      "诗歌旨在抒情言志，即使是叙事诗或用来说明科学现象和阐明哲理的 诗，也须饱含感情，这样才能生动感人。",
+    ],
+    type: 1,
+  },
+  {
+    id: 94,
+    testId: 5,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "该协议书包括了工体大屏幕下通栏广告在内的 5 块广告牌，1项运动员号码广告等共 7 项广告。",
+    options: [
+      "枯燥的生活已经远去，代之而来的是五光十色的现代生活",
+      "如果不加以控制人口，就会严重影响社会经济的顺利发展。",
+      "该协议书包括了工体大屏幕下通栏广告在内的 5 块广告牌，1项运动员号码广告等共 7 项广告。",
+      "有关人士希望把世界遗产教育纳入中学教学课程之中。",
+    ],
+    type: 1,
+  },
+  {
+    id: 95,
+    testId: 5,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "尽管已经过去 21 年，但他知错能改，总算让这本书回归，有了最完美的结局，也让他的人生画上了完满的句号。",
+    options: [
+      "午后 2 时左右，适逢交接班之际，公司值班室里有营业员不断进来领取或交回贴有本人照片的上岗证。",
+      "尽管已经过去 21 年，但他知错能改，总算让这本书回归，有了最完美的结局，也让他的人生画上了完满的句号。",
+      "实体书店的经营越来越难，这种风景在城市中逐渐消失，国家已经开始重视这个问题。",
+      "昨天，我见到那位女患者时她正因腹痛蜷缩成一团，消瘦的身躯大约只占了床面积的四分之一。",
+    ],
+    type: 1,
+  },
+  {
+    id: 96,
+    testId: 5,
+    structureId: 2,
+    question:
+      "作为农村精神家园的农村文化，________对农村社会成员的思想观念、道德情操产生了潜移默化的影响，________使得单调缓慢的乡村生活产生了趣味和意义，使农民的精神世界________了充实和提升，农村文化在建设新农村中________着重要的作用。",
+    answer: "非但 还 取得 发扬",
+    options: [
+      "非但 还 取得 发扬",
+      "虽然 但是 得以 起到",
+      "不仅 而且 得到 发挥",
+      "不但 并且 获得 表现",
+    ],
+    type: 1,
+  },
+  {
+    id: 97,
+    testId: 5,
+    structureId: 2,
+    question:
+      "近日，国务院公布了《关于促进旅游业改革发展的若干意见》，鼓励职工_________个人需要和工作实际分段灵活安排带薪年休假。将带薪年休假制度落实情况纳入各地政府议事_________，作为劳动监察和职工_________保障的重要容，“高等学校可结合实际调整寒、暑假时间，中小学可按有关规定安排放春假，为落实职工带薪年休假_________条件”。",
+    answer: "联合 安排 权利 创立",
+    options: [
+      "联系 过程 利益 制作",
+      "连合 程序 权力 制造",
+      "结合 日程 权益 创造",
+      "联合 安排 权利 创立",
+    ],
+    type: 1,
+  },
+  {
+    id: 98,
+    testId: 5,
+    structureId: 2,
+    question:
+      "钱学森的_________塑像_________在中科大图书馆前面的小树林里，他身_________中山装，左手叉腰，右手指向侧面，就像是在授课。_________、姿势都与钱老当年一模一样。",
+    answer: "—位 矗立 穿 神情",
+    options: ["—位 矗立 穿 神情", "—尊 坐落 着 神态", "—座 挺立 披 精神", "—个 摆放 套 态度"],
+    type: 1,
+  },
+  {
+    id: 99,
+    testId: 5,
+    structureId: 2,
+    question:
+      "科学家找到了让电脑使用者________双眼疲劳的最简单的“运动”：使用电脑时，每隔20分钟连续________眼20秒，然后再把________    从电脑屏幕上移开，看6米以外的任何物体20秒，这样就能使双眼更________。",
+    answer: "摆脱 搓 视野 灵敏",
+    options: ["超越 眯 意识 舒畅", "摆脱 搓 视野 灵敏", "缓解 眨 目光 舒适", "激发 瞪 焦点 理智"],
+    type: 1,
+  },
+  {
+    id: 100,
+    testId: 5,
+    structureId: 2,
+    question:
+      "南京青奥会开幕式上，将有 6 位奥运冠军完成场内火炬_________，其中陈若琳为最后一棒火炬手，将完成点火_________，她表示，成为火炬手已经很_________，当知道是最后一棒火炬手的时候很_________。",
+    answer: "延续 关头 幸运 振奋",
+    options: [
+      "传递 环节 荣幸 激动",
+      "传达 枢纽 光荣 兴奋",
+      "延续 关头 幸运 振奋",
+      "传送 关键 侥幸 高涨",
+    ],
+    type: 1,
+  },
+
+  // HSK-5
+  {
+    id: 101,
+    testId: 6,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605857023688.jpg",
+    audioUrl: audio46,
+    type: 1,
+  },
+  {
+    id: 102,
+    testId: 6,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl:
+      "https://data.hanzii.net/uploads/questions/2019/11/21/5dd62c74bb25476461181294882.jpg",
+    audioUrl: audio47,
+    type: 1,
+  },
+  {
+    id: 103,
+    testId: 6,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605857084997.jpg",
+    audioUrl: audio48,
+    type: 1,
+  },
+  {
+    id: 104,
+    testId: 6,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/12/17/1608169554394.jpg",
+    audioUrl: audio49,
+    type: 1,
+  },
+  {
+    id: 105,
+    testId: 6,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605857213168.jpg",
+    audioUrl: audio50,
+    type: 1,
+  },
+  {
+    id: 106,
+    testId: 6,
+    structureId: 1,
+    answer: "阴天",
+    options: ["很 冷", "阴天", "晴天"],
+    audioUrl: audio56,
+    type: 2,
+  },
+  {
+    id: 107,
+    testId: 6,
+    structureId: 1,
+    answer: "女儿 家",
+    options: ["女儿 家", "宾馆", "朋友 家"],
+    audioUrl: audio57,
+    type: 2,
+  },
+  {
+    id: 108,
+    testId: 6,
+    structureId: 1,
+    answer: "打 篮球",
+    options: ["打 篮球", "休息", "跑步"],
+    audioUrl: audio58,
+    type: 2,
+  },
+  {
+    id: 109,
+    testId: 6,
+    structureId: 1,
+    answer: "面条儿",
+    options: ["米饭", "面条儿", "鸡蛋"],
+    audioUrl: audio59,
+    type: 2,
+  },
+  {
+    id: 110,
+    testId: 6,
+    structureId: 1,
+    answer: "打 电话",
+    options: ["洗 水果", "踢 足球", "打 电话"],
+    audioUrl: audio60,
+    type: 2,
+  },
+  {
+    id: 111,
+    testId: 6,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "你永远无法真正了解一个人，除非你能从对方的角度看待事物。",
+    options: [
+      "你永远无法真正了解一个人，除非你能从对方的角度看待事物。",
+      "1929 年 1 月 19 日，梁启超去世，死在他毕生致力的学术研究上。",
+      "除学术外，他在古玩鉴赏方面也颇具造诣，于是常有人请他看古器。",
+      "在中国里超过一定的身高就要买票，只有一米三以下的儿童免费乘车。",
+    ],
+    type: 1,
+  },
+  {
+    id: 112,
+    testId: 6,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "比起后期人为处理过的特写镜头s这#的拍摄方式显然能让人们收获更 多的乐趣。",
+    options: [
+      "比起后期人为处理过的特写镜头s这#的拍摄方式显然能让人们收获更 多的乐趣。",
+      "此木雕作品线条流畅，刻画生动细腻，精琢的雄鹰昂首挺胸，脚踏树 干9引颈待起，栩栩如生",
+      "西汉时期的窗户是不糊任何东西的，只是用丝织品做成的帷幔遮挡一 下，因此富贵人家多用屏风来挡风",
+      "从日常用品到精致的高科技产品，无不体现出当地人对自然的尊崇和热 爱，与其民族性格和生活方式密不可分",
+    ],
+    type: 1,
+  },
+  {
+    id: 113,
+    testId: 6,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "他们在我写作过程中所给予的鞭策和鼓励，我不会忘记他们。",
+    options: [
+      "”白色污染” 是人们对塑料垃圾污染环境的一种形象说法。",
+      "他们在我写作过程中所给予的鞭策和鼓励，我不会忘记他们。",
+      "龙亭不是亭，而是建在一座髙达 13 米的巨大青砖台基上的殿堂。",
+      "在永春老醋的店铺里，儿名外国游客铙有兴味地品尝着醋制饮料。",
+    ],
+    type: 1,
+  },
+  {
+    id: 114,
+    testId: 6,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "这个家伙高我一截，接球也很轻，你可以放心球传给他。",
+    options: [
+      "人类就像一根芦苇，在风暴面前非常脆弱。",
+      "文化需要“载体”，犹如打水，水总要一个木桶来盛载。",
+      "天下没有一个真正的“音乐盲”，每一个人都可以唱响自己的歌。",
+      "这个家伙高我一截，接球也很轻，你可以放心球传给他。",
+    ],
+    type: 1,
+  },
+  {
+    id: 115,
+    testId: 6,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "这些年拍了太多的云海，但我还没有拍过如此壮观、如此让人震撼的云海景色。",
+    options: [
+      "据说在荷兰，自行车的数量比人口还多，市民的出行有七成是靠骑自行车来完成的。",
+      "腕表是精密机械制造的一种体现，它沿袭了人们看时间的传统方式。",
+      "这些年拍了太多的云海，但我还没有拍过如此壮观、如此让人震撼的云海景色。",
+      "在一定意义上说，公司能认识到错误，并能致力改正错误，这是值得称道的。",
+    ],
+    type: 1,
+  },
+  {
+    id: 116,
+    testId: 6,
+    structureId: 2,
+    question:
+      "我们赞赏坚持不懈永不放弃的奋斗精神，当你_________目标，这种执着就会成为_________成功的阶梯。但有时放弃和坚持不懈的执着并不矛盾。陶渊明放弃_________的官场，归隐田园，写出了《桃花源记》等传世之作，成为东晋时代_________的诗词散文大家。",
+    answer: "明确 前进 浑浊 卓越",
+    options: [
+      "确立 迈向 污染 非凡",
+      "明确 前进 浑浊 卓越",
+      "确定 通向 污浊 杰出",
+      "树立 通往 混浊 优异",
+    ],
+    type: 1,
+  },
+  {
+    id: 117,
+    testId: 6,
+    structureId: 2,
+    question:
+      "近期上市的新手机可谓百花齐放，_________，必然会_________起新的一轮购机狂潮。新手机的上市必然_________着髙昂的价格，同时也会带来另一个结果，那就是上一代机皇们的降价。据_________，现在仅用 2500 元甚至更低的价格就可以买到上一代的安卓四核机皇。",
+    answer: "争先恐后 翻 相伴 运算",
+    options: [
+      "百花争鸣 揭 随同 计算",
+      "争先恐后 翻 相伴 运算",
+      "争奇斗艳 掀 伴随 统计",
+      "万无一失 推 追随 概括",
+    ],
+    type: 1,
+  },
+  {
+    id: 118,
+    testId: 6,
+    structureId: 2,
+    question:
+      "造纸术的发明对于人类文明的传播有________的作用，它使得文明的传播速度更_______、传播成本更低廉，它_________了纸质书的出现，所以说这是一项极其_________的发明。",
+    answer: "庞大 快速 促使 崇高",
+    options: [
+      "庞大 快速 促使 崇高",
+      "巨大 快捷 促进 伟大",
+      "宏大 便捷 导致 高尚",
+      "重天 方便 促成 了不起",
+    ],
+    type: 1,
+  },
+  {
+    id: 119,
+    testId: 6,
+    structureId: 2,
+    question:
+      "世界自然基金会发布的一份题为《丛林的呼唤》的报告指出，大湄公河区域美丽而神秘的有蹄类动物________灭绝，其中包括许多当地_______的物种。除非政府_______有力的保护措施恢复野生种群的数量和栖息地，不然，它们将有可能________。",
+    answer: "濒临 特有 采取 消失",
+    options: [
+      "接近 独特 采纳 消亡",
+      "面对 专有 选取 灭绝",
+      "面临 特别 采用 消灭",
+      "濒临 特有 采取 消失",
+    ],
+    type: 1,
+  },
+  {
+    id: 120,
+    testId: 6,
+    structureId: 2,
+    question:
+      "研究发现，当我们长时间保持低头姿势时，脖子部位要承担  _________于20公斤以上的重物带来的压力，这对_________伤害很大。因此应 _________避免长时间伏案工作，可利用休息间隙活动一下肢体。",
+    answer: "起码 器官 索性",
+    options: ["相当 颈椎 尽量", "起码 器官 索性", "十足 神经 特意", "时光 忍耐 即将"],
+    type: 1,
+  },
+
+  // HSK-6
+  {
+    id: 121,
+    testId: 7,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/19/1605803736953.jpg",
+    audioUrl: audio61,
+    type: 1,
+  },
+  {
+    id: 122,
+    testId: 7,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605840561785.jpg",
+    audioUrl: audio62,
+    type: 1,
+  },
+  {
+    id: 123,
+    testId: 7,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605840671365.jpg",
+    audioUrl: audio63,
+    type: 1,
+  },
+  {
+    id: 124,
+    testId: 7,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Sai",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605841187374.jpg",
+    audioUrl: audio64,
+    type: 1,
+  },
+  {
+    id: 125,
+    testId: 7,
+    structureId: 1,
+    question: "Đúng hay sai?",
+    answer: "Đúng",
+    options: ["Đúng", "Sai"],
+    imageUrl: "https://data.hanzii.net/uploads/questions/2020/11/20/1605841275371.jpg",
+    audioUrl: audio65,
+    type: 1,
+  },
+  {
+    id: 126,
+    testId: 7,
+    structureId: 1,
+    answer: "去 学校",
+    options: ["去 学校", "去 医院", "去 朋友 家"],
+    audioUrl: audio66,
+    type: 2,
+  },
+  {
+    id: 127,
+    testId: 7,
+    structureId: 1,
+    answer: "中国",
+    options: ["中国", "美国", "家"],
+    audioUrl: audio67,
+    type: 2,
+  },
+  {
+    id: 128,
+    testId: 7,
+    structureId: 1,
+    answer: "我 妈妈",
+    options: ["我", "我 妈妈", "我 朋友"],
+    audioUrl: audio68,
+    type: 2,
+  },
+  {
+    id: 129,
+    testId: 7,
+    structureId: 1,
+    answer: "十一 点",
+    options: ["九 点", "十 点", "十一 点"],
+    audioUrl: audio69,
+    type: 2,
+  },
+  {
+    id: 130,
+    testId: 7,
+    structureId: 1,
+    answer: "喝 水",
+    options: ["读书", "喝 水", "打 电话"],
+    audioUrl: audio70,
+    type: 2,
+  },
+  {
+    id: 131,
+    testId: 7,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "凡是人类之外的动物、植物、器物变化人，或者虽然没如此却能像人一 样说话，跟人交往，就叫妖精。",
+    options: [
+      "凡是人类之外的动物、植物、器物变化人，或者虽然没如此却能像人一 样说话，跟人交往，就叫妖精。",
+      "近日，在北京举办的几次春季人才招聘会上，大学生 “求职难” 与 “招聘难” 共存的现象引起广泛关注。",
+      "如果关节遇冷及雨天时疼痛加重，局部有风吹进骨头缝的感觉，那就是寒性疼痛，适合喝药酒。",
+      "到底是先用半熟蛋或生蛋下锅，还是干脆生或熟蛋冷冻后，再放进已经 炖得扑鼻芬芳的卤水中慢火熬制？",
+    ],
+    type: 1,
+  },
+  {
+    id: 132,
+    testId: 7,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "在那个俱乐部上，我认识了许多经济学界的名人。",
+    options: [
+      "在那个俱乐部上，我认识了许多经济学界的名人。",
+      "不管做怎样的推论，理发师所说的话都是自相矛盾的。",
+      "我们平时所说的盲肠炎，实际上大多是阑尾炎。",
+      "谁知敏感的它真的就此不吃不喝，很快就病死了。",
+    ],
+    type: 1,
+  },
+  {
+    id: 133,
+    testId: 7,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "诗歌旨在抒情言志，即使是叙事诗或用来说明科学现象和阐明哲理的 诗，也须饱含感情，这样才能生动感人。",
+    options: [
+      "风是热气球的唯一飞行动力，因此，环球飞行的热气球必须选择速度和 方向都合适的高空气流。",
+      "在一片片错落的梯田里，到处都是整齐竖立的麦垛子f散发着庄稼成熟 的气息。",
+      "人体免疫细胞能发现并杀死被感染的细胞，其识别原理-_直困惑着人们 解决不了。",
+      "诗歌旨在抒情言志，即使是叙事诗或用来说明科学现象和阐明哲理的 诗，也须饱含感情，这样才能生动感人。",
+    ],
+    type: 1,
+  },
+  {
+    id: 134,
+    testId: 7,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer: "该协议书包括了工体大屏幕下通栏广告在内的 5 块广告牌，1项运动员号码广告等共 7 项广告。",
+    options: [
+      "枯燥的生活已经远去，代之而来的是五光十色的现代生活",
+      "如果不加以控制人口，就会严重影响社会经济的顺利发展。",
+      "该协议书包括了工体大屏幕下通栏广告在内的 5 块广告牌，1项运动员号码广告等共 7 项广告。",
+      "有关人士希望把世界遗产教育纳入中学教学课程之中。",
+    ],
+    type: 1,
+  },
+  {
+    id: 135,
+    testId: 7,
+    structureId: 2,
+    question: "请选出有语病的一项。",
+    answer:
+      "尽管已经过去 21 年，但他知错能改，总算让这本书回归，有了最完美的结局，也让他的人生画上了完满的句号。",
+    options: [
+      "午后 2 时左右，适逢交接班之际，公司值班室里有营业员不断进来领取或交回贴有本人照片的上岗证。",
+      "尽管已经过去 21 年，但他知错能改，总算让这本书回归，有了最完美的结局，也让他的人生画上了完满的句号。",
+      "实体书店的经营越来越难，这种风景在城市中逐渐消失，国家已经开始重视这个问题。",
+      "昨天，我见到那位女患者时她正因腹痛蜷缩成一团，消瘦的身躯大约只占了床面积的四分之一。",
+    ],
+    type: 1,
+  },
+  {
+    id: 136,
+    testId: 7,
+    structureId: 2,
+    question:
+      "作为农村精神家园的农村文化，________对农村社会成员的思想观念、道德情操产生了潜移默化的影响，________使得单调缓慢的乡村生活产生了趣味和意义，使农民的精神世界________了充实和提升，农村文化在建设新农村中________着重要的作用。",
+    answer: "非但 还 取得 发扬",
+    options: [
+      "非但 还 取得 发扬",
+      "虽然 但是 得以 起到",
+      "不仅 而且 得到 发挥",
+      "不但 并且 获得 表现",
+    ],
+    type: 1,
+  },
+  {
+    id: 137,
+    testId: 7,
+    structureId: 2,
+    question:
+      "近日，国务院公布了《关于促进旅游业改革发展的若干意见》，鼓励职工_________个人需要和工作实际分段灵活安排带薪年休假。将带薪年休假制度落实情况纳入各地政府议事_________，作为劳动监察和职工_________保障的重要容，“高等学校可结合实际调整寒、暑假时间，中小学可按有关规定安排放春假，为落实职工带薪年休假_________条件”。",
+    answer: "联合 安排 权利 创立",
+    options: [
+      "联系 过程 利益 制作",
+      "连合 程序 权力 制造",
+      "结合 日程 权益 创造",
+      "联合 安排 权利 创立",
+    ],
+    type: 1,
+  },
+  {
+    id: 138,
+    testId: 7,
+    structureId: 2,
+    question:
+      "钱学森的_________塑像_________在中科大图书馆前面的小树林里，他身_________中山装，左手叉腰，右手指向侧面，就像是在授课。_________、姿势都与钱老当年一模一样。",
+    answer: "—位 矗立 穿 神情",
+    options: ["—位 矗立 穿 神情", "—尊 坐落 着 神态", "—座 挺立 披 精神", "—个 摆放 套 态度"],
+    type: 1,
+  },
+  {
+    id: 139,
+    testId: 7,
+    structureId: 2,
+    question:
+      "科学家找到了让电脑使用者________双眼疲劳的最简单的“运动”：使用电脑时，每隔20分钟连续________眼20秒，然后再把________    从电脑屏幕上移开，看6米以外的任何物体20秒，这样就能使双眼更________。",
+    answer: "摆脱 搓 视野 灵敏",
+    options: ["超越 眯 意识 舒畅", "摆脱 搓 视野 灵敏", "缓解 眨 目光 舒适", "激发 瞪 焦点 理智"],
+    type: 1,
+  },
+  {
+    id: 140,
+    testId: 7,
     structureId: 2,
     question:
       "南京青奥会开幕式上，将有 6 位奥运冠军完成场内火炬_________，其中陈若琳为最后一棒火炬手，将完成点火_________，她表示，成为火炬手已经很_________，当知道是最后一棒火炬手的时候很_________。",
