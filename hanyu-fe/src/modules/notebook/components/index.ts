@@ -1,5 +1,6 @@
+import AddNoteModal from "./AddNoteModal";
+import Flashcard from "./Flashcard";
 import NoteBookCard from "./NoteBookCard";
 import WordCard from "./WordCard";
-import AddNoteModal from "./AddNoteModal";
 
-export { NoteBookCard, WordCard, AddNoteModal };
+export { AddNoteModal, Flashcard, NoteBookCard, WordCard };

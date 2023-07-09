@@ -5,6 +5,7 @@ import {
   CommunityPage,
   DictionaryPage,
   ExamPage,
+  FlashCardPage,
   HistoryPage,
   LoginPage,
   NoteBookDetailPage,
@@ -104,6 +105,10 @@ const routes: RouteObject[] = [
       {
         path: `:noteBookSlug`,
         element: <NoteBookDetailPage />,
+      },
+      {
+        path: `:noteBookSlug/flashcard`,
+        element: <FlashCardPage />,
       },
     ],
   },

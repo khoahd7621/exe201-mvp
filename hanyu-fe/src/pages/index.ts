@@ -15,6 +15,7 @@ import LoginPage from "./auth/LoginPage";
 import ProfilePage from "./auth/ProfilePage";
 import RegisterPage from "./auth/RegisterPage";
 
+import FlashCardPage from "./notebook/FlashCardPage";
 import NoteBookDetailPage from "./notebook/NoteBookDetailPage";
 import NoteBookPage from "./notebook/NoteBookPage";
 
@@ -22,6 +23,7 @@ export {
   CommunityPage,
   DictionaryPage,
   ExamPage,
+  FlashCardPage,
   HistoryPage,
   LoginPage,
   NoteBookDetailPage,

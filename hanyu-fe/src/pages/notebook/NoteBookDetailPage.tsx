@@ -6,7 +6,8 @@ import ClearIcon from "@mui/icons-material/Clear";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import HistoryIcon from "@mui/icons-material/History";
 import SearchIcon from "@mui/icons-material/Search";
-import { Container, Grid, Link, Paper, Stack, Typography } from "@mui/material";
+import StyleIcon from "@mui/icons-material/Style";
+import { Container, Grid, Link, Pagination, Paper, Stack, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 
 import { Seo } from "~/common/components";
@@ -23,6 +24,7 @@ import AppRoutes from "~/router/AppRoutes";
 export default function NoteBookDetailPage() {
   const { noteBookSlug } = useParams<{ noteBookSlug: string }>();
   const profile = useAppSelector((state) => state.profile.user);
+  const auth = useAppSelector((state) => state.auth);
 
   const currentNoteBook: NoteBook | undefined = ListNoteBooks.find(
     (item) => item.slug === noteBookSlug
@@ -37,11 +39,19 @@ export default function NoteBookDetailPage() {
   const [searchInput, setSearchInput] = useState<string>("");
   const [wordNotes, setWordNotes] = useState<WordNote[]>([]);
 
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemOffset = (currentPage - 1) * itemsPerPage;
+  const pageCount = Math.ceil(listWordsFiltered.length / itemsPerPage);
+  const currentItems = listWordsFiltered.slice(itemOffset, itemOffset + itemsPerPage);
+
   const keyword = useDebounced(searchInput, 300);
 
   useEffect(() => {
-    fetchListWordNotes();
-  }, []);
+    if (auth.isAuthenticated) {
+      fetchListWordNotes();
+    }
+  }, [auth]);
 
   useEffect(() => {
     if (keyword) {
@@ -62,6 +72,7 @@ export default function NoteBookDetailPage() {
     } else {
       setListWordsFiltered(listWords);
     }
+    setCurrentPage(1);
   }, [keyword, listWords]);
 
   const fetchListWordNotes = () => {
@@ -69,6 +80,10 @@ export default function NoteBookDetailPage() {
       .getListWordNotes()
       .then((res) => setWordNotes(res))
       .catch((err) => console.log(err));
+  };
+
+  const changePage = (page: number) => {
+    setCurrentPage(page);
   };
 
   if (!currentNoteBook) {
@@ -115,7 +130,7 @@ export default function NoteBookDetailPage() {
                       <ArrowBackIosIcon sx={{ fontSize: 14 }} />
 
                       <Typography variant="body2" fontWeight="bold">
-                        Back
+                        Trở về
                       </Typography>
                     </Stack>
                   </Link>
@@ -147,6 +162,21 @@ export default function NoteBookDetailPage() {
                   </Stack>
                 </Stack>
               </Paper>
+
+              <Link
+                component={RouterLink}
+                to={`${AppRoutes.notebook}/${noteBookSlug}/flashcard`}
+                underline="hover"
+              >
+                <Paper variant="outlined" sx={{ borderRadius: "0.5rem", padding: "0.8rem" }}>
+                  <Stack direction="row" alignItems="center" gap={1}>
+                    <StyleIcon />
+                    <Typography variant="body2" fontWeight="600">
+                      Flashcard
+                    </Typography>
+                  </Stack>
+                </Paper>
+              </Link>
 
               <Paper
                 variant="outlined"
@@ -193,23 +223,32 @@ export default function NoteBookDetailPage() {
           <Grid item xs={12} md={8} lg={9}>
             <Paper variant="outlined" sx={{ borderRadius: "0.5rem", padding: "1rem" }}>
               <Stack spacing={2}>
-                {listWordsFiltered.length > 0 ? (
-                  listWordsFiltered.map((item) => {
-                    const wordNote = wordNotes.find((wordNote) => wordNote.wordId === item.id);
-                    return (
-                      <WordCard
-                        key={item.id}
-                        word={item}
-                        wordNote={wordNote}
-                        fetchListWordNotes={fetchListWordNotes}
-                      />
-                    );
-                  })
-                ) : (
-                  <Typography variant="body2" textAlign="center">
-                    Không tìm thấy từ vựng nào
-                  </Typography>
-                )}
+                <Stack spacing={2}>
+                  {currentItems.length > 0 ? (
+                    currentItems.map((item) => {
+                      const wordNote = wordNotes.find((wordNote) => wordNote.wordId === item.id);
+                      return (
+                        <WordCard
+                          key={item.id}
+                          word={item}
+                          wordNote={wordNote}
+                          fetchListWordNotes={fetchListWordNotes}
+                        />
+                      );
+                    })
+                  ) : (
+                    <Typography variant="body2" textAlign="center">
+                      Không tìm thấy từ vựng nào
+                    </Typography>
+                  )}
+                </Stack>
+                <Pagination
+                  page={currentPage}
+                  count={pageCount}
+                  variant="outlined"
+                  shape="rounded"
+                  onChange={(_event, value) => changePage(value)}
+                />
               </Stack>
             </Paper>
           </Grid>
