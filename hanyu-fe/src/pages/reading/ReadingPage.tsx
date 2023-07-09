@@ -9,8 +9,8 @@ import { useDebounced } from "~/hooks/useDebounced";
 import { ReadingCard, TopicButton, VideoCard, ViewMoreBtn } from "~/modules/reading/components";
 import ListReadings from "~/modules/reading/data/ListReadings";
 import ListTopics from "~/modules/reading/data/ListTopics";
-import AppRoutes from "~/router/AppRoutes";
 import ListVideos from "~/modules/reading/data/ListVideos";
+import AppRoutes from "~/router/AppRoutes";
 
 export default function ReadingPage() {
   const [max, setMax] = useState(4);
@@ -91,7 +91,7 @@ export default function ReadingPage() {
                 </Typography>
 
                 <Stack direction="column" spacing={2}>
-                  {ListVideos.slice(0, 2).map((video) => (
+                  {ListVideos.slice(0, 3).map((video) => (
                     <VideoCard key={video.id} video={video} />
                   ))}
                 </Stack>
