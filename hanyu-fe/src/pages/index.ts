@@ -1,7 +1,9 @@
 import CommunityPage from "./CommunityPage";
-import DictionaryPage from "./DictionaryPage";
 import TranslatePage from "./TranslatePage";
 import UpgradePage from "./UpgradePage";
+
+import DictionaryPage from "./dictionary/DictionaryPage";
+import LookupPage from "./dictionary/LookupPage";
 
 import ReadingDetailPage from "./reading/ReadingDetailPage";
 import ReadingPage from "./reading/ReadingPage";
@@ -26,6 +28,7 @@ export {
   FlashCardPage,
   HistoryPage,
   LoginPage,
+  LookupPage,
   NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,

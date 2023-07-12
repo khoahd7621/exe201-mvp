@@ -8,6 +8,7 @@ import {
   FlashCardPage,
   HistoryPage,
   LoginPage,
+  LookupPage,
   NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,
@@ -33,6 +34,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.dictionary,
         element: <DictionaryPage />,
+      },
+      {
+        path: `${AppRoutes.dictionary}/lookup`,
+        element: <LookupPage />,
       },
       {
         path: AppRoutes.translate,

@@ -153,7 +153,12 @@ export default function Navbar({ window }: Props) {
         },
       }}
     >
-      <AppBar component="nav">
+      <AppBar
+        component="nav"
+        sx={{
+          zIndex: 9999,
+        }}
+      >
         <Toolbar
           sx={{
             display: "flex",
