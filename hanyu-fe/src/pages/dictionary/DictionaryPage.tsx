@@ -1,4 +1,5 @@
 import { Box, Card, Container, Grid, Link, Paper, Stack, Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 import { Seo } from "~/common/components";
 import {
@@ -7,9 +8,13 @@ import {
   SearchInput,
   TipsLearning,
 } from "~/modules/dictionary/components";
+import ListWords from "~/modules/dictionary/data/ListWords";
 import AppRoutes from "~/router/AppRoutes";
 
 export default function DictionaryPage() {
+  const shuffled = ListWords.sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 5);
+
   return (
     <>
       <Seo
@@ -34,23 +39,31 @@ export default function DictionaryPage() {
                   Từ khóa hot
                 </Typography>
                 <Stack direction="row" flexWrap="wrap">
-                  <Link
-                    href="#"
-                    underline="none"
-                    sx={{
-                      color: "#707070",
-                      backgroundColor: "#fff",
-                      padding: "4px 16px",
-                      borderRadius: "16px",
-                      border: "1px solid #707070",
-                      "&:hover": {
-                        border: "1px solid #000",
-                        color: "#000",
-                      },
-                    }}
-                  >
-                    <Typography>实事</Typography>
-                  </Link>
+                  {selected.map((item) => (
+                    <Link
+                      key={item.id}
+                      to={`${AppRoutes.dictionary}/lookup?word=${item.word}`}
+                      component={RouterLink}
+                      underline="none"
+                      sx={{
+                        color: "#707070",
+                        backgroundColor: "#fff",
+                        marginBottom: "16px",
+                        padding: "4px 16px",
+                        borderRadius: "16px",
+                        border: "1px solid #707070",
+                        "&:hover": {
+                          border: "1px solid #000",
+                          color: "#000",
+                        },
+                        "& + &": {
+                          marginLeft: "8px",
+                        },
+                      }}
+                    >
+                      <Typography>{item.word}</Typography>
+                    </Link>
+                  ))}
                 </Stack>
               </Box>
               <Box>

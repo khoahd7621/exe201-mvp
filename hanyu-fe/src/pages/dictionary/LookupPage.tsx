@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 import { Navigate, Link as RouterLink, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -31,7 +31,7 @@ export default function LookupPage() {
   const [searchParams] = useSearchParams();
   const wordParam = searchParams.get("word");
 
-  const currentWord: Word | undefined = ListWords.find((word) => word.word === wordParam);
+  const [currentWord, setCurrentWord] = useState<Word | undefined>(undefined);
   const relatedWords: Word[] = useMemo(
     () =>
       currentWord
@@ -41,6 +41,10 @@ export default function LookupPage() {
         : [],
     [currentWord]
   );
+
+  useLayoutEffect(() => {
+    setCurrentWord(ListWords.find((word) => word.word === wordParam));
+  }, [wordParam]);
 
   const handleDevelopFunction = () => {
     toast.info("Chức năng đang được phát triển vui lòng quay lại sau nha ^^");
@@ -91,7 +95,7 @@ export default function LookupPage() {
                     </Stack>
                   </Card>
                 </Box>
-                <>
+                <Stack spacing={1}>
                   <Typography variant="h6" fontWeight="600" fontSize={16} marginBottom="0.5rem">
                     Các từ gợi ý
                   </Typography>
@@ -115,7 +119,7 @@ export default function LookupPage() {
                         >
                           <Stack spacing={1}>
                             <Stack direction="row" spacing={1} alignItems="end">
-                              <Typography variant="h5" color="red">
+                              <Typography variant="h5" color="#38476c">
                                 {word.word}
                               </Typography>
                               <Typography variant="body1">【{word.pinyins[0]}】</Typography>
@@ -132,7 +136,7 @@ export default function LookupPage() {
                       Không có từ gợi ý
                     </Typography>
                   )}
-                </>
+                </Stack>
               </Stack>
             </Grid>
 

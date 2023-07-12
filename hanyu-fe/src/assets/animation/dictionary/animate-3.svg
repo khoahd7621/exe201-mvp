@@ -1,0 +1,45 @@
+<!--
+AnimCJK 2016-2023 Copyright FM&SH - https://github.com/parsimonhi/animCJK
+Derived from:
+    MakeMeAHanzi project - https://github.com/skishore/makemeahanzi
+    Arphic PL KaitiM GB font
+    Arphic PL UKai font
+You can redistribute and/or modify this file under the terms of the Arphic Public License
+as published by Arphic Technology Co., Ltd.
+You should have received a copy of this license along with this file.
+If not, see http://ftp.gnu.org/non-gnu/chinese-fonts-truetype/LICENSE.
+-->
+<svg id="z28779" class="acjk" version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+    <![CDATA[
+    @keyframes zk {to {stroke-dashoffset:0;}}
+    @keyframes zz {to {opacity:1;}}
+    svg.acjk path[clip-path] {--t:0.8s;animation:zk var(--t) linear forwards var(--d);stroke-dasharray:3337;stroke-dashoffset:3339;stroke-width:128;stroke-linecap:round;fill:none;}
+    svg.acjk path[id] {fill:#ccc;}
+    svg.acjk circle, svg.acjk text {opacity:0;animation:zz 0.01s linear forwards var(--d);}
+    svg.acjk text {text-anchor:middle;font-family:arial,sans-serif;font-weight:normal;}
+    ]]>
+    </style>
+    <path id="z28779d1" d="M226 417C244 443 264 473 285 507C292 518 300 525 312 528C320 529 327 527 333 519C339 509 342 492 342 470C342 442 306 405 235 364C225 358 217 356 213 357C208 358 204 364 204 374C203 382 212 397 226 417Z"></path>
+    <path id="z28779d2" d="M690 332C680 345 644 387 584 459C574 470 578 480 592 475C624 462 672 431 738 387C755 375 771 364 791 357C807 350 813 339 805 325C795 309 778 297 759 285C740 273 725 269 715 271C705 272 701 277 704 288C707 302 701 316 690 332Z"></path>
+    <path id="z28779d3" d="M511 518C517 480 523 401 529 282C530 248 535 211 548 172C551 162 550 156 543 150C528 137 506 125 479 115C462 108 447 106 434 111C417 116 416 127 430 141C452 163 464 186 465 210C467 336 460 441 448 526C432 635 380 726 284 794C258 812 225 830 186 851C175 856 169 858 167 861C162 865 166 873 179 871C272 854 323 827 365 799C459 733 492 627 504 559C509 532 509 532 511 518Z"></path>
+    <path id="z28779d4" d="M504 559C578 676 637 769 715 860C732 880 749 891 767 891C817 889 865 885 911 883C929 882 939 879 940 875C940 870 931 861 910 852C805 804 738 769 709 743C647 686 593 623 511 518C502 507 496 548 504 559Z"></path>
+    <defs>
+        <clipPath id="z28779c1"><use xlink:href="#z28779d1"></use></clipPath>
+        <clipPath id="z28779c2"><use xlink:href="#z28779d2"></use></clipPath>
+        <clipPath id="z28779c3"><use xlink:href="#z28779d3"></use></clipPath>
+        <clipPath id="z28779c4"><use xlink:href="#z28779d4"></use></clipPath>
+    </defs>
+    <path style="--d:1s;" pathLength="3333" clip-path="url(#z28779c1)" d="M212 363L302 464L319 524" stroke="rgb(35,159,125)"></path>
+    <path style="--d:2s;" pathLength="3333" clip-path="url(#z28779c2)" d="M711 280L752 335L587 469" stroke="rgb(110,7,155)"></path>
+    <path style="--d:3s;" pathLength="3333" clip-path="url(#z28779c3)" d="M427 119L505 175L455 625L360 767L176 863" stroke="rgb(172,27,131)"></path>
+    <path style="--d:4s;" pathLength="3333" clip-path="url(#z28779c4)" d="M510 524L611 680L735 816L776 843L934 869" stroke="rgb(131,187,35)"></path>
+    <circle cx="225.30561934063655" cy="377.9318617044921" r="40" stroke="rgb(35,159,125)" fill="#fff" stroke-width="5" style="--d: 1s;"></circle>
+    <text x="225.30561934063655" y="397.9318617044921" text-anchor="middle" font-family="arial" font-weight="normal" fill="rgb(35,159,125)" font-size="60" style="--d: 1s;">1</text>
+    <circle cx="722.9533019690921" cy="296.03491727561135" r="40" stroke="rgb(110,7,155)" fill="#fff" stroke-width="5" style="--d: 2s;"></circle>
+    <text x="722.9533019690921" y="316.03491727561135" text-anchor="middle" font-family="arial" font-weight="normal" fill="rgb(110,7,155)" font-size="60" style="--d: 2s;">2</text>
+    <circle cx="443.24647467183183" cy="130.66413566182797" r="40" stroke="rgb(172,27,131)" fill="#fff" stroke-width="5" style="--d: 3s;"></circle>
+    <text x="443.24647467183183" y="150.66413566182797" text-anchor="middle" font-family="arial" font-weight="normal" fill="rgb(172,27,131)" font-size="60" style="--d: 3s;">3</text>
+    <circle cx="520.8694874177521" cy="540.7885152194983" r="40" stroke="rgb(131,187,35)" fill="#fff" stroke-width="5" style="--d: 4s;"></circle>
+    <text x="520.8694874177521" y="560.7885152194983" text-anchor="middle" font-family="arial" font-weight="normal" fill="rgb(131,187,35)" font-size="60" style="--d: 4s;">4</text>
+    </svg>
