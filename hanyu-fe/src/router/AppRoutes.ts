@@ -10,6 +10,7 @@ const AppRoutes = {
   register: "/register",
   profile: "/profile",
   upgrade: "/upgrade",
+  manage: "/manage",
 };
 
 export default AppRoutes;

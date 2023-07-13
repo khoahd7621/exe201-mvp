@@ -15,6 +15,8 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
+
 import { useAppDispatch, useAppSelector } from "~/redux/hooks";
 import { logout } from "~/redux/slices/authSlice";
 import { remove } from "~/redux/slices/profileSlice";
@@ -189,6 +191,15 @@ export default function AccountMenu() {
             </Stack>
           </Stack>
         </MenuItem>
+        {profile.role === "ADMIN" && <Divider />}
+        {profile.role === "ADMIN" && (
+          <MenuItem onClick={() => navigate(AppRoutes.manage)}>
+            <ListItemIcon>
+              <SpaceDashboardIcon fontSize="small" />
+            </ListItemIcon>
+            Quản trị
+          </MenuItem>
+        )}
         <Divider />
         <MenuItem
           onClick={() => {
@@ -199,7 +210,7 @@ export default function AccountMenu() {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          Đăng xuất
         </MenuItem>
       </Menu>
     </>

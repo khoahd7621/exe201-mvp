@@ -1,8 +1,19 @@
+import { useState } from "react";
+
+import { CircularProgress } from "@mui/material";
+
+import { useAppDispatch } from "./redux/hooks";
 import { fetchUserProfile } from "./redux/slices/profileSlice";
-import { store } from "./redux/store";
 
 const App = ({ children }: React.PropsWithChildren) => {
-  store.dispatch(fetchUserProfile());
+  const [loading, setLoading] = useState<boolean>(true);
+  const dispatch = useAppDispatch();
+
+  dispatch(fetchUserProfile()).finally(() => setLoading(false));
+
+  if (loading) {
+    return <CircularProgress />;
+  }
 
   return <>{children}</>;
 };

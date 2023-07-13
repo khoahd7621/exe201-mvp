@@ -1,4 +1,5 @@
 import CommunityPage from "./CommunityPage";
+import ManagePage from "./ManagePage";
 import TranslatePage from "./TranslatePage";
 import UpgradePage from "./UpgradePage";
 
@@ -29,6 +30,7 @@ export {
   HistoryPage,
   LoginPage,
   LookupPage,
+  ManagePage,
   NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,

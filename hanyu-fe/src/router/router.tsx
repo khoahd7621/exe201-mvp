@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 
-import { MainLayout, QuizLayout } from "../layouts";
+import { AdminLayout, MainLayout, QuizLayout } from "../layouts";
 import {
   CommunityPage,
   DictionaryPage,
@@ -9,6 +9,7 @@ import {
   HistoryPage,
   LoginPage,
   LookupPage,
+  ManagePage,
   NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,
@@ -128,6 +129,16 @@ const routes: RouteObject[] = [
       {
         path: `:readingId`,
         element: <ReadingDetailPage />,
+      },
+    ],
+  },
+  {
+    path: AppRoutes.manage,
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <ManagePage />,
       },
     ],
   },
