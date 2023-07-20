@@ -15,10 +15,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class CreateCommentRequest {
+
     @NotNull
     private String title;
     @NotNull
     private String content;
     @NotNull
     private String topic;
+
 }

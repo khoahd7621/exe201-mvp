@@ -1,6 +1,5 @@
 package com.hanyu.hanyube.config;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
