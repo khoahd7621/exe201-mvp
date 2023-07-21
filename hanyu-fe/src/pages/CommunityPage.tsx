@@ -23,6 +23,7 @@ import {
 import commentApis from "~/modules/comment/api/commentApis";
 import { PostDialog } from "~/modules/comment/components";
 import { CommentBlog } from "~/modules/comment/models";
+import { useAppSelector } from "~/redux/hooks";
 
 const topics: string[] = [
   "Building",
@@ -37,6 +38,7 @@ export default function CommunityPage() {
   const [showMore, SetShowMore] = useState(false);
   const [open, setOpen] = useState(false);
   const [comments, setComments] = useState<CommentBlog[]>([]);
+  const user = useAppSelector((state) => state.profile.user);
 
   useEffect(() => {
     fetchListComment();
@@ -197,18 +199,20 @@ export default function CommunityPage() {
           </Paper>
         </Grid>
         <Grid item xs={6} md={6}>
-          <Paper
-            sx={{ height: 70, m: "auto", mt: 2, display: "flex", alignItems: "center" }}
-            onClick={handleClickOpen}
-          >
-            <Avatar alt="User Avatar" src="/static/images/avatar/1.jpg" sx={{ ml: 2 }} />
-            <Typography
-              variant="h5"
-              sx={{ color: "#ccc", fontWeight: 600, fontSize: "14px", ml: 2 }}
+          {user.name && (
+            <Paper
+              sx={{ height: 70, m: "auto", mt: 2, display: "flex", alignItems: "center" }}
+              onClick={handleClickOpen}
             >
-              Thanh Phat, Bạn muốn hỏi về điều gì ?
-            </Typography>
-          </Paper>
+              <Avatar alt="User Avatar" src="/static/images/avatar/1.jpg" sx={{ ml: 2 }} />
+              <Typography
+                variant="h5"
+                sx={{ color: "#ccc", fontWeight: 600, fontSize: "14px", ml: 2 }}
+              >
+                {user.name}, Bạn muốn hỏi về điều gì ?
+              </Typography>
+            </Paper>
+          )}
           {comments.map((item) => {
             return (
               <Paper key={item.id} sx={{ height: 200, m: "auto", mt: 2 }}>
