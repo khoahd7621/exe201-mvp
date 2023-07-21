@@ -22,6 +22,7 @@ import NoteBookDetailPage from "./notebook/NoteBookDetailPage";
 import NoteBookPage from "./notebook/NoteBookPage";
 
 import DashboardPage from "./DashboardPage";
+import ManageRatingPage from "./ManageRatingPage";
 import ManageUserPage from "./ManageUserPage";
 
 export {
@@ -33,6 +34,7 @@ export {
   HistoryPage,
   LoginPage,
   LookupPage,
+  ManageRatingPage,
   ManageUserPage,
   NoteBookDetailPage,
   NoteBookPage,

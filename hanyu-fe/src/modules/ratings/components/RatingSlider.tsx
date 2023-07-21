@@ -43,7 +43,7 @@ export default function RatingSlider() {
       navButtonsAlwaysInvisible={true}
       autoPlay={true}
       animation="slide"
-      duration={200}
+      duration={500}
     >
       {sliderItems.map((items, index) => (
         <Stack key={index} spacing={2}>
@@ -56,10 +56,10 @@ export default function RatingSlider() {
             >
               <Paper variant="outlined" sx={{ padding: "1rem", borderRadius: "16px" }}>
                 <Stack direction="row" spacing={1}>
-                  <Avatar>H</Avatar>
+                  <Avatar>{rating.userProfile.name.charAt(0)}</Avatar>
                   <Stack direction="column" flexGrow={1} justifyContent={"space-between"}>
                     <Typography variant="body2" fontWeight="600">
-                      {"Username"}
+                      {rating.userProfile.name}
                     </Typography>
                     <Rating value={rating.star} size="small" readOnly />
                   </Stack>

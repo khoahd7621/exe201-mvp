@@ -9,6 +9,7 @@ const ratingApi = {
     avg: number;
     ratings: Rating[];
   }> => AxiosClient.get("/public/ratings"),
+  delete: (id: string): Promise<void> => AxiosClient.delete(`/ratings/${id}`),
 };
 
 export default ratingApi;

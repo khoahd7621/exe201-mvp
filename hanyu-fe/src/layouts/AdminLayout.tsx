@@ -1,14 +1,12 @@
 import * as React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import BarChartIcon from "@mui/icons-material/BarChart";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import LayersIcon from "@mui/icons-material/Layers";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PeopleIcon from "@mui/icons-material/People";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ReviewsIcon from "@mui/icons-material/Reviews";
 import { Button, Stack } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
@@ -48,25 +46,13 @@ const MainListItems = () => {
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Manage Users" />
+        <ListItemText primary="Quản lý người dùng" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton onClick={() => navigate(`${AppRoutes.manage}/ratings`, { replace: true })}>
         <ListItemIcon>
-          <ShoppingCartIcon />
+          <ReviewsIcon />
         </ListItemIcon>
-        <ListItemText primary="Manage Orders" />
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Manage Reports" />
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <LayersIcon />
-        </ListItemIcon>
-        <ListItemText primary="Manage Integrations" />
+        <ListItemText primary="Quản lý đánh giá" />
       </ListItemButton>
     </React.Fragment>
   );

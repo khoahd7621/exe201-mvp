@@ -10,6 +10,7 @@ import {
   HistoryPage,
   LoginPage,
   LookupPage,
+  ManageRatingPage,
   ManageUserPage,
   NoteBookDetailPage,
   NoteBookPage,
@@ -144,6 +145,10 @@ const routes: RouteObject[] = [
       {
         path: "users",
         element: <ManageUserPage />,
+      },
+      {
+        path: "ratings",
+        element: <ManageRatingPage />,
       },
     ],
   },
