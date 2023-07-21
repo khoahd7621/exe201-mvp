@@ -1,3 +1,4 @@
-import { User } from "./User";
+import type { PasswordPayload } from "./PasswordPayload";
+import type { User } from "./User";
 
-export type { User };
+export type { PasswordPayload, User };
