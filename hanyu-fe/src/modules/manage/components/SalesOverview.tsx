@@ -16,8 +16,6 @@ const SalesOverview = () => {
     manageApis
       .getUsers(200, 1)
       .then((res) => {
-        console.log(res);
-        // Process data and map to the monthlyData array
         const quarterCounts = Array(12).fill(0);
         const yearCounts = Array(12).fill(0);
         const foreverCounts = Array(12).fill(0);
@@ -25,15 +23,14 @@ const SalesOverview = () => {
         res.forEach((item) => {
           const createdAtDate = new Date(item.createdAt);
           const month = createdAtDate.getMonth(); // Get month index (0-11)
-          console.log(item.packageTime);
           if (item.packageTime === "QUARTER") {
             quarterCounts[month] += 50000; // Add 50,000 to the corresponding month for QUARTER
           }
           if (item.packageTime === "YEAR") {
             yearCounts[month] += 125000; // Add 125,000 to the corresponding month for YEAR
           }
-          if (item.packageTime === "FOREVER") {
-            yearCounts[month] += 400000; 
+          if (item.packageTime === "LIFETIME") {
+            yearCounts[month] += 200000;  // Add 200,000 to the corresponding month for LIFETIME
           }
         });
         setMonthlyData(quarterCounts);
@@ -43,7 +40,6 @@ const SalesOverview = () => {
       .catch((err) => console.log(err));
   };
 
-  console.log(monthlyData);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const optionssalesoverview: ApexCharts.ApexOptions = {
     grid: {
