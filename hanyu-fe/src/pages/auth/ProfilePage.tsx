@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 
 import { Seo } from "~/common/components";
 import { ChangePassword } from "~/modules/profile/components";
+import { RatingForm } from "~/modules/ratings/components";
 import { useAppSelector } from "~/redux/hooks";
 import AppRoutes from "~/router/AppRoutes";
 
@@ -163,6 +164,7 @@ export default function ProfilePage() {
                     <Tab label="Bình luận" {...a11yProps(0)} />
                     <Tab label="Tương tác" {...a11yProps(1)} />
                     <Tab label="Đổi mật khẩu" {...a11yProps(2)} />
+                    <Tab label="Đánh giá ứng dụng" {...a11yProps(3)} />
                   </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
@@ -173,6 +175,9 @@ export default function ProfilePage() {
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                   <ChangePassword />
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                  <RatingForm />
                 </TabPanel>
               </Box>
             </CardContent>

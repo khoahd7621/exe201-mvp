@@ -43,7 +43,7 @@ const modalStyle = {
   p: 4,
 };
 
-export default function ManagePage() {
+export default function ManageUserPage() {
   const auth = useAppSelector((state) => state.auth);
   const profile = useAppSelector((state) => state.profile.user);
   const [rows, setRows] = React.useState<User[]>([]);
@@ -62,7 +62,8 @@ export default function ManagePage() {
         (row) =>
           row.id.includes(keyword.toLowerCase()) ||
           row.name.toLowerCase().includes(keyword.toLowerCase()) ||
-          row.email.toLowerCase().includes(keyword.toLowerCase())
+          row.email.toLowerCase().includes(keyword.toLowerCase()) ||
+          row.usePackage.toLowerCase().includes(keyword.toLowerCase())
       );
       setFilterRows(tmp);
     } else {

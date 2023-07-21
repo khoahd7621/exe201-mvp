@@ -3,13 +3,14 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 import { AdminLayout, MainLayout, QuizLayout } from "../layouts";
 import {
   CommunityPage,
+  DashboardPage,
   DictionaryPage,
   ExamPage,
   FlashCardPage,
   HistoryPage,
   LoginPage,
   LookupPage,
-  ManagePage,
+  ManageUserPage,
   NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,
@@ -138,7 +139,11 @@ const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <ManagePage />,
+        element: <DashboardPage />,
+      },
+      {
+        path: "users",
+        element: <ManageUserPage />,
       },
     ],
   },
