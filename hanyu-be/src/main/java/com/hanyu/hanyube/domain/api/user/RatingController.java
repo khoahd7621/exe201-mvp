@@ -57,7 +57,7 @@ public class RatingController {
         return ratingService.getAll();
     }
 
-    @DeleteMapping("/api/public/ratings/{ratingId}")
+    @DeleteMapping("/api/ratings/{ratingId}")
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasRole('" + UserRoleEnum.Role.ADMIN + "')")
     public void delete(@PathVariable UUID ratingId ) {
