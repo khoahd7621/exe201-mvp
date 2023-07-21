@@ -198,7 +198,7 @@ export default function CommunityPage() {
             })}
           </Paper>
         </Grid>
-        <Grid item xs={6} md={6}>
+        <Grid item>
           {user.name && (
             <Paper
               sx={{ height: 70, m: "auto", mt: 2, display: "flex", alignItems: "center" }}
