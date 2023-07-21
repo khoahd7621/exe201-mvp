@@ -1,3 +1,4 @@
 import RatingForm from "./RatingForm";
+import RatingSlider from "./RatingSlider";
 
-export { RatingForm };
+export { RatingForm, RatingSlider };

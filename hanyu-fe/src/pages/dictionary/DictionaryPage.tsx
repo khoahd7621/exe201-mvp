@@ -9,6 +9,7 @@ import {
   TipsLearning,
 } from "~/modules/dictionary/components";
 import ListWords from "~/modules/dictionary/data/ListWords";
+import { RatingSlider } from "~/modules/ratings/components";
 import AppRoutes from "~/router/AppRoutes";
 
 export default function DictionaryPage() {
@@ -80,6 +81,12 @@ export default function DictionaryPage() {
                     </Typography>
                   </Stack>
                 </Card>
+              </Box>
+              <Box>
+                <Typography variant="h6" fontWeight="600" fontSize={16} marginBottom="1rem">
+                  Đánh giá từ học viên
+                </Typography>
+                <RatingSlider />
               </Box>
             </Stack>
           </Grid>
