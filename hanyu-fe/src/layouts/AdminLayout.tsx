@@ -33,22 +33,22 @@ import { logout } from "~/redux/slices/authSlice";
 import { remove } from "~/redux/slices/profileSlice";
 import AppRoutes from "~/router/AppRoutes";
 
-const mainListItems = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const MainListItems = () => {
   const navigate = useNavigate();
+
   return (
     <React.Fragment>
-      <ListItemButton onClick={() => navigate(AppRoutes.manage, {replace: true})}>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText primary="Manage Users" />
-      </ListItemButton>
-      <ListItemButton onClick={() => navigate(AppRoutes.dashboard, {replace: true})}>
+      <ListItemButton onClick={() => navigate(AppRoutes.manage, { replace: true })}>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
+      </ListItemButton>
+      <ListItemButton onClick={() => navigate(`${AppRoutes.manage}/users`, { replace: true })}>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Manage Users" />
       </ListItemButton>
       <ListItemButton>
         <ListItemIcon>
@@ -69,7 +69,7 @@ const mainListItems = () => {
         <ListItemText primary="Manage Integrations" />
       </ListItemButton>
     </React.Fragment>
-  )
+  );
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -178,7 +178,7 @@ export default function AdminLayout() {
               <MenuIcon />
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-              Quản lý người dùng
+              Quản lý
             </Typography>
             <Stack direction="row" spacing={3}>
               <IconButton color="inherit">
@@ -220,7 +220,9 @@ export default function AdminLayout() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">{mainListItems()}</List>
+          <List component="nav">
+            <MainListItems />
+          </List>
         </Drawer>
         <Box
           component="main"

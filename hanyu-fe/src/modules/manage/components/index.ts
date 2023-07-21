@@ -1,3 +1,3 @@
-import SalesOverview from "./SalesOverview";
+import SystemOverview from "./SystemOverview";
 
-export { SalesOverview };
+export { SystemOverview };

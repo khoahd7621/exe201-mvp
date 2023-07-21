@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@mui/material": "^5.14.1",
-    "apexcharts": "^3.41.0",
-    "react-apexcharts": "^1.4.1"
-  }
-}

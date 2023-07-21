@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { useAppSelector } from "~/redux/hooks";
-import { SalesOverview } from "~/modules/manage/components";
 import { Stack } from "@mui/material";
 
+import { useAppSelector } from "~/redux/hooks";
+import { SystemOverview } from "~/modules/manage/components";
 
 export default function DashboardPage() {
   const auth = useAppSelector((state) => state.auth);
@@ -22,7 +22,7 @@ export default function DashboardPage() {
 
   return (
     <Stack>
-      <SalesOverview />
+      <SystemOverview />
     </Stack>
   );
 }

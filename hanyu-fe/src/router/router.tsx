@@ -10,7 +10,7 @@ import {
   HistoryPage,
   LoginPage,
   LookupPage,
-  ManagePage,
+  ManageUserPage,
   NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,
@@ -139,17 +139,11 @@ const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <ManagePage />,
-      },
-    ],
-  },
-  {
-    path: AppRoutes.dashboard,
-    element: <AdminLayout />,
-    children: [
-      {
-        index: true,
         element: <DashboardPage />,
+      },
+      {
+        path: "users",
+        element: <ManageUserPage />,
       },
     ],
   },

@@ -1,5 +1,4 @@
 import CommunityPage from "./CommunityPage";
-import ManagePage from "./ManagePage";
 import TranslatePage from "./TranslatePage";
 import UpgradePage from "./UpgradePage";
 
@@ -21,18 +20,20 @@ import RegisterPage from "./auth/RegisterPage";
 import FlashCardPage from "./notebook/FlashCardPage";
 import NoteBookDetailPage from "./notebook/NoteBookDetailPage";
 import NoteBookPage from "./notebook/NoteBookPage";
-import DashboardPage from './DashboardPage';
+
+import DashboardPage from "./DashboardPage";
+import ManageUserPage from "./ManageUserPage";
 
 export {
   CommunityPage,
+  DashboardPage,
   DictionaryPage,
   ExamPage,
   FlashCardPage,
   HistoryPage,
   LoginPage,
   LookupPage,
-  ManagePage,
-  DashboardPage,
+  ManageUserPage,
   NoteBookDetailPage,
   NoteBookPage,
   ProfilePage,
