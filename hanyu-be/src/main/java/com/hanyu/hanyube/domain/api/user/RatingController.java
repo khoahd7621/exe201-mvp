@@ -9,7 +9,9 @@ import com.hanyu.hanyube.service.utils.AuthUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.ws.rs.Path;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -51,5 +55,12 @@ public class RatingController {
     @ResponseStatus(HttpStatus.OK)
     public RatingResponses getAll() {
         return ratingService.getAll();
+    }
+
+    @DeleteMapping("/api/public/ratings/{ratingId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('" + UserRoleEnum.Role.ADMIN + "')")
+    public void delete(@PathVariable UUID ratingId ) {
+         ratingService.delete(ratingId);
     }
 }

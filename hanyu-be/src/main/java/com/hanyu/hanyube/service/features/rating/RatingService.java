@@ -3,10 +3,13 @@ package com.hanyu.hanyube.service.features.rating;
 import com.hanyu.hanyube.domain.dto.rating.RatingRequest;
 import com.hanyu.hanyube.domain.dto.rating.RatingResponse;
 import com.hanyu.hanyube.domain.dto.rating.RatingResponses;
+import com.hanyu.hanyube.domain.dto.user.UserProfileResponse;
 import com.hanyu.hanyube.service.entities.RatingEntity;
 import com.hanyu.hanyube.service.exceptions.BadRequestException;
+import com.hanyu.hanyube.service.features.user.UserService;
 import com.hanyu.hanyube.service.utils.AuthUtils;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -17,6 +20,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RequiredArgsConstructor
 public class RatingService {
     private final RatingRepository ratingRepository;
+    private final UserService userService;
+    private final ModelMapper modelMapper;
 
     public void create(RatingRequest request) {
         ratingRepository.save(RatingEntity.builder()
@@ -27,7 +32,8 @@ public class RatingService {
     }
 
     public RatingResponse getByUserId(UUID userId) {
-        var entity = ratingRepository.findByUserId(userId).orElseThrow(() -> new BadRequestException("Rating not found!"));
+        var entity = ratingRepository.findByUserId(userId)
+                .orElseThrow(() -> new BadRequestException("Rating not found!"));
         return mapper(entity);
     }
 
@@ -54,14 +60,21 @@ public class RatingService {
                 .build();
     }
 
-    private RatingResponse mapper(RatingEntity rating){
+    private RatingResponse mapper(RatingEntity rating) {
+        var user = modelMapper.map(userService.getByUserId(rating.getUserId()), UserProfileResponse.class);
         return RatingResponse.builder()
                 .id(rating.getId())
-                .user_id(rating.getUserId())
+                .userProfile(user)
                 .star(rating.getStar())
                 .description(rating.getDescription())
                 .updatedAt(rating.getUpdatedAt())
                 .createdAt(rating.getCreatedAt())
                 .build();
+    }
+
+    public void delete(UUID ratingId) {
+        var rating = ratingRepository.findById(ratingId)
+                .orElseThrow(() -> new BadRequestException("Rating not found"));
+        ratingRepository.delete(rating);
     }
 }
