@@ -3,8 +3,10 @@ import { toast } from "react-toastify";
 
 import { Stack } from "@mui/material";
 
-import { useAppSelector } from "~/redux/hooks";
+import { Seo } from "~/common/components";
 import { SystemOverview } from "~/modules/manage/components";
+import { useAppSelector } from "~/redux/hooks";
+import AppRoutes from "~/router/AppRoutes";
 
 export default function DashboardPage() {
   const auth = useAppSelector((state) => state.auth);
@@ -21,8 +23,21 @@ export default function DashboardPage() {
   }
 
   return (
-    <Stack>
-      <SystemOverview />
-    </Stack>
+    <>
+      <Seo
+        data={{
+          title: "Panda Hanyu | Quản lý - Tổng quan",
+          description: "Panda Hanyu quản lý - Trang tổng quan",
+          url: `https://hanyu-chinesee-learning.vercel.app/${AppRoutes.manage}`,
+          href: AppRoutes.manage,
+          thumbnailUrl:
+            "https://res.cloudinary.com/khoahd7621/image/upload/v1686117832/banner-2_fkf4w3.png",
+        }}
+      />
+
+      <Stack>
+        <SystemOverview />
+      </Stack>
+    </>
   );
 }
