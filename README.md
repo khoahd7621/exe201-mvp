@@ -43,7 +43,11 @@
 
 </div>
 
-### References:
+### Final Report
+
+- [Presentation](https://github.com/khoahd7621/exe201-mvp/blob/main/documents/EXE201_MEICHAN%20GROUP_SU23.pdf)
+
+### References
 
 1. [ReactJS](https://react.dev)
 2. [MUI](https://mui.com)
